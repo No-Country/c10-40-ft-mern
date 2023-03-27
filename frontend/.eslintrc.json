@@ -8,6 +8,9 @@
         "plugin:react/recommended",
         "standard-with-typescript"
     ],
+
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+
     "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest",
