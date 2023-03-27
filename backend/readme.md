@@ -1,8 +1,8 @@
 # git pull
-/*actualizar el repositorio local
+/*actualizar el repositorio local.
 
 # git branch 
-/*Nos indica en que rama trabajamos
+/*Nos indica en que rama trabajamos.
 
 # git checkout -b NombreRama
 /* Crea la rama e ingresas a ella
