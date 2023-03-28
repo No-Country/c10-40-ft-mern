@@ -4,11 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "prepare": "cd .. && husky install frontend/.husky",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "commit": "commit"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@typescript-eslint/parser": "^5.56.0",
@@ -16,9 +14,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.5.0",
-    "@commitlint/config-conventional": "^17.4.4",
-    "@commitlint/prompt-cli": "^17.5.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
@@ -32,7 +27,6 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
-    "husky": "^8.0.3",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "prettier-config-standard": "^5.0.0",
