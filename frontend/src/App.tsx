@@ -1,4 +1,4 @@
-import { Home, About } from 'pages'
+import { About, Home, Login } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
 function App(): JSX.Element {
@@ -6,6 +6,7 @@ function App(): JSX.Element {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   )
 }
