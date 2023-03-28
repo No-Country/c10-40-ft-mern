@@ -1,4 +1,4 @@
-import { Home, About } from 'pages'
+import { About, CompleteProfile, Home, Login, Register } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
 function App(): JSX.Element {
@@ -6,6 +6,9 @@ function App(): JSX.Element {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/completeprofile" element={<CompleteProfile />} />
     </Routes>
   )
 }
