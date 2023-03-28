@@ -1,7 +1,7 @@
-function App(): React.ReactNode {
+function App(): JSX.Element {
   return (
     <div className="App">
-      <h1 className="text-5xl font-bold">Workout tracker </h1>
+      <h1 className="text-7xl font-bold">Workout tracker </h1>
     </div>
   )
 }
