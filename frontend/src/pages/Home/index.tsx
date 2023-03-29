@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const Home = (): JSX.Element => {
   return (
     <div className="h-[80vh] w-full flex flex-col items-center justify-center">
@@ -6,10 +8,12 @@ const Home = (): JSX.Element => {
           Conoce nuestros planes de entrenamiento
         </p>
 
-        <div className="flex gap-3">
-          <button className="border w-48 p-3 font-semibold rounded-md bg-black border-black text-white hover:bg-gray-300 hover:text-black ease-in-out duration-500">
+        <div className="flex gap-3 items-center text-center">
+          <Link
+            to="/login"
+            className="border w-48 p-3 font-semibold rounded-md bg-black border-black text-white hover:bg-gray-300 hover:text-black ease-in-out duration-500">
             Empeza
-          </button>
+          </Link>
           <button className="border w-48 p-3 font-semibold rounded-md border-black text-black hover:bg-black hover:text-white ease-in-out duration-500">
             Sobre Nosotros
           </button>
