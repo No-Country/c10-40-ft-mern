@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const Footer = (): JSX.Element => {
   return (
-    <footer className="w-full border border-red-500">
+    <footer className="w-full border border-red-500 h-full bottom-0">
       <div>
         <ul>
           <li className="underline text-blue-400 cursor-pointer">
