@@ -1,11 +1,20 @@
-import MainLayout from 'components/Layout'
-
 const Home = (): JSX.Element => {
   return (
-    <div>
-      <MainLayout>
-        <h1 className="text-7xl font-bold">Workout tracker </h1>
-      </MainLayout>
+    <div className="h-[80vh] w-full flex flex-col items-center justify-center">
+      <div className="flex flex-col h-72 w-[300px] justify-around items-center">
+        <p className="text-4xl font-bold uppercase">
+          Conoce nuestros planes de entrenamiento
+        </p>
+
+        <div className="flex gap-3">
+          <button className="border w-48 p-3 font-semibold rounded-md bg-black border-black text-white hover:bg-gray-300 hover:text-black ease-in-out duration-500">
+            Empeza
+          </button>
+          <button className="border w-48 p-3 font-semibold rounded-md border-black text-black hover:bg-black hover:text-white ease-in-out duration-500">
+            Sobre Nosotros
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
