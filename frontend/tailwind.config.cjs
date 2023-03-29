@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {}
+    extend: {
+      boxShadow: {
+        xxl: '0 0 0 1000px rgba(0,0,0,0.3)'
+      }
+    }
   },
   plugins: []
 }

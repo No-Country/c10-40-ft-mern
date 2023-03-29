@@ -1,10 +1,11 @@
-import { Navbar } from 'components'
+import MainLayout from 'components/Layout'
 
 const Home = (): JSX.Element => {
   return (
     <div>
-      <Navbar />
-      <h1 className="text-7xl font-bold">Workout tracker </h1>
+      <MainLayout>
+        <h1 className="text-7xl font-bold">Workout tracker </h1>
+      </MainLayout>
     </div>
   )
 }
