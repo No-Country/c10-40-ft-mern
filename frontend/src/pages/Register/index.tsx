@@ -1,7 +1,20 @@
+import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
+
 const Register = (): JSX.Element => {
+  const navigate = useNavigate()
+
   return (
     <div className="flex items-center justify-center h-screen w-full">
       <div className="flex flex-col items-center bg-white rounded-xl mx-5 w-[80%] md:max-w-[50%] lg:max-w-[40%]">
+        <div className="w-full pl-5 pt-5">
+          <button
+            onClick={() => {
+              navigate(-1)
+            }}>
+            <BsFillArrowLeftCircleFill size={30} />
+          </button>
+        </div>
         <div>Imagen</div>
         <div className="my-5">Registrate</div>
 
