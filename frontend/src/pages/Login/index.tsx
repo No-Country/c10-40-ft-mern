@@ -5,22 +5,21 @@ import { Link } from 'react-router-dom'
 const Login = (): JSX.Element => {
   return (
     <div className="flex items-center justify-center h-screen w-full">
-      <div className="flex flex-col items-center bg-gray-200 w-[80%] md:max-w-[50%] lg:max-w-[40%] mx-5">
+      <div className="flex flex-col items-center bg-white rounded-xl mx-5 w-[80%] md:max-w-[50%] lg:max-w-[40%]">
         <div>Imagen</div>
         <div className="my-5">Hola! Ingresa en tu cuenta</div>
-
-        <form className="flex flex-col gap-4 text-center w-full">
+        <form className="flex flex-col gap-4 text-center w-full p-10">
           <input
-            className="rounded-md h-10"
+            className="rounded h-10 bg-transparent border border-black placeholder-gray-600 p-2"
             placeholder={'correo@correo.com'}
             value={''}
           />
           <input
-            className="rounded-md h-10"
+            className="rounded h-10 bg-transparent border border-black placeholder-gray-600 p-2"
             placeholder={'*********'}
             value={''}
           />
-          <button className="uppercase bg-white hover:bg-gray-500 ease-in-out duration-300 text-black rounded-md h-10 font-light">
+          <button className="uppercase bg-gray-300 hover:bg-gray-500 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
             Ingresar
           </button>
           <Link
@@ -34,7 +33,7 @@ const Login = (): JSX.Element => {
             <BsGoogle />
             <FaFacebookF />
           </div>
-          <button className="uppercase bg-white hover:bg-gray-500 ease-in-out duration-300 text-black rounded-md h-10 font-light">
+          <button className="uppercase bg-gray-300 hover:bg-gray-500 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
             Registrate
           </button>
         </form>
