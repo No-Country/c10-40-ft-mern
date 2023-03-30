@@ -9,7 +9,7 @@ require('dotenv').config
 const passportGoogleConfig = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/oauth2/redirect/google',
+    callbackURL: 'http://localhost:3000/api/v1/auth/oauth2/redirect/google',
     passReqToCallback: true,
 }
 const passportConfigs = {
@@ -25,7 +25,7 @@ passport.use('auth-google', new GoogleStrategy(passportGoogleConfig, (request, a
                 return done(null, data)
             } else {
                 const newUser = userControllers.createNewUser({
-                    "firstName" : profile.displayName,
+                    "firstName" : profile.given_name,
                     "email" : profile.emails[0].value,
                     "password" : "temporal",
                     "country" : "countryTemporal",
