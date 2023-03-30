@@ -1,4 +1,5 @@
 const checkUserCredentials = require('./auth.controller')
+const userControllers = require('../users/users.controllers')
 const response = require('../utils/handleResponses')
 const jwt = require('jsonwebtoken')
 const config = require('../../config').api
@@ -41,11 +42,8 @@ const postLogin = (req, res) => {
 }
 
 const postGoogle = (req, res) => {
-    console.log(req)
     const User = req.user
-    console.log("User:");
-    console.log(User.email)
-    checkUserCredentials(User.email, User.password)
+    userControllers.findUserByEmail(User.email)
         .then(data => {
             if(data){
                 const token = jwt.sign({
