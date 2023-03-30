@@ -1,0 +1,23 @@
+{
+  "name": "c10-40-workout-tracker",
+  "version": "0.0.1",
+  "description": "Workout tracker project for NoCountry",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/No-Country/c10-40-ft-mern.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/No-Country/c10-40-ft-mern/issues"
+  },
+  "homepage": "https://github.com/No-Country/c10-40-ft-mern#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.0"
+  }
+}
