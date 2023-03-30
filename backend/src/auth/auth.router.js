@@ -1,25 +1,11 @@
 const router = require('express').Router()
-const jwt = require("jsonwebtoken")
 const passport = require('passport');
-const postLogin = require('./auth.services')
-const userServices = require('../users/users.services')
+const authServices = require('./auth.services')
 
-router.post('/login', postLogin)
+router.post('/login', authServices.postLogin)
 
 router.get("/google", passport.authenticate('auth-google', { scope: ["email", "profile"] }))
 
-router.get("/oauth2/redirect/google", passport.authenticate('auth-google', { session: false }), (req, res) => {
-    jwt.sign({ user: req.user }, "secretKey", { expiresIn: "1h" }, (err, token) => {
-            if (err) {
-                return res.json({
-                    token: null,
-                });
-            }
-            res.json({
-                token,
-            });
-        }
-    );
-})
+router.get("/oauth2/redirect/google", passport.authenticate('auth-google', { session: false }), authServices.postGoogle)
 
 module.exports = router

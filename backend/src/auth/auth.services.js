@@ -40,4 +40,44 @@ const postLogin = (req, res) => {
         })
 }
 
-module.exports = postLogin
+const postGoogle = (req, res) => {
+    console.log(req)
+    const User = req.user
+    console.log("User:");
+    console.log(User.email)
+    checkUserCredentials(User.email, User.password)
+        .then(data => {
+            if(data){
+                const token = jwt.sign({
+                    id: data.id,
+                    email: data.email,
+                    firstName: data.firstName
+                }, config.secretOrKey, {
+                    expiresIn: '1d'
+                })
+
+                response.success({
+                    res,
+                    status:200,
+                    message: 'Correct Credentials!',
+                    data: token
+                })
+            } else {
+                response.error({
+                    res,
+                    status: 401,
+                    message: 'Invalid Credentials'
+                })
+            }
+        })
+        .catch(err => {
+            response.error({
+                res,
+                status:400,
+                data: err,
+                message: 'Something Bad'
+            })
+        })
+}
+
+module.exports = {postLogin, postGoogle}
