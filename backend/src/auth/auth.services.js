@@ -4,9 +4,10 @@ const response = require('../utils/handleResponses')
 const jwt = require('jsonwebtoken')
 const config = require('../../config').api
 
+//*Asignacion del token JWT
 const postLogin = (req, res) => {
     const { email, password } = req.body
-    checkUserCredentials(email, password)
+    checkUserCredentials(email, password) //? Verifica si las credenciales son correctas
         .then(data => {
             if(data){
                 const token = jwt.sign({
@@ -17,32 +18,33 @@ const postLogin = (req, res) => {
                     expiresIn: '1d'
                 })
 
-                response.success({
+                response.success({ //? Si las credenciales son correctas retorna el token
                     res,
                     status:200,
                     message: 'Correct Credentials!',
                     data: token
                 })
             } else {
-                response.error({
+                response.error({ //? Si las credenciales son incorrectas retorna error
                     res,
                     status: 401,
                     message: 'Invalid Credentials'
                 })
             }
         })
-        .catch(err => {
+        .catch(err => { //? Error en la base de datos
             response.error({
                 res,
                 status:400,
                 data: err,
-                message: 'Something Bad'
+                message: 'Something Bad in login auth.services'
             })
         })
 }
 
-const postGoogle = (req, res) => {
-    const User = req.user
+//*Asignacion del token JWT
+const postGoogle = async (req, res) => {
+    const User = await req.user
     userControllers.findUserByEmail(User.email)
         .then(data => {
             if(data){
@@ -73,7 +75,7 @@ const postGoogle = (req, res) => {
                 res,
                 status:400,
                 data: err,
-                message: 'Something Bad'
+                message: 'Something Bad in google auth.services'
             })
         })
 }
