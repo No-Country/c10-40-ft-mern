@@ -2,7 +2,6 @@
 const express = require('express')
 const app = express()
 app.use(express.json())
-
 const responseHandlers = require('./utils/handleResponses')
 const db = require('./utils/database')
 const initModels = require('./models/initModels')
@@ -37,7 +36,7 @@ app.get('/', (req, res) => {
     })
 })
 
-app.use('*', (req, res)=> {
+app.use('*', (req, res) => {
     responseHandlers.error({
         res,
         status: 404,
@@ -45,7 +44,7 @@ app.use('*', (req, res)=> {
     })
 })
 
-app.listen(config.port,() => {
+app.listen(config.port, () => {
     console.log(`Server started at port ${config.port}`)
 })
 

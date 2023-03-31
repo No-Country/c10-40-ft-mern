@@ -33,11 +33,14 @@ const findUserByEmail = async (email) => {
 }
 
 const createNewUser = async (userObj) => {
+    console.log(userObj)
     const newUser = {
         id: uuid.v4(),
         firstName : userObj.firstName,
         email: userObj.email,
-        password: hashPassword(userObj.password)
+        password: hashPassword(userObj.password),
+        country: userObj.country,
+        Biography: userObj.Biography,
     }
     const data = await Users.create(newUser)
     return data
