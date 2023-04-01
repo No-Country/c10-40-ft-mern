@@ -20,11 +20,9 @@ db.sync()
 
 initModels();
 
-app.use(
-  cors({
-    origin: config.client,
-  })
-);
+app.use(cors({
+    origin: 'http://localhost:5173' || 'http://127.0.0.1:5173'
+}));
 app.use("/api/v1/users", UsersRouter);
 app.use("/api/v1/auth", authRouter);
 
