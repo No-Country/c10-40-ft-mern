@@ -34,6 +34,7 @@ const findUserByEmail = async (email) => {
 };
 
 const createNewUser = async (userObj) => {
+<<<<<<< HEAD
   const newUser = {
     id: uuid.v4(),
     firstName: userObj.firstName,
@@ -45,6 +46,20 @@ const createNewUser = async (userObj) => {
   const data = await Users.create(newUser);
   return data;
 };
+=======
+    console.log(userObj)
+    const newUser = {
+        id: uuid.v4(),
+        firstName : userObj.firstName,
+        email: userObj.email,
+        password: hashPassword(userObj.password),
+        country: userObj.country,
+        Biography: userObj.Biography,
+    }
+    const data = await Users.create(newUser)
+    return data
+}
+>>>>>>> main
 
 const updateUser = async (id, userObj) => {
   //data === 1

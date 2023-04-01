@@ -1,14 +1,14 @@
 const router = require('express').Router()
 
 const userServices = require('./users.services')
-const passportJwt = require('../middlewares/auth.middleware')
+const passport = require('../middlewares/auth.middleware')
 
 router.get('/', userServices.getAllUsers)
 router.post('/', userServices.postNewUser)
 
-router.get('/me', passportJwt, userServices.getMyUser)
-router.patch('/me', passportJwt,userServices.patchMyUser)
-router.delete('/me', passportJwt, userServices.deleteMyUser)
+router.get('/me', passport.authenticate('jwt', {session: false}), userServices.getMyUser)
+router.patch('/me', passport.authenticate('jwt', {session: false}), userServices.patchMyUser)
+router.delete('/me', passport.authenticate('jwt', {session: false}), userServices.deleteMyUser)
 
 //? /api/v1/users/me
 
