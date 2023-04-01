@@ -1,5 +1,5 @@
 import MainLayout from 'components/Layout'
-import { About, CompleteProfile, Home, Login, Register } from 'pages'
+import { About, CompleteProfile, Home, Login, Register, Dashboard } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
 function App(): JSX.Element {
@@ -11,6 +11,7 @@ function App(): JSX.Element {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/completeprofile" element={<CompleteProfile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </MainLayout>
   )
