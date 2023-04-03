@@ -21,6 +21,9 @@ const Navbar = (): JSX.Element => {
           <li className="text-base cursor-pointer">
             <Link to="#">Contactanos</Link>
           </li>
+          <li className="text-base cursor-pointer">
+            <Link to="#">Contacto</Link>
+          </li>
         </ul>
         <Link
           to="/login"
@@ -37,7 +40,9 @@ export default Navbar
 const NavbarResponsive = (): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   // eslint-disable-next-line prettier/prettier, @typescript-eslint/explicit-function-return-type
-  const toggleMenu = () => { setIsMenuOpen(!isMenuOpen) }
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
   const menuClasses = `w-full block flex-grow  lg:flex lg:items-center lg:w-auto ${
     isMenuOpen ? '' : 'hidden'
   }`
@@ -79,13 +84,18 @@ const NavbarResponsive = (): JSX.Element => {
             Comenzá
           </Link>
         </div>
-        <div className="md:text-center lg:text-end">
-          <Link
-            to="/login"
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black mt-4 mr-4 lg:mt-0">
-            LOGIN
-          </Link>
-        </div>
+        <Link
+          to="/contact"
+          className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+          Contacto
+        </Link>
+      </div>
+      <div className="md:text-center lg:text-end">
+        <Link
+          to="/login"
+          className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black mt-4 mr-4 lg:mt-0">
+          LOGIN
+        </Link>
       </div>
     </nav>
   )

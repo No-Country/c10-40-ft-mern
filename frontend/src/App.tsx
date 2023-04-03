@@ -1,6 +1,14 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import MainLayout from 'components/Layout'
-import { About, CompleteProfile, Home, Login, Register, Dashboard } from 'pages'
+import {
+  About,
+  CompleteProfile,
+  Home,
+  Login,
+  Register,
+  Dashboard,
+  Contact
+} from 'pages'
 import Stats from 'pages/Stats/Stats'
 import { Route, Routes } from 'react-router-dom'
 
@@ -18,6 +26,7 @@ function App(): JSX.Element {
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/stats" element={<Stats />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </MainLayout>
     </QueryClientProvider>
