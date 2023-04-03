@@ -2,7 +2,7 @@ import type { INewUser } from 'app/types'
 import axios from 'axios'
 
 const server = axios.create({
-  baseURL: 'http://localhost:3000/api/v1'
+  baseURL: 'http://localhost:8080/api/v1'
 })
 
 export const registerUser = async (user: INewUser): Promise<any> => {
