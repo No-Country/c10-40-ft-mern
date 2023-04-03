@@ -1,4 +1,5 @@
-import { Navbar, Footer } from 'components'
+import { Footer } from 'components'
+import { NavbarResponsive } from 'components/Navbar'
 
 const MainLayout = ({
   children
@@ -7,7 +8,7 @@ const MainLayout = ({
 }): JSX.Element => {
   return (
     <>
-      <Navbar />
+      <NavbarResponsive />
       <main>{children}</main>
       <Footer />
     </>
