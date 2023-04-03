@@ -1,14 +1,23 @@
 //*npm init --y `npm i express` `npm i –D nodemon`
 const express = require("express");
 const app = express();
-app.use(express.json());
 const responseHandlers = require("./utils/handleResponses");
 const db = require("./utils/database");
 const initModels = require("./models/initModels");
 const config = require("../config").api;
 const UsersRouter = require("./users/users.router");
 const authRouter = require("./auth/auth.router");
+const passport = require("passport");
 const cors = require("cors");
+
+app.use(
+  cors({
+    origin: config.client,
+  })
+);
+
+app.use(express.json());
+app.use(passport.initialize());
 
 db.authenticate()
   .then(() => console.log("Database authenticated"))
@@ -20,9 +29,6 @@ db.sync()
 
 initModels();
 
-app.use(cors({
-    origin: 'http://localhost:5173'
-}));
 app.use("/api/v1/users", UsersRouter);
 app.use("/api/v1/auth", authRouter);
 

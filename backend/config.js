@@ -5,11 +5,17 @@ require("dotenv").config();
 
 const configs = {
   api: {
-    port: process.env.PORT || 3000,
-    host: process.env.HOST || "http://localhost:3000",
+    port: process.env.PORT || 8080,
+    host: process.env.HOST || "http://localhost:8080",
+    client: process.env.CLIENT || "http://localhost:5173",
     nodeEnv: process.env.NODE_ENV || "development",
     secretOrKey: process.env.JWT_SECRET,
-    client: process.env.CLIENT || "http://localhost:5173",
+    google: {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    },
+    sessionSecret: process.env.SESSION_SECRET || "session_secret",
     /*   firebase: {
             apiKey: process.env.FIREBASE_API_KEY,
             authDomain: process.env.FIREBASE_AUTH_DOM,
