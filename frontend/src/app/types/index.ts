@@ -4,8 +4,6 @@ export interface IUser {
   firstName: string
   email: string
   role?: string
-  country: string
-  Biography?: string
 }
 
 export interface INewUser extends IUser {

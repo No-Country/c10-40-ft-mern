@@ -9,8 +9,7 @@ import { registerUser } from 'utils'
 const INITIAL_STATE: INewUser = {
   firstName: '',
   email: '',
-  password: '',
-  country: 'Argentina'
+  password: ''
 }
 
 const Register = (): JSX.Element => {
