@@ -2,7 +2,7 @@ import type { INewUser } from 'app/types'
 import axios from 'axios'
 
 const server = axios.create({
-  baseURL: 'https://backend-workout-aoo.onrender.com/api/v1'
+  baseURL: import.meta.env.VITE_API_BASE_URL
 })
 
 export const registerUser = async (user: INewUser): Promise<any> => {
