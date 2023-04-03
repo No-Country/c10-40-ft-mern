@@ -10,7 +10,7 @@ require("dotenv").config;
 const passportGoogleConfig = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:8080/api/v1/auth/oauth2/redirect/google",
+    callbackURL: `${process.env.HOST}/api/v1/auth/oauth2/redirect/google`,
     passReqToCallback: true,
 };
 
