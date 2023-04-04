@@ -83,19 +83,24 @@ const NavbarResponsive = (): JSX.Element => {
             className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
             Comenzá
           </Link>
+          <Link
+            to="/contact"
+            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+            Contacto
+          </Link>
+          <Link
+            to="/dashboard"
+            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+            Dashboard
+          </Link>
         </div>
-        <Link
-          to="/contact"
-          className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
-          Contacto
-        </Link>
-      </div>
-      <div className="md:text-center lg:text-end">
-        <Link
-          to="/login"
-          className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black mt-4 mr-4 lg:mt-0">
-          LOGIN
-        </Link>
+        <div className="md:text-center lg:text-end">
+          <Link
+            to="/login"
+            className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black mt-4 mr-4 lg:mt-0">
+            LOGIN
+          </Link>
+        </div>
       </div>
     </nav>
   )
