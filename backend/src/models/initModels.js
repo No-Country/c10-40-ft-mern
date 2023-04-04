@@ -1,7 +1,7 @@
-const Users = require("./users.models")
+const User = require("./users.models");
 
 const initModels = () => {
-    Users
-}
+  User;
+};
 
-module.exports = initModels
+module.exports = initModels;
