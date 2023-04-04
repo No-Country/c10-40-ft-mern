@@ -38,9 +38,8 @@ const Navbar = (): JSX.Element => {
 export default Navbar
 
 const NavbarResponsive = (): JSX.Element => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  // eslint-disable-next-line prettier/prettier, @typescript-eslint/explicit-function-return-type
-  const toggleMenu = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen)
   }
   const menuClasses = `w-full block flex-grow lg:flex lg:items-center lg:w-auto ${

@@ -13,7 +13,7 @@ import { Link, useLocation } from 'react-router-dom'
 const SideBarMenu = (): JSX.Element => {
   const location = useLocation()
   return (
-    <aside className="w-72 bg-[#1c212c] flex flex-col items-center pt-5 pb-2">
+    <aside className="w-72 bg-[#1c212c] flex flex-col items-center pt-5 pb-2 gap-5">
       {/* ACA EMPIEZA EL MENÚ! */}
       <div className="w-full pr-3 flex flex-col gap-y-1 text-gray-500 fill-gray-500 text-sm">
         <div className="font-QuicksandMedium pl-4 text-gray-400/60 text-[11px] uppercase">
@@ -220,6 +220,14 @@ const SideBarMenu = (): JSX.Element => {
           </Link>
           <div />
         </div>
+      </div>
+
+      <div className="mt-5">
+        <Link
+          to="/dashboard/createrutine"
+          className="bg-[#fb8500] py-2 px-4 rounded-md font-semibold hover:scale-105 ease-in duration-200">
+          Crear Rutina
+        </Link>
       </div>
     </aside>
   )
