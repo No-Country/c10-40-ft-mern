@@ -10,7 +10,9 @@ import {
   Contact,
   Summary,
   Stats,
-  Schedule
+  Schedule,
+  Rutine,
+  CreateRutine
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -30,6 +32,8 @@ function App(): JSX.Element {
           <Route path="/dashboard/stats" element={<Stats />} />
           <Route path="/dashboard/summary" element={<Summary />} />
           <Route path="/dashboard/schedule" element={<Schedule />} />
+          <Route path="/dashboard/rutine" element={<Rutine />} />
+          <Route path="/dashboard/createrutine" element={<CreateRutine />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </MainLayout>
