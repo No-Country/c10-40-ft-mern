@@ -1,5 +1,5 @@
 import { Footer } from 'components'
-import { NavbarResponsive } from 'components/Navbar'
+import NavbarResponsive from 'components/Navbar'
 
 const MainLayout = ({
   children
