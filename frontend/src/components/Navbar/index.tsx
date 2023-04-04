@@ -43,7 +43,7 @@ const NavbarResponsive = (): JSX.Element => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
-  const menuClasses = `w-full block flex-grow  lg:flex lg:items-center lg:w-auto ${
+  const menuClasses = `w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
     isMenuOpen ? '' : 'hidden'
   }`
   return (
@@ -74,11 +74,6 @@ const NavbarResponsive = (): JSX.Element => {
             ¿Cómo funciona?
           </Link>
           <Link
-            to="/dashboard"
-            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
-            Dashboard
-          </Link>
-          <Link
             to="/about"
             className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
             Nosotros
@@ -93,16 +88,11 @@ const NavbarResponsive = (): JSX.Element => {
             className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
             Contacto
           </Link>
-          <Link
-            to="/dashboard"
-            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
-            Dashboard
-          </Link>
         </div>
         <div className="md:text-center lg:text-end">
           <Link
             to="/login"
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black mt-4 mr-4 lg:mt-0">
+            className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black ease-in duration-200 mt-4 mr-4 lg:mt-0">
             LOGIN
           </Link>
         </div>

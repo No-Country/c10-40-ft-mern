@@ -61,7 +61,7 @@ const SideBarMenu = (): JSX.Element => {
               } absolute top-0 left-0 w-full h-[102%]   bg-red-600 transition-all duration-300`}></div>
           </div>
           <Link
-            to="/dashboard/resume"
+            to="/dashboard/summary"
             className={`${
               location.pathname === '/dashboard/summary' ? 'bg-white/10' : ''
             } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>

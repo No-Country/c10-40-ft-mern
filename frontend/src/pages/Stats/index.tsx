@@ -6,7 +6,7 @@ const Stats = (): JSX.Element => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex justify-start">
+    <div className="flex justify-start h-[89vh]">
       <SideBarMenu />
       <div>
         <button

@@ -7,9 +7,11 @@ import {
   Login,
   Register,
   Dashboard,
-  Contact
+  Contact,
+  Summary,
+  Stats,
+  Schedule
 } from 'pages'
-import Stats from 'pages/Stats/Stats'
 import { Route, Routes } from 'react-router-dom'
 
 const queryClient = new QueryClient()
@@ -26,6 +28,8 @@ function App(): JSX.Element {
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/stats" element={<Stats />} />
+          <Route path="/dashboard/summary" element={<Summary />} />
+          <Route path="/dashboard/schedule" element={<Schedule />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </MainLayout>
