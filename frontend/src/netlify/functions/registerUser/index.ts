@@ -7,7 +7,7 @@ import type { IUser } from 'app/types'
 import axios from 'axios'
 
 const server = axios.create({
-  baseURL: 'https://backend-workout-aoo.onrender.com/api/v1'
+  baseURL: process.env.API_BASE_URL
 })
 
 const handler: Handler = async (
