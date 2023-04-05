@@ -87,7 +87,7 @@ const postSocial = async (req, res) => {
         res,
         status: 400,
         data: err,
-        message: "Something Bad in google auth.services",
+        message: "Something Bad in social auth.services",
       });
     });
 };
