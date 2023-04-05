@@ -11,7 +11,7 @@ import {
   Summary,
   Stats,
   Schedule,
-  Rutine,
+  Routine,
   CreateRutine,
   NotFound
 } from 'pages'
@@ -33,7 +33,7 @@ function App(): JSX.Element {
           <Route path="/dashboard/stats" element={<Stats />} />
           <Route path="/dashboard/summary" element={<Summary />} />
           <Route path="/dashboard/schedule" element={<Schedule />} />
-          <Route path="/dashboard/rutine" element={<Rutine />} />
+          <Route path="/dashboard/routine" element={<Routine />} />
           <Route path="/dashboard/createrutine" element={<CreateRutine />} />
           <Route path="/contact" element={<Contact />} />
 
