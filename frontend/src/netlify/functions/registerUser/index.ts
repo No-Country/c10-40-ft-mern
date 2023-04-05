@@ -20,7 +20,7 @@ const handler: Handler = async (
 
   const { firstName, email, password } = JSON.parse(event.body)
 
-  if (!firstName || password || email) {
+  if (!firstName || !password || !email) {
     throw new Error('prop missing')
   }
 
