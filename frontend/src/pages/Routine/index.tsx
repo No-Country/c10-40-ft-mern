@@ -1,6 +1,6 @@
 import { ExerciseCard, SideBarMenu } from 'components'
 
-const Rutine = (): JSX.Element => {
+const Routine = (): JSX.Element => {
   const exercise = {
     name: 'Brazos',
     exercises: 'Estiramiento de Codo',
@@ -14,4 +14,4 @@ const Rutine = (): JSX.Element => {
   )
 }
 
-export default Rutine
+export default Routine
