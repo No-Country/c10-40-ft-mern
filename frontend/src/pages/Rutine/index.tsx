@@ -1,6 +1,6 @@
 import { ExerciseCard, SideBarMenu } from 'components'
 
-const Rutine: React.FC = () => {
+const Rutine = (): JSX.Element => {
   const exercise = {
     name: 'Brazos',
     exercises: 'Estiramiento de Codo',

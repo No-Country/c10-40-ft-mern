@@ -12,7 +12,8 @@ import {
   Stats,
   Schedule,
   Rutine,
-  CreateRutine
+  CreateRutine,
+  NotFound
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -35,6 +36,8 @@ function App(): JSX.Element {
           <Route path="/dashboard/rutine" element={<Rutine />} />
           <Route path="/dashboard/createrutine" element={<CreateRutine />} />
           <Route path="/contact" element={<Contact />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </MainLayout>
     </QueryClientProvider>

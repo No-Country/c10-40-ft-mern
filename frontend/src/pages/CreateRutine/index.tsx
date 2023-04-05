@@ -1,6 +1,6 @@
 import { SideBarMenu } from 'components'
 
-const CreateRutine: React.FC = () => {
+const CreateRutine = (): JSX.Element => {
   return (
     <div className="flex justify-start h-[89vh]">
       <SideBarMenu />
