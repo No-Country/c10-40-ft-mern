@@ -7,11 +7,11 @@ const MainLayout = ({
   children: JSX.Element | JSX.Element[]
 }): JSX.Element => {
   return (
-    <>
+    <div>
       <NavbarResponsive />
       <main>{children}</main>
       <Footer />
-    </>
+    </div>
   )
 }
 
