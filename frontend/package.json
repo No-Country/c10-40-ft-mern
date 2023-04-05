@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@netlify/functions": "^1.4.0",
     "@tanstack/react-query": "^4.28.0",
     "@typescript-eslint/parser": "^5.56.0",
     "axios": "^1.3.4",
