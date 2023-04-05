@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import * as Yup from 'yup'
 import type { INewUser } from 'app/types'
 import { Formik, Field, Form } from 'formik'
@@ -32,10 +32,13 @@ const INITIAL_STATE: INewUser = {
 }
 
 const Register = (): JSX.Element => {
-  const queryClient = useQueryClient()
   const navigate = useNavigate()
 
-  const { mutate, isLoading, error } = useMutation(registerUser)
+  const { mutate, isLoading, error } = useMutation(registerUser, {
+    onSuccess: () => {
+      navigate('/completeprofile')
+    }
+  })
 
   return (
     <div className="flex items-center justify-center h-screen w-full">
@@ -142,6 +145,7 @@ const Register = (): JSX.Element => {
                 className="uppercase bg-gray-300 hover:bg-gray-500 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
                 Registrarme
               </button>
+              {error ? <p className="text-red-500">Hubo un error</p> : null}
             </Form>
           )}
         </Formik>
