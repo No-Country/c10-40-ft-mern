@@ -6,14 +6,9 @@ const authServices = require("./auth.services");
 router.post("/login", authServices.postLogin);
 
 //*Ruta para loguearse con Facebook
-router.get(
-  "/facebook",
-  passport.authenticate("auth-facebook"),
-  {
-    scope: ["email", "profile"],
-  },
-  { scope: ["email", "profile"] }
-);
+router.get("/facebook", passport.authenticate("auth-facebook"), {
+  scope: ["email", "profile"],
+});
 
 //*Ruta que llega despues de loguearse en facebook
 router.get(
