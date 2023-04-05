@@ -31,7 +31,7 @@ const handler: Handler = async (
       email
     })
 
-    const user: IUser = res.data
+    const user: IUser = await res.data
 
     return {
       statusCode: 201,
