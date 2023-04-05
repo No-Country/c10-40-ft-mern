@@ -2,7 +2,7 @@ import type { INewUser } from 'app/types'
 import axios from 'axios'
 
 const server = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL
+  baseURL: '/.netlify/functions'
 })
 
 export const registerUser = async (user: INewUser): Promise<any> => {
@@ -12,8 +12,9 @@ export const registerUser = async (user: INewUser): Promise<any> => {
     throw new Error(`${firstName} ${password} ${email} missing`)
   }
 
-  const newUser = await server.post('/users', user).catch((error) => {
+  const newUser = await server.post('/registerUser', user).catch((error) => {
     console.log(error)
   })
-  console.log(newUser)
+
+  return newUser
 }
