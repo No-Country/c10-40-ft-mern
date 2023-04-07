@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "netlify": "netlify dev"
   },
   "dependencies": {
     "@netlify/functions": "^1.4.0",
