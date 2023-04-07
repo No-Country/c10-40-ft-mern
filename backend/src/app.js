@@ -11,7 +11,9 @@ const passport = require("passport");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../workout-tracker-api.json");
-
+//*agrege estas rutas
+const cuerpoRouter = require('./cuerpo/cuerpo.routes')
+const rutinaRouter = require('./rutina/rutina.router')
 app.use(
     cors({
         origin: config.client,
@@ -33,6 +35,9 @@ initModels();
 
 app.use("/api/v1/users", UsersRouter);
 app.use("/api/v1/auth", authRouter);
+//*estas tambies
+app.use("/api/v1/cuerpo", cuerpoRouter );
+app.use("/api/v1/rutina", rutinaRouter );
 
 app.get("/", (req, res) => {
     responseHandlers.success({
@@ -45,6 +50,8 @@ app.get("/", (req, res) => {
             "Users-id": `${config.host}/api/v1/users/:id`,
             MyUsuario: `${config.host}/api/v1/users/me`,
             Swagger: `${config.host}/api-docs`,
+            Cuerpo: `${config.host}/api/v1/cuerpo`,
+            rutina: `${config.host}/api/v1/rutina`
         },
     });
 });

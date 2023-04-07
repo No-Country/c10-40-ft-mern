@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const db = require("../utils/database");
 
 //Este es el modelo
-const User = db.define("pruebarda", {
+const User = db.define("users", {
     //VOLVER A PONER NOMBRE users
     id: {
         type: DataTypes.UUID,
@@ -39,7 +39,6 @@ const User = db.define("pruebarda", {
     age: {
         type: DataTypes.INTEGER,
     },
-
     height: {
         type: DataTypes.INTEGER,
     },
@@ -53,7 +52,7 @@ const User = db.define("pruebarda", {
     googleId: {
         type: DataTypes.STRING,
         defaultValue: null,
-    },
+    }
 });
 
 module.exports = User;
