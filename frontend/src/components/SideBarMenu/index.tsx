@@ -13,7 +13,7 @@ import { Link, useLocation } from 'react-router-dom'
 const SideBarMenu = (): JSX.Element => {
   const location = useLocation()
   return (
-    <aside className="w-72 bg-[#1c212c] flex flex-col items-center pt-5 pb-2 gap-5">
+    <aside className="w-28 md:w-72 bg-[#1c212c] flex flex-col items-center pt-5 pb-2 gap-5">
       {/* ACA EMPIEZA EL MENÚ! */}
       <div className="w-full pr-3 flex flex-col gap-y-1 text-gray-500 fill-gray-500 text-sm">
         <div className="font-QuicksandMedium pl-4 text-gray-400/60 text-[11px] uppercase">
