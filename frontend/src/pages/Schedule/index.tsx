@@ -1,10 +1,10 @@
-import { SideBarMenu } from 'components'
+import { SideBarMenu, Calendar } from 'components'
 
 const Schedule = (): JSX.Element => {
   return (
     <div className="flex justify-start h-[89vh]">
       <SideBarMenu />
-      <p>Schedule</p>
+      <Calendar />
     </div>
   )
 }

@@ -1,5 +1,9 @@
 const Calendar = (): JSX.Element => {
-  return <div></div>
+  return (
+    <div>
+      <h1>Componente Calendar</h1>
+    </div>
+  )
 }
 
 export default Calendar
