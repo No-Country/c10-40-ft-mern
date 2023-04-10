@@ -6,6 +6,11 @@ export interface IUser {
   role?: string
 }
 
+export interface ILoginUser {
+  email: string
+  password: string
+}
+
 export interface INewUser extends IUser {
   password: string
   repassword: string
