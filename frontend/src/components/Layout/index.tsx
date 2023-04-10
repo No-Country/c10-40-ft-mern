@@ -1,15 +1,13 @@
 import { Footer } from 'components'
 import NavbarResponsive from 'components/Navbar'
+import { Outlet } from 'react-router-dom'
 
-const MainLayout = ({
-  children
-}: {
-  children: JSX.Element | JSX.Element[]
-}): JSX.Element => {
+const MainLayout = (): JSX.Element => {
   return (
     <div>
       <NavbarResponsive />
-      <main>{children}</main>
+      {/* <main>{children}</main> */}
+      <Outlet />
       <Footer />
     </div>
   )
