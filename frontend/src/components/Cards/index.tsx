@@ -16,7 +16,7 @@ const Cards = (): JSX.Element => {
       <div className="flex flex-col md:flex-row w-full gap-5 items-center justify-around ">
         {/* Summary */}
         <Link
-          to={'/dashboard/pancito'}
+          to={'/dashboard/summary'}
           className="h-full w-full bg-contain bg-no-repeat bg-center text-center rounded-xl bg-white bg-[url('https://play-lh.googleusercontent.com/bHJ1urQPzOdE71NCjb7LcE3al0e_KTelqGU2uaHIKjoHXFqkYyzwARS0MOE4_Lb4ZA')]">
           <div className="bg-black/60 ease-in duration-200 hover:bg-transparent hover:text-transparent rounded-md p-5 h-full text-white">
             <SiBookmeter size={10} />

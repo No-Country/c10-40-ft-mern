@@ -13,7 +13,7 @@ import { Link, useLocation } from 'react-router-dom'
 const SideBarMenu = (): JSX.Element => {
   const location = useLocation()
   return (
-    <aside className="w-72 bg-[#1c212c] flex flex-col items-center pt-5 pb-2 gap-5">
+    <aside className="w-28 md:w-72 bg-[#1c212c] flex flex-col items-center pt-5 pb-2 gap-5">
       {/* ACA EMPIEZA EL MENÚ! */}
       <div className="w-full pr-3 flex flex-col gap-y-1 text-gray-500 fill-gray-500 text-sm">
         <div className="font-QuicksandMedium pl-4 text-gray-400/60 text-[11px] uppercase">
@@ -30,7 +30,7 @@ const SideBarMenu = (): JSX.Element => {
                 location.pathname === '/dashboard'
                   ? 'bg-red-600 translate-y-0  transition-all'
                   : 'translate-y-full group-hover:translate-y-0'
-              } absolute top-0 left-0 w-full h-[102%]   bg-red-600 transition-all duration-300`}></div>
+              } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
           </div>
           <Link
             to="/dashboard"
@@ -58,7 +58,7 @@ const SideBarMenu = (): JSX.Element => {
                 location.pathname === '/dashboard/summary'
                   ? 'bg-red-600 translate-y-0  transition-all'
                   : 'translate-y-full group-hover:translate-y-0'
-              } absolute top-0 left-0 w-full h-[102%]   bg-red-600 transition-all duration-300`}></div>
+              } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
           </div>
           <Link
             to="/dashboard/summary"
@@ -88,7 +88,7 @@ const SideBarMenu = (): JSX.Element => {
                 location.pathname === '/dashboard/stats'
                   ? 'bg-red-600 translate-y-0  transition-all'
                   : 'translate-y-full group-hover:translate-y-0'
-              } absolute top-0 left-0 w-full h-[102%]   bg-red-600 transition-all duration-300`}></div>
+              } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
           </div>
           <Link
             to="/dashboard/stats"
@@ -116,7 +116,7 @@ const SideBarMenu = (): JSX.Element => {
                 location.pathname === '/dashboard/schedule'
                   ? 'bg-red-600 translate-y-0  transition-all'
                   : 'translate-y-full group-hover:translate-y-0'
-              } absolute top-0 left-0 w-full h-[102%]   bg-red-600 transition-all duration-300`}></div>
+              } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
           </div>
           <Link
             to="/dashboard/schedule"
@@ -150,7 +150,7 @@ const SideBarMenu = (): JSX.Element => {
                 location.pathname === '/dashboard/notifications'
                   ? 'bg-red-600 translate-y-0  transition-all'
                   : 'translate-y-full group-hover:translate-y-0'
-              } absolute top-0 left-0 w-full h-[102%]   bg-red-600 transition-all duration-300`}></div>
+              } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
           </div>
           <Link
             to="/dashboard/notifications"
@@ -180,7 +180,7 @@ const SideBarMenu = (): JSX.Element => {
                 location.pathname === '/dashboard/config'
                   ? 'bg-red-600 translate-y-0  transition-all'
                   : 'translate-y-full group-hover:translate-y-0'
-              } absolute top-0 left-0 w-full h-[102%]   bg-red-600 transition-all duration-300`}></div>
+              } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
           </div>
           <Link
             to="/dashboard/config"
@@ -203,7 +203,7 @@ const SideBarMenu = (): JSX.Element => {
             className={
               'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
             }>
-            <div className="absolute top-0 left-0 w-full h-[102%] translate-y-full group-hover:translate-y-0  bg-red-600 transition-all duration-300"></div>
+            <div className="absolute top-0 left-0 w-full h-full translate-y-full group-hover:translate-y-0  bg-red-600 transition-all duration-300"></div>
           </div>
           <Link
             to="/dashboard/logout"

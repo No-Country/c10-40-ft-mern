@@ -8,4 +8,5 @@ export interface IUser {
 
 export interface INewUser extends IUser {
   password: string
+  repassword: string
 }
