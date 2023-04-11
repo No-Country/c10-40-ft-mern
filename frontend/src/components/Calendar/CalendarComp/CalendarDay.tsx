@@ -1,4 +1,4 @@
-import dayjs, { type Dayjs } from 'dayjs'
+import { type Dayjs } from 'dayjs'
 
 const CalendarDay = ({ day }: { day: Dayjs }): JSX.Element => {
   return (

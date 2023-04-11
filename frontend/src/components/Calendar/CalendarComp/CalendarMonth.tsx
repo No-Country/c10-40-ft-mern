@@ -1,6 +1,6 @@
 import React from 'react'
 import CalendarDay from './CalendarDay'
-import dayjs, { type Dayjs } from 'dayjs'
+import { type Dayjs } from 'dayjs'
 
 interface Props {
   month: Dayjs[][]
