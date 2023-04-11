@@ -10,10 +10,14 @@ const NavbarResponsive = (): JSX.Element => {
     isMenuOpen ? '' : 'hidden'
   }`
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-[#fb8500] p-6">
+    <nav className="flex items-center justify-between flex-wrap bg-gray-700 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <Link to="/" className="font-semibold text-xl tracking-tight uppercase">
-          POWER PLAY
+          <img
+            className="h-14 pl-10"
+            src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
+            alt=""
+          />
         </Link>
       </div>
       <div className="block lg:hidden">
