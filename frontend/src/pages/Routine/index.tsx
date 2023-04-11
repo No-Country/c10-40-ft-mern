@@ -9,7 +9,7 @@ const Routine = (): JSX.Element => {
     img: 'https://res.cloudinary.com/dnqmez68n/image/upload/v1680622304/festejo_ieviva.jpg'
   }
   return (
-    <div className="flex justify-start h-[89vh] max-w-screen">
+    <div className="flex justify-start h-screen max-w-screen">
       <SideBarMenu />
       <ExerciseCard exercise={exercise} />
     </div>

@@ -70,8 +70,9 @@ const postNewRutina = (req, res) => {
         message: "Error ocurred trying to create a new user",
         res,
         fields: {
+          name: "string",
           series: "int",
-          repetitions: "int",
+          repetitions: "string",
           description: "string"
         },
       });

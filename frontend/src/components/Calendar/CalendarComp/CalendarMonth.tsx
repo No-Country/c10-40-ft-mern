@@ -1,6 +1,6 @@
 import React from 'react'
 import CalendarDay from './CalendarDay'
-import dayjs, { type Dayjs } from 'dayjs'
+import { type Dayjs } from 'dayjs'
 
 interface Props {
   month: Dayjs[][]
@@ -8,11 +8,11 @@ interface Props {
 
 const CalendarMonth = ({ month }: Props): JSX.Element => {
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-5">
+    <div className="flex-1 grid grid-cols-7 grid-rows-6">
       {month.map((row: any[], i: React.Key) => (
         <React.Fragment key={i}>
           {row.map((day, idx) => (
-            <CalendarDay day={day} key={idx} />
+            <CalendarDay day={day} key={idx} rowIdx={i} />
           ))}
         </React.Fragment>
       ))}
