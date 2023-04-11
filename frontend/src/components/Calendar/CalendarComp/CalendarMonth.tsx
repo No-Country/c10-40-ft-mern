@@ -12,7 +12,7 @@ const CalendarMonth = ({ month }: Props): JSX.Element => {
       {month.map((row: any[], i: React.Key) => (
         <React.Fragment key={i}>
           {row.map((day, idx) => (
-            <CalendarDay day={day} key={idx} />
+            <CalendarDay day={day} key={idx} rowIdx={i} />
           ))}
         </React.Fragment>
       ))}
