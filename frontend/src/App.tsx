@@ -13,7 +13,8 @@ import {
   Schedule,
   Routine,
   CreateRutine,
-  NotFound
+  NotFound,
+  Profile
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -38,6 +39,7 @@ function App(): JSX.Element {
         <Route path="/dashboard/schedule" element={<Schedule />} />
         <Route path="/dashboard/routine" element={<Routine />} />
         <Route path="/dashboard/createrutine" element={<CreateRutine />} />
+        <Route path="/dashboard/profile" element={<Profile />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
