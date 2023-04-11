@@ -63,15 +63,15 @@ const findCuerpoByname = async (id) => {
         where: {id:"2"},
         include: {
             model: Rutina,
-            attributes: { exclude: ['id','createdAt', 'updatedAt' ,'cuerpoId']}},
-        attributes: {exclude: [ "createdAt", "updatedAt"],},
+            attributes: { exclude: ['id','createdAt', 'updatedAt' ,"CuerpoId"]}},
+        attributes: {exclude: [ "id", "createdAt", "updatedAt"],},
     });
     data[1] = await Cuerpo.findOne({
-        where: {id:"3"},
+        where: {id:"4"},
         include: {
             model: Rutina,
-            attributes: { exclude: ['id','createdAt', 'updatedAt' ,'cuerpoId']}},
-        attributes: {exclude: [ "createdAt", "updatedAt"],},
+            attributes: { exclude: ['id','createdAt', 'updatedAt' ,'CuerpoId']}},
+        attributes: {exclude: [ "id", "createdAt", "updatedAt"],},
     });
 
     return data;
