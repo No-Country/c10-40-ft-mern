@@ -1,7 +1,7 @@
 import type { ILoginUser, INewUser } from 'app/types'
 import axios from 'axios'
 
-const server = axios.create({
+export const server = axios.create({
   baseURL: '/.netlify/functions'
 })
 
@@ -25,9 +25,6 @@ export const loginUser = async (user: ILoginUser): Promise<any> => {
   if (password === '' || email === '') {
     throw new Error(`${password} ${email} missing`)
   }
-
-  console.log(user)
-
   const loggedUser = await server.post('/loginUser', user).catch((error) => {
     console.log(error)
   })

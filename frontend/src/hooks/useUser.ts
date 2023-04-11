@@ -1,13 +1,14 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query'
+import { JWT_TOKEN } from 'app/constants'
 import { type IUser } from 'app/types'
 import { server } from 'utils'
 
-async function getUser(): Promise<IUser> {
-  const jwtToken = localStorage.getItem('jwtToken')
-
+const jwtToken = localStorage.getItem(JWT_TOKEN)
+async function getUser(): Promise<IUser | boolean> {
   if (!jwtToken) {
-    throw new Error('Missing token')
+    return false
   }
+
   const response = await server
     .get('/getUser', {
       headers: { Authorization: `Bearer ${jwtToken}` }
@@ -16,13 +17,16 @@ async function getUser(): Promise<IUser> {
       throw new Error(error)
     })
 
+  if (response.status === 401) {
+    return false
+  }
+
   return response.data
 }
 
-export function useUser(allowFetch: boolean): UseQueryResult {
+export function useUser(): UseQueryResult<IUser> {
   return useQuery({
     queryKey: ['user'],
-    queryFn: async () => await getUser(),
-    enabled: allowFetch
+    queryFn: async () => await getUser()
   })
 }

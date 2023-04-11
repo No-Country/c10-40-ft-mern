@@ -1,6 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
+import { JWT_TOKEN } from 'app/constants'
 import { type ILoginUser } from 'app/types'
 import { Field, Formik, Form } from 'formik'
+import { useUser } from 'hooks/useUser'
+import { useEffect } from 'react'
 import { BsGoogle, BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { FaFacebookF } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
@@ -15,12 +18,22 @@ const SignInSchema = Yup.object().shape({
 const INITIAL_STATE: ILoginUser = { email: '', password: '' }
 
 const Login = (): JSX.Element => {
-  const { mutate, isLoading, error } = useMutation(loginUser, {
+  const navigate = useNavigate()
+
+  const userQuery = useUser()
+
+  useEffect(() => {
+    if (!userQuery.isLoading && userQuery.data) {
+      navigate('/dashboard')
+    }
+  }, [userQuery.data])
+
+  const { mutate, isLoading, error } = useMutation({
+    mutationFn: loginUser,
     onSuccess: ({ data }) => {
-      localStorage.setItem('jwtToken', data)
+      localStorage.setItem(JWT_TOKEN, data)
     }
   })
-  const navigate = useNavigate()
 
   return (
     <div className="flex items-center justify-center h-screen w-full">
@@ -76,6 +89,7 @@ const Login = (): JSX.Element => {
                 className="uppercase bg-gray-300 hover:bg-gray-500 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
                 Ingresar
               </button>
+              {error ? <span>Error in the petition</span> : null}
             </Form>
           )}
         </Formik>

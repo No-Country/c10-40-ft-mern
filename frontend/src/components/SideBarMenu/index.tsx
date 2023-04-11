@@ -1,4 +1,5 @@
 // import { SiBookmeter } from 'react-icons/si'
+import { JWT_TOKEN } from 'app/constants'
 import {
   ImStatsBars,
   ImHome3,
@@ -205,8 +206,10 @@ const SideBarMenu = (): JSX.Element => {
             }>
             <div className="absolute top-0 left-0 w-full h-full translate-y-full group-hover:translate-y-0  bg-red-600 transition-all duration-300"></div>
           </div>
-          <Link
-            to="/dashboard/logout"
+          <button
+            onClick={() => {
+              localStorage.removeItem(JWT_TOKEN)
+            }}
             className={`${
               location.pathname === '/dashboard/logout' ? 'bg-white/10' : ''
             } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
@@ -217,7 +220,7 @@ const SideBarMenu = (): JSX.Element => {
             </svg>
 
             <span className="font-QuicksandMedium">Log Out</span>
-          </Link>
+          </button>
           <div />
         </div>
       </div>

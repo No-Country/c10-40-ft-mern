@@ -6,6 +6,8 @@ import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { registerUser } from 'utils'
 import { Tooltip } from 'components'
+import { useUser } from 'hooks/useUser'
+import { useEffect } from 'react'
 
 /* TODO: add minimum length for password.
  * password: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
@@ -33,8 +35,16 @@ const INITIAL_STATE: INewUser = {
 
 const Register = (): JSX.Element => {
   const navigate = useNavigate()
+  const userQuery = useUser()
 
-  const { mutate, isLoading, error } = useMutation(registerUser, {
+  useEffect(() => {
+    if (!userQuery.isLoading && userQuery.data) {
+      navigate('/dashboard')
+    }
+  }, [userQuery.data])
+
+  const { mutate, isLoading, error } = useMutation({
+    mutationFn: registerUser,
     onSuccess: () => {
       navigate('/completeprofile')
     }
