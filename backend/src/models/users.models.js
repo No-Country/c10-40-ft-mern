@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const db = require("../utils/database");
 
 //Este es el modelo
-const User = db.define("users", {
+const User = db.define("pruebarda", {
     //VOLVER A PONER NOMBRE users
     id: {
         type: DataTypes.UUID,
