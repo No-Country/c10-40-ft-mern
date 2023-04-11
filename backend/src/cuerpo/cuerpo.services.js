@@ -142,11 +142,25 @@ const deleteCuerpo = (req, res) => {
     });
 };
 
+//*peticiones de Front
+const getId2d = (req, res) => {
+  cuerpoControllers.findCuerpoByname()
+    .then((data) => {
+      if (data) {
+        responses.success({status: 200,data,message: `Getting User with id`,res,});
+      } else {
+        responses.error({status: 404,message: `User with ID not found`,res,});
+      }
+    })
+    .catch((err) => {responses.error({status: 400,data: err,message: "Something bad getting the user",res,});});
+};
+
 
 module.exports = {
   getAllCuerpo,
   postNewCuerpo,
   patchCuerpo,
   deleteCuerpo,
-  getCuerpoyId
+  getCuerpoyId,
+  getId2d
 };
