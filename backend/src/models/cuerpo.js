@@ -12,7 +12,7 @@ const Cuerpo = db.define("cuerpo", {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
+    }
 });
 
 module.exports = Cuerpo;
