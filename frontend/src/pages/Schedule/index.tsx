@@ -2,7 +2,7 @@ import { SideBarMenu, Calendar } from 'components'
 
 const Schedule = (): JSX.Element => {
   return (
-    <div className="flex justify-start h-[89vh]">
+    <div className="flex justify-start h-screen">
       <SideBarMenu />
       <Calendar />
     </div>
