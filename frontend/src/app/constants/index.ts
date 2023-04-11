@@ -1,1 +1,1 @@
-export const JWT_TOKEN = JWT_TOKEN
+export const JWT_TOKEN = 'jwtToken'
