@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import MainLayout from 'components/Layout'
 import {
   About,
@@ -44,6 +45,7 @@ function App(): JSX.Element {
         <Route path="*" element={<NotFound />} />
       </Routes>
       {/* </MainLayout> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }
