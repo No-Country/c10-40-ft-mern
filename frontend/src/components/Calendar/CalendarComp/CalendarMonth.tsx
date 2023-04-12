@@ -20,4 +20,3 @@ const CalendarMonth = ({ month }: Props): JSX.Element => {
   )
 }
 export default CalendarMonth
-/* month is not an any tipe, i is not an any tipe */
