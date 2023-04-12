@@ -22,7 +22,7 @@ export interface INewUser extends ILoginUser {
   repassword: string
 }
 
-export interface ICharacters {
+export interface IBodyPart {
   name: string
   rutinas: IRoutine[]
 }
@@ -32,5 +32,5 @@ export interface IRoutine {
   series: number
   repetitions: string
   description: string
-  CuerpoId: number
+  cuerpoId: number
 }
