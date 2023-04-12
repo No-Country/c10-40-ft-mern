@@ -1,12 +1,36 @@
-// TODO: ver country, Biography. Omitir password
 export interface IUser {
-  // id: string
+  id: string
   firstName: string
   email: string
-  role?: string
+  role: string
+  gender?: string
+  age?: string
+  height?: string
+  weight?: string
+  profileCompleted?: boolean
+  googleId?: string
 }
 
-export interface INewUser extends IUser {
+export interface ILoginUser {
+  firstName?: string
+  email: string
+  password: string
+}
+
+export interface INewUser extends ILoginUser {
   password: string
   repassword: string
+}
+
+export interface ICharacters {
+  name: string
+  rutinas: IRoutine[]
+}
+
+export interface IRoutine {
+  name: string
+  series: number
+  repetitions: string
+  description: string
+  CuerpoId: number
 }

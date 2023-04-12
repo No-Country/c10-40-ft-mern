@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useUser } from 'hooks/useUser'
 
 const NavbarResponsive = (): JSX.Element => {
+  const { data, error, isLoading } = useUser()
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen)
@@ -57,11 +60,15 @@ const NavbarResponsive = (): JSX.Element => {
           </Link>
         </div>
         <div className="md:text-center lg:text-end">
-          <Link
-            to="/login"
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black ease-in duration-200 mt-4 mr-4 lg:mt-0">
-            LOGIN
-          </Link>
+          {!isLoading && data ? (
+            <span>{data.firstName}</span>
+          ) : (
+            <Link
+              to="/login"
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black ease-in duration-200 mt-4 mr-4 lg:mt-0">
+              LOGIN
+            </Link>
+          )}
         </div>
       </div>
     </nav>
