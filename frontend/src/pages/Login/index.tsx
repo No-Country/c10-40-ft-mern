@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { JWT_TOKEN } from 'app/constants'
 import { type ILoginUser } from 'app/types'
+import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
 import { useUser } from 'hooks/useUser'
 import { useEffect } from 'react'
@@ -32,6 +33,7 @@ const Login = (): JSX.Element => {
     mutationFn: loginUser,
     onSuccess: ({ data }) => {
       localStorage.setItem(JWT_TOKEN, data)
+      navigate('/dashboard/profile')
     }
   })
 
@@ -61,7 +63,11 @@ const Login = (): JSX.Element => {
                 <Field
                   type="email"
                   name="email"
-                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                    errors.email && touched.email
+                      ? 'border border-red-500'
+                      : 'border border-gray-300'
+                  }`}
                   placeholder=" "
                 />
                 <label
@@ -69,12 +75,21 @@ const Login = (): JSX.Element => {
                   className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                   Ingrese su mail
                 </label>
+                {errors.email && touched.email ? (
+                  <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
+                    <Tooltip message={errors.email} />
+                  </span>
+                ) : null}
               </div>
               <div className="relative">
                 <Field
                   type="password"
                   name="password"
-                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                    errors.password && touched.password
+                      ? 'border border-red-500'
+                      : 'border border-gray-300'
+                  }`}
                   placeholder=" "
                 />
                 <label
@@ -82,6 +97,11 @@ const Login = (): JSX.Element => {
                   className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                   Ingrese su contraseña
                 </label>
+                {errors.password && touched.password ? (
+                  <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
+                    <Tooltip message={errors.password} />
+                  </span>
+                ) : null}
               </div>
               <button
                 type="submit"
