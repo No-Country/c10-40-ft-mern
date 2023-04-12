@@ -2,7 +2,9 @@ const cuerpoControllers = require("./cuerpo.controllers");
 const responses = require("../utils/handleResponses");
 
 const getAllCuerpo = (req, res) => {
-  cuerpoControllers.findAllCuerpo()
+  cuerpoControllers
+    .findAllCuerpo()
+
     .then((data) => {
       responses.success({
         status: 200,
@@ -23,7 +25,8 @@ const getAllCuerpo = (req, res) => {
 
 const getCuerpoyId = (req, res) => {
   const { id } = req.params;
-  cuerpoControllers.findCuerpoById(id)
+  cuerpoControllers
+    .findCuerpoById(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -51,8 +54,9 @@ const getCuerpoyId = (req, res) => {
 };
 
 const postNewCuerpo = (req, res) => {
-  const {name} = req.body
-  cuerpoControllers.createNewCuerpo(name)
+  const { name } = req.body;
+  cuerpoControllers
+    .createNewCuerpo(name)
     .then((data) => {
       responses.success({
         status: 201,
@@ -68,7 +72,7 @@ const postNewCuerpo = (req, res) => {
         message: "Error ocurred trying to create a new body",
         res,
         fields: {
-          name: "String"
+          name: "String",
         },
       });
     });
@@ -76,9 +80,10 @@ const postNewCuerpo = (req, res) => {
 
 const patchCuerpo = (req, res) => {
   const { id } = req.params;
-  const {name} = req.body;
+  const { name } = req.body;
 
-  cuerpoControllers.updateCuerpo(id, name)
+  cuerpoControllers
+    .updateCuerpo(id, name)
     .then((data) => {
       if (data) {
         responses.success({
@@ -93,7 +98,7 @@ const patchCuerpo = (req, res) => {
           message: `The body with ID ${id} not found`,
           res,
           fields: {
-            name: "String"
+            name: "String",
           },
         });
       }
@@ -114,7 +119,8 @@ const patchCuerpo = (req, res) => {
 const deleteCuerpo = (req, res) => {
   const { id } = req.params;
 
-  cuerpoControllers.deleteCuerpo(id)
+  cuerpoControllers
+    .deleteCuerpo(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -144,17 +150,33 @@ const deleteCuerpo = (req, res) => {
 
 //*peticiones de Front
 const getId2d = (req, res) => {
-  cuerpoControllers.findCuerpoByname()
+  cuerpoControllers
+    .findCuerpoByname()
     .then((data) => {
       if (data) {
-        responses.success({status: 200,data,message: `Getting User with id`,res,});
+        responses.success({
+          status: 200,
+          data,
+          message: `Getting User with id`,
+          res,
+        });
       } else {
-        responses.error({status: 404,message: `User with ID not found`,res,});
+        responses.error({
+          status: 404,
+          message: `User with ID not found`,
+          res,
+        });
       }
     })
-    .catch((err) => {responses.error({status: 400,data: err,message: "Something bad getting the user",res,});});
+    .catch((err) => {
+      responses.error({
+        status: 400,
+        data: err,
+        message: "Something bad getting the user",
+        res,
+      });
+    });
 };
-
 
 module.exports = {
   getAllCuerpo,
@@ -162,5 +184,5 @@ module.exports = {
   patchCuerpo,
   deleteCuerpo,
   getCuerpoyId,
-  getId2d
+  getId2d,
 };
