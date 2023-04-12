@@ -6,6 +6,8 @@ import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { registerUser } from 'utils'
 import { Tooltip } from 'components'
+import { useUser } from 'hooks/useUser'
+import { useEffect } from 'react'
 
 /* TODO: add minimum length for password.
  * password: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
@@ -33,8 +35,16 @@ const INITIAL_STATE: INewUser = {
 
 const Register = (): JSX.Element => {
   const navigate = useNavigate()
+  const userQuery = useUser()
 
-  const { mutate, isLoading, error } = useMutation(registerUser, {
+  useEffect(() => {
+    if (!userQuery.isLoading && userQuery.data) {
+      navigate('/dashboard')
+    }
+  }, [userQuery.data])
+
+  const { mutate, isLoading, error } = useMutation({
+    mutationFn: registerUser,
     onSuccess: () => {
       navigate('/completeprofile')
     }
@@ -67,7 +77,7 @@ const Register = (): JSX.Element => {
                 <Field
                   name="firstName"
                   className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
-                    errors.firstName
+                    errors.firstName && touched.firstName
                       ? 'border border-red-500'
                       : 'border border-gray-300'
                   }`}
@@ -88,7 +98,11 @@ const Register = (): JSX.Element => {
                 <Field
                   type="email"
                   name="email"
-                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                    errors.email && touched.email
+                      ? 'border border-red-500'
+                      : 'border border-gray-300'
+                  }`}
                   placeholder=" "
                 />
                 <label
@@ -106,7 +120,11 @@ const Register = (): JSX.Element => {
                 <Field
                   type="password"
                   name="password"
-                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                    errors.password && touched.password
+                      ? 'border border-red-500'
+                      : 'border border-gray-300'
+                  }`}
                   placeholder=" "
                 />
                 <label
@@ -124,7 +142,11 @@ const Register = (): JSX.Element => {
                 <Field
                   type="password"
                   name="repassword"
-                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                    errors.repassword && touched.repassword
+                      ? 'border border-red-500'
+                      : 'border border-gray-300'
+                  }`}
                   placeholder=" "
                 />
                 <label

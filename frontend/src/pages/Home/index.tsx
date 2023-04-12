@@ -11,7 +11,7 @@ const Home = (): JSX.Element => {
         <div className="flex flex-col  sm:flex-row gap-4 md:gap-8 md:mt-10 text-center p-7">
           <Link
             to="/register"
-            className="border-2 md:w-48 p-3 font-semibold md:text-xl rounded-md bg-[#fb8500] border-[#fb8500]  text-black hover:bg-transparent hover:text-[#fb8500]  ease-in-out duration-500">
+            className="border-2 md:w-48 p-3 font-semibold md:text-xl rounded-md bg-[#0dff00] border-[#0dff00]  text-black hover:bg-transparent hover:text-[#0dff00]  ease-in-out duration-500">
             Comenzá
           </Link>
           <Link

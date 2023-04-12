@@ -22,11 +22,11 @@ const findRutinaById = async (id) => {
 };
 const createNewRutina = async (userObj, id) => {
     const data = await Rutina.create({
-        id: uuid.v4(),
+        name: userObj.name,
         series: userObj.series,
         repetitions: userObj.repetitions,
         description: userObj.description,
-        cuerpo_id: id //tienes que espesifeicar el id de la parte del cuerpo 
+        CuerpoId: id //tienes que espesifeicar el id de la parte del cuerpo 
     })
     return data;
 };

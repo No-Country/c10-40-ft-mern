@@ -1,4 +1,5 @@
 // import { SiBookmeter } from 'react-icons/si'
+import { JWT_TOKEN } from 'app/constants'
 import {
   ImStatsBars,
   ImHome3,
@@ -139,6 +140,33 @@ const SideBarMenu = (): JSX.Element => {
         <div className="font-QuicksandMedium pl-4 text-gray-400/60 text-xs text-[11px] uppercase">
           Profile
         </div>
+        <div className="w-full flex items-center gap-x-1.5 group select-none">
+          <div
+            className={
+              'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
+            }>
+            <div
+              className={`${
+                location.pathname === '/dashboard/profile'
+                  ? 'bg-red-600 translate-y-0  transition-all'
+                  : 'translate-y-full group-hover:translate-y-0'
+              } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
+          </div>
+          <Link
+            to="/dashboard/profile"
+            className={`${
+              location.pathname === '/dashboard/profile' ? 'bg-white/10' : ''
+            } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
+            <svg
+              className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
+              viewBox="0 0 24 24">
+              <ImProfile size={20} />
+            </svg>
+
+            <span className="font-QuicksandMedium">Profile</span>
+          </Link>
+          <div />
+        </div>
         {/* notifications */}
         <div className="w-full flex items-center gap-x-1.5 group select-none">
           <div
@@ -205,8 +233,11 @@ const SideBarMenu = (): JSX.Element => {
             }>
             <div className="absolute top-0 left-0 w-full h-full translate-y-full group-hover:translate-y-0  bg-red-600 transition-all duration-300"></div>
           </div>
-          <Link
-            to="/dashboard/logout"
+          <button
+            onClick={() => {
+              localStorage.removeItem(JWT_TOKEN)
+              window.location.reload()
+            }}
             className={`${
               location.pathname === '/dashboard/logout' ? 'bg-white/10' : ''
             } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
@@ -217,7 +248,7 @@ const SideBarMenu = (): JSX.Element => {
             </svg>
 
             <span className="font-QuicksandMedium">Log Out</span>
-          </Link>
+          </button>
           <div />
         </div>
       </div>
@@ -225,7 +256,7 @@ const SideBarMenu = (): JSX.Element => {
       <div className="mt-5">
         <Link
           to="/dashboard/createrutine"
-          className="bg-[#fb8500] py-2 px-4 rounded-md font-semibold hover:scale-105 ease-in duration-200">
+          className="bg-[#0dff00] py-2 px-4 rounded-md font-semibold hover:scale-105 ease-in duration-200">
           Crear Rutina
         </Link>
       </div>
