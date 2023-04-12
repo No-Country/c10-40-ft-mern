@@ -1,6 +1,10 @@
 import { ExerciseCard } from 'components'
+import { useRoutine } from 'hooks/useRoutine'
+import { type IBodyPart } from 'app/types'
 
 const Routine = (): JSX.Element => {
+  const { data, isLoading, error } = useRoutine()
+
   const exercise = {
     name: 'Brazos',
     exercises: 'Estiramiento de Codo',
@@ -9,7 +13,13 @@ const Routine = (): JSX.Element => {
     img: 'https://res.cloudinary.com/dnqmez68n/image/upload/v1680622304/festejo_ieviva.jpg'
   }
   return (
-      <ExerciseCard exercise={exercise} />
+    <>
+      {data &&
+        data.map((routines: IBodyPart) => (
+           <ExerciseCard isLoading={isLoading} key={routines.rutinas[0].name} exercise={routines.rutinas[0]} />
+           )
+        )}
+    </>
   )
 }
 
