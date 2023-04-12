@@ -6,8 +6,6 @@ const Stats = (): JSX.Element => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex justify-start h-screen">
-      <SideBarMenu />
       <div className="w-full max-w-[1024px] lg:w-[1024px] my-10 mx-10 md:mx-5 xl:mx-auto">
         <button
           onClick={() => {
@@ -42,7 +40,6 @@ const Stats = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </div>
   )
 }
 

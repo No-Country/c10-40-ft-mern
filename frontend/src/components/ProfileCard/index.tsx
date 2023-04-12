@@ -1,12 +1,14 @@
+import { JWT_TOKEN } from 'app/constants'
 import { Loader } from 'components'
 import { useUser } from 'hooks/useUser'
+import { useNavigate } from 'react-router-dom'
 
 const ProfileCard = (): JSX.Element => {
   const { data, isLoading } = useUser()
-
+  const navigate = useNavigate()
   // TODO: profile picture
   return (
-    <div className="bg-gray-900/60 max-w-screen-lg w-full h-full lg:mx-auto flex-1 ">
+    <div className=" max-w-screen-lg w-full h-full lg:mx-auto flex-1 ">
       <div className="p-7 flex flex-col items-center justify-center h-[100%] md:flex-row gap-5">
         {/* Profile */}
         {isLoading ? (
@@ -25,12 +27,10 @@ const ProfileCard = (): JSX.Element => {
               <p>
                 Email: <span className="font-bold">{data?.email}</span>{' '}
               </p>
-              <button className="bg-black text-white p-1 rounded-lg mb-3">
-                Cerrar Sesion
-              </button>
             </div>
           </div>
         )}
+        
         {/* Data User */}
         {isLoading ? (
           <Loader type={'text'} />
