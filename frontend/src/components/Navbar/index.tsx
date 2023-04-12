@@ -61,7 +61,7 @@ const NavbarResponsive = (): JSX.Element => {
         </div>
         <div className="md:text-center lg:text-end">
           {!isLoading && data ? (
-            <span>{data.firstName}</span>
+            <Link to={'/dashboard'}>{data.firstName.toUpperCase()}</Link>
           ) : (
             <Link
               to="/login"

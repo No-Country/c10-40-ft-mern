@@ -1,3 +1,4 @@
+import { JWT_TOKEN } from 'app/constants'
 import { Link } from 'react-router-dom'
 
 const Dash = (): JSX.Element => {
@@ -38,13 +39,16 @@ const Dash = (): JSX.Element => {
             Contactanos
           </p>
         </Link>
-        <Link
-          to={'/'}
+        <button
+          onClick={() => {
+            localStorage.removeItem(JWT_TOKEN)
+            window.location.reload()
+          }}
           className="flex justify-center items-center cursor-pointer hover:scale-95 ease-in duration-200 rounded-md h-1/4 md:h-2/5 bg-[linear-gradient(to_right_top,rgba(0,0,0,0.7),rgba(0,0,0,0.4)),url('https://res.cloudinary.com/dnqmez68n/image/upload/v1681153856/cerrar_wlsz11.jpg')] bg-cover bg-center">
           <p className="font-bold text-lg md:text-2xl text-white">
             Cerrar Sesion
           </p>
-        </Link>
+        </button>
       </div>
     </div>
   )

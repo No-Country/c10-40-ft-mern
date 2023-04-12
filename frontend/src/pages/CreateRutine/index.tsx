@@ -1,9 +1,5 @@
-import { SideBarMenu } from 'components'
-
 const CreateRutine = (): JSX.Element => {
   return (
-    <div className="flex justify-start h-screen">
-      <SideBarMenu />
       <div className="p-7 flex flex-col items-center w-full">
         <h2 className="font-bold text-2xl my-6">
           Elegi la cantidad de dias que vas a entrenar en la semana!
@@ -23,7 +19,6 @@ const CreateRutine = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </div>
   )
 }
 

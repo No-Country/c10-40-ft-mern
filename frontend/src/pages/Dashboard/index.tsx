@@ -15,10 +15,7 @@ const Dashboard = (): JSX.Element => {
   }, [userQuery.data])
 
   return (
-    <div className="flex justify-start h-screen">
-      <SideBarMenu />
       <Dash />
-    </div>
   )
 }
 export default Dashboard

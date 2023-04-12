@@ -1,3 +1,4 @@
+import Loader from 'components/Loader'
 import { useState } from 'react'
 /* eslint-disable react/prop-types */
 interface Exercise {
@@ -11,9 +12,14 @@ interface ExerciseProps {
   exercise: Exercise
 }
 const ExerciseCard: React.FC<ExerciseProps> = ({ exercise }) => {
+    const loading = true
+    
   const { name, exercises, img, explanation } = exercise
   const [isChecked, setIsChecked] = useState(false)
   return (
+    <>
+    
+    {loading ? (<Loader type={'routine'} />) : ''}
     <div className="flex flex-col p-6 border sm:w-1/3  lg:w-1/5 m-5 bg-[#1c212c] rounded-lg h-fit">
       <div className="flex justify-center">
         <img className="rounded-sm w-auto" src={img} alt={name} />
@@ -58,6 +64,7 @@ const ExerciseCard: React.FC<ExerciseProps> = ({ exercise }) => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 export default ExerciseCard
