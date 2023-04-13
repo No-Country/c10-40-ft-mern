@@ -34,6 +34,11 @@ const Rutina = db.define("rutina", {
       model: Cuerpo,
     },
   },
+  imagen: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    initialValue: null,
+  },
 });
 
 module.exports = Rutina;

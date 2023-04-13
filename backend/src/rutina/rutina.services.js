@@ -2,7 +2,8 @@ const rutinaControllers = require("./rutina.controllers");
 const responses = require("../utils/handleResponses");
 
 const getAllRutina = (req, res) => {
-  rutinaControllers.findAllRutina()
+  rutinaControllers
+    .findAllRutina()
     .then((data) => {
       responses.success({
         status: 200,
@@ -23,7 +24,8 @@ const getAllRutina = (req, res) => {
 
 const getRutinayId = (req, res) => {
   const { id } = req.params;
-  rutinaControllers.findRutinaById(id)
+  rutinaControllers
+    .findRutinaById(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -51,10 +53,11 @@ const getRutinayId = (req, res) => {
 };
 
 const postNewRutina = (req, res) => {
-  const userObj = req.body
+  const userObj = req.body;
   const { id } = req.params;
 
-  rutinaControllers.createNewRutina(userObj, id)
+  rutinaControllers
+    .createNewRutina(userObj, id)
     .then((data) => {
       responses.success({
         status: 201,
@@ -67,13 +70,13 @@ const postNewRutina = (req, res) => {
       responses.error({
         status: 400,
         data: err,
-        message: "Error ocurred trying to create a new user",
+        message: "Error ocurred trying to create a new Routine",
         res,
         fields: {
           name: "string",
           series: "int",
           repetitions: "string",
-          description: "string"
+          description: "string",
         },
       });
     });
@@ -83,7 +86,8 @@ const patchRutina = (req, res) => {
   const { id } = req.params;
   const userObj = req.body;
 
-  rutinaControllers.updateRutina(id, userObj)
+  rutinaControllers
+    .updateRutina(id, userObj)
     .then((data) => {
       if (data) {
         responses.success({
@@ -121,7 +125,8 @@ const patchRutina = (req, res) => {
 const deleteRutina = (req, res) => {
   const { id } = req.params;
 
-  rutinaControllers.deleteRutina(id)
+  rutinaControllers
+    .deleteRutina(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -149,11 +154,10 @@ const deleteRutina = (req, res) => {
     });
 };
 
-
 module.exports = {
   getAllRutina,
   postNewRutina,
   patchRutina,
   deleteRutina,
-  getRutinayId
+  getRutinayId,
 };
