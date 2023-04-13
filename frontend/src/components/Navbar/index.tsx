@@ -48,14 +48,16 @@ const NavbarResponsive = (): JSX.Element => {
             className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
             Nosotros
           </Link>
-          {data ? '' : (
+          {data ? (
+            ''
+          ) : (
             <Link
-            to="/register"
-            className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
-            Comenzá
-          </Link>
+              to="/register"
+              className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
+              Comenzá
+            </Link>
           )}
-          
+
           <Link
             to="/contact"
             className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
@@ -64,7 +66,11 @@ const NavbarResponsive = (): JSX.Element => {
         </div>
         <div className="md:text-center lg:text-end ">
           {!isLoading && data ? (
-            <Link to={'/dashboard'} className='block mt-4 lg:inline-block lg:mt-0 p-2 text-white border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300'>{data.firstName.toUpperCase()}</Link>
+            <Link
+              to={'/dashboard'}
+              className="block mt-4 lg:inline-block lg:mt-0 p-2 text-white border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
+              {data.firstName.toUpperCase()}
+            </Link>
           ) : (
             <Link
               to="/login"
