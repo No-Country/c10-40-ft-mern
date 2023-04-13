@@ -33,4 +33,5 @@ export interface IRoutine {
   repetitions: string
   description: string
   cuerpoId: number
+  imagen: string
 }

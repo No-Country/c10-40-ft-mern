@@ -4,13 +4,8 @@ import { type IBodyPart } from 'app/types'
 
 const Routine = (): JSX.Element => {
   const { data, isLoading, error } = useRoutine()
-  const exercise = {
-    name: 'Brazos',
-    exercises: 'Estiramiento de Codo',
-    explanation:
-      'Se hace asi, de la siguiente, manera, solo estoy escribiendo para llegar a tener un texto largo. Se hace asi, de la siguiente, manera, solo estoy escribiendo para llegar a tener un texto largo.',
-    img: 'https://res.cloudinary.com/dnqmez68n/image/upload/v1680622304/festejo_ieviva.jpg'
-  }
+  console.log(data)
+  
   return (
     <>
     {isLoading && (
@@ -19,17 +14,13 @@ const Routine = (): JSX.Element => {
             <Loader type={'routine'} />
             <Loader type={'routine'} />
             <Loader type={'routine'} />
+            <Loader type={'routine'} />
         </>
     )}
       {data &&
-        data.flatMap((routines: IBodyPart) =>
-        routines.rutinas.length > 1 ? (
-          routines.rutinas.map((rut) => (
+        data[0].rutinas.map((rut: any) =>(
             <ExerciseCard isLoading={isLoading} exercise={rut} />
-          ))
-        ) : (
-          <ExerciseCard isLoading={isLoading} exercise={routines.rutinas[0]} />
-        )
+        ) 
       )}
     </>
   )

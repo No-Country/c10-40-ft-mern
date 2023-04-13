@@ -12,6 +12,7 @@ const CalendarDay = ({
   date: Dayjs
 }): JSX.Element => {
     const navigate = useNavigate()
+    console.log(getCurrentMonthClass())
 
   function getCurrentMonthClass(): string {
     return day.format('MM-YY') === date.format('MM-YY')
@@ -31,16 +32,18 @@ const CalendarDay = ({
         {rowIdx === 0 && (
           <div className="text-sm bg-green-500 w-full text-center p-1 border-b-2 border-black font-bold">{day.format('ddd').toUpperCase()}</div>
         )}
+        
         <div className={`text-sm p-2 flex flex-col h-full text-center ${getCurrentDayClass()}`}>
           <p>{day.format('DD')}</p>
           {day.format('DD')==='04' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
-          {day.format('DD')==='06' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
+          {day.format('DD')==='07' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
           {day.format('DD')==='10' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
           {day.format('DD')==='13' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link>}
           {day.format('DD')==='18' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
           {day.format('DD')==='21' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
           {day.format('DD')==='24' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
-          {day.format('DD')==='27' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
+          {day.format('DD')==='28' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
+          {day.format('DD')==='30' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
         </div>
       </header>
     </div>

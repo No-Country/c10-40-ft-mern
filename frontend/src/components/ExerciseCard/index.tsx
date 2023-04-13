@@ -7,24 +7,24 @@ interface ExerciseProps {
   isLoading: boolean
 }
 const ExerciseCard: React.FC<ExerciseProps> = ({ exercise, isLoading }) => {
-    console.log(exercise)
+    
   const [isChecked, setIsChecked] = useState(false)
   return (
     <>
       {isLoading ? (
         <Loader type={'routine'} />
       ) : (
-        <div className="flex flex-col p-6 border sm:w-1/3  lg:w-1/5 m-5 bg-[#1c212c] rounded-lg h-fit">
+        <div className="flex flex-col justify-around p-6 border sm:w-1/3 lg:w-1/5 m-5 bg-[#1c212c] rounded-lg h-2/3">
           <div className="flex justify-center">
             <img
-              className="rounded-sm w-auto"
-              src="https://res.cloudinary.com/dnqmez68n/image/upload/v1680622304/festejo_ieviva.jpg"
+              className="rounded-sm w-auto max-h-48"
+              src={exercise?.imagen}
               alt={exercise?.name}
               title={exercise?.name}
             />
           </div>
           <div className="flex flex-col gap-5 pt-6">
-            <p className="text-white ">
+            <p className="text-white h-10">
               Musculo trabajado: <span className="font-semibold">{exercise?.name}</span>{' '}
             </p>
             <p className="text-white">
@@ -33,7 +33,7 @@ const ExerciseCard: React.FC<ExerciseProps> = ({ exercise, isLoading }) => {
             <p className="text-white">
               Repeticiones: <span className="font-semibold">{exercise?.repetitions}</span>
             </p>
-            <p className="text-white mx-auto">Como realizarlo?</p>
+            <p className="text-green-500 mx-auto font-bold">¿Cómo realizarlo?</p>
 
             <p className="font-semibold text-white">{exercise?.description}</p>
             <div
