@@ -8,15 +8,45 @@ import 'dayjs/locale/es'
 dayjs.locale('es')
 
 const Calendar = (): JSX.Element => {
+  const calendarMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  const a = calendarMonths[2]
   const [currentMonth, setCurrentMonth] = useState(getMonth())
   const [date, setDate] = useState(dayjs())
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleActualMonth = () => {
+    setCurrentMonth(getMonth())
+  }
+  const handlePrevMonth = (a: number) => {
+    setCurrentMonth(getMonth(a - (clickCount + 1)))
+  }
+  const handleNextMonth = (a: number) => {
+    setCurrentMonth(getMonth(a + (clickCount + 1)))
+  }
+  const handleActualMonthWrapper = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setClickCount(0)
+    handleActualMonth()
+  }
+  const handlePrevMonthWrapper = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setClickCount(0)
+    setClickCount(clickCount - 1)
+    handlePrevMonth(a)
+  }
+  const handleNextMonthWrapper = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setClickCount(0)
+    setClickCount(clickCount + 1)
+    handleNextMonth(a)
+  }
   return (
     <>
       <div className="w-screen flex flex-col">
+        <button onClick={handlePrevMonthWrapper}>Anterior</button>
+        <button onClick={handleActualMonthWrapper}>Actual</button>
+        <button onClick={handleNextMonthWrapper}>Siguiente</button>
         <CalendarHeader date={date} setDate={setDate} />
         <div className="flex flex-1">
           <CalendarSidebar />
-          <CalendarMonth month={currentMonth} />
+          <CalendarMonth month={currentMonth}/>
         </div>
       </div>
     </>

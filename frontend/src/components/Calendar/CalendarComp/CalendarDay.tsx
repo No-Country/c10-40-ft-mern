@@ -9,7 +9,7 @@ const CalendarDay = ({
   rowIdx: React.Key
 }): JSX.Element => {
   function getCurrentMonthClass(): string {
-    return day.format('MM') === dayjs().format('MM')
+    return day.format('MM-YY') === dayjs().format('MM-YY')
       ? 'bg-orange-500'
       : 'bg-white'
   }

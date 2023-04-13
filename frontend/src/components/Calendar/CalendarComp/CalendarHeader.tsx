@@ -8,7 +8,7 @@ const CalendarHeader = ({
   date: dayjs.Dayjs
   setDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs>>
 }): JSX.Element => {
-  const formatDate = date.format('DD-MMMM-YY')
+  const formatDate = date.format('MMMM YYYY')
   const handlePrevMonth = (): void => {
     setDate(date.subtract(1, 'month'))
   }
