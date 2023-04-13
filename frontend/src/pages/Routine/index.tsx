@@ -4,7 +4,6 @@ import { type IBodyPart } from 'app/types'
 
 const Routine = (): JSX.Element => {
   const { data, isLoading, error } = useRoutine()
-
   const exercise = {
     name: 'Brazos',
     exercises: 'Estiramiento de Codo',
@@ -15,10 +14,15 @@ const Routine = (): JSX.Element => {
   return (
     <>
       {data &&
-        data.map((routines: IBodyPart) => (
-           <ExerciseCard isLoading={isLoading} key={routines.rutinas[0].name} exercise={routines.rutinas[0]} />
-           )
-        )}
+        data.flatMap((routines: IBodyPart) =>
+        routines.rutinas.length > 1 ? (
+          routines.rutinas.map((rut) => (
+            <ExerciseCard isLoading={isLoading} exercise={rut} />
+          ))
+        ) : (
+          <ExerciseCard isLoading={isLoading} exercise={routines.rutinas[0]} />
+        )
+      )}
     </>
   )
 }

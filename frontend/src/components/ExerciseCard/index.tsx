@@ -7,8 +7,8 @@ interface ExerciseProps {
   isLoading: boolean
 }
 const ExerciseCard: React.FC<ExerciseProps> = ({ exercise, isLoading }) => {
+    console.log(exercise)
   const [isChecked, setIsChecked] = useState(false)
-
   return (
     <>
       {isLoading ? (
@@ -19,22 +19,23 @@ const ExerciseCard: React.FC<ExerciseProps> = ({ exercise, isLoading }) => {
             <img
               className="rounded-sm w-auto"
               src="https://res.cloudinary.com/dnqmez68n/image/upload/v1680622304/festejo_ieviva.jpg"
-              alt={exercise.name}
+              alt={exercise?.name}
+              title={exercise?.name}
             />
           </div>
           <div className="flex flex-col gap-5 pt-6">
             <p className="text-white ">
-              Musculo trabajado: <span className="font-semibold">{exercise.name}</span>{' '}
+              Musculo trabajado: <span className="font-semibold">{exercise?.name}</span>{' '}
             </p>
             <p className="text-white">
-              Series: <span className="font-semibold">{exercise.series}</span>
+              Series: <span className="font-semibold">{exercise?.series}</span>
             </p>
             <p className="text-white">
-              Repeticiones: <span className="font-semibold">{exercise.repetitions}</span>
+              Repeticiones: <span className="font-semibold">{exercise?.repetitions}</span>
             </p>
             <p className="text-white mx-auto">Como realizarlo?</p>
 
-            <p className="font-semibold text-white">{exercise.description}</p>
+            <p className="font-semibold text-white">{exercise?.description}</p>
             <div
               className={`${
                 isChecked
