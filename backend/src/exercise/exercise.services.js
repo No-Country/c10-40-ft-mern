@@ -1,32 +1,29 @@
-const cuerpoControllers = require("./cuerpo.controllers");
+const ExerciseControllers = require("./exercise.controllers");
 const responses = require("../utils/handleResponses");
 
-const getAllCuerpo = (req, res) => {
-  cuerpoControllers
-    .findAllCuerpo()
-
+const getAllExercise = (req, res) => {
+  ExerciseControllers.findAllExercise()
     .then((data) => {
       responses.success({
         status: 200,
         data: data,
-        message: "Getting all body",
+        message: "Getting all Exercise",
         res,
       });
     })
     .catch((err) => {
       responses.error({
-        status: 401,
+        status: 400,
         data: err,
-        message: "Something wrong with getting all the body parts",
+        message: "Something bad getting all Exercise",
         res,
       });
     });
 };
 
-const getCuerpoyId = (req, res) => {
+const getExerciseById = (req, res) => {
   const { id } = req.params;
-  cuerpoControllers
-    .findCuerpoById(id)
+  ExerciseControllers.findExerciseById(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -53,15 +50,16 @@ const getCuerpoyId = (req, res) => {
     });
 };
 
-const postNewCuerpo = (req, res) => {
-  const { name } = req.body;
-  cuerpoControllers
-    .createNewCuerpo(name)
+const postNewExercise = (req, res) => {
+  const userObj = req.body;
+  const { id } = req.params;
+
+  ExerciseControllers.createNewExercise(userObj, id)
     .then((data) => {
       responses.success({
         status: 201,
         data,
-        message: `body created succesfully with id: ${data.id}`,
+        message: `User created succesfully with id: ${data.id}`,
         res,
       });
     })
@@ -69,36 +67,39 @@ const postNewCuerpo = (req, res) => {
       responses.error({
         status: 400,
         data: err,
-        message: "Error ocurred trying to create a new body",
+        message: "Error ocurred trying to create a new user",
         res,
         fields: {
-          name: "String",
+          name: "string",
+          series: "int",
+          repetitions: "string",
+          description: "string",
         },
       });
     });
 };
 
-const patchCuerpo = (req, res) => {
+const patchExercise = (req, res) => {
   const { id } = req.params;
-  const { name } = req.body;
+  const userObj = req.body;
 
-  cuerpoControllers
-    .updateCuerpo(id, name)
+  ExerciseControllers.updateExercise(id, userObj)
     .then((data) => {
       if (data) {
         responses.success({
           status: 200,
           data,
-          message: `body with id: ${id} modified successfully`,
+          message: `User with id: ${id} modified successfully`,
           res,
         });
       } else {
         responses.error({
           status: 404,
-          message: `The body with ID ${id} not found`,
+          message: `The user with ID ${id} not found`,
           res,
           fields: {
-            name: "String",
+            firstName: "String",
+            email: "example@example.com",
           },
         });
       }
@@ -110,17 +111,17 @@ const patchCuerpo = (req, res) => {
         message: `Error ocurred trying to update user with id ${id}`,
         res,
         fields: {
-          name: "String",
+          firstName: "String",
+          email: "example@example.com",
         },
       });
     });
 };
 
-const deleteCuerpo = (req, res) => {
+const deleteExercise = (req, res) => {
   const { id } = req.params;
 
-  cuerpoControllers
-    .deleteCuerpo(id)
+  ExerciseControllers.deleteExercise(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -148,41 +149,10 @@ const deleteCuerpo = (req, res) => {
     });
 };
 
-//*peticiones de Front
-const getId2d = (req, res) => {
-  cuerpoControllers
-    .findCuerpoByname()
-    .then((data) => {
-      if (data) {
-        responses.success({
-          status: 200,
-          data,
-          message: `Getting User with id`,
-          res,
-        });
-      } else {
-        responses.error({
-          status: 404,
-          message: `User with ID not found`,
-          res,
-        });
-      }
-    })
-    .catch((err) => {
-      responses.error({
-        status: 400,
-        data: err,
-        message: "Something bad getting the user",
-        res,
-      });
-    });
-};
-
 module.exports = {
-  getAllCuerpo,
-  postNewCuerpo,
-  patchCuerpo,
-  deleteCuerpo,
-  getCuerpoyId,
-  getId2d,
+  getAllExercise,
+  postNewExercise,
+  patchExercise,
+  deleteExercise,
+  getExerciseById,
 };

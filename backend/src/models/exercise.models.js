@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../utils/database");
-const Cuerpo = require("./cuerpo");
 
-const Rutina = db.define("rutina", {
+const Exercise = db.define("exercise", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -26,14 +25,6 @@ const Rutina = db.define("rutina", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  CuerpoId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      key: "id",
-      model: Cuerpo,
-    },
-  },
 });
 
-module.exports = Rutina;
+module.exports = Exercise;

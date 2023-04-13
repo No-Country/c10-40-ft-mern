@@ -1,29 +1,30 @@
-const rutinaControllers = require("./rutina.controllers");
+const BodyPartControllers = require("./bodyPart.controllers");
 const responses = require("../utils/handleResponses");
 
-const getAllRutina = (req, res) => {
-  rutinaControllers.findAllRutina()
+const getAllBodyPart = (req, res) => {
+  BodyPartControllers.findAllBodyPart()
+
     .then((data) => {
       responses.success({
         status: 200,
         data: data,
-        message: "Getting all Rutina",
+        message: "Getting all body",
         res,
       });
     })
     .catch((err) => {
       responses.error({
-        status: 401,
+        status: 400,
         data: err,
-        message: "Something bad getting all Rutina",
+        message: "Something wrong with getting all the body parts",
         res,
       });
     });
 };
 
-const getRutinayId = (req, res) => {
+const getBodyPartById = (req, res) => {
   const { id } = req.params;
-  rutinaControllers.findRutinaById(id)
+  BodyPartControllers.findBodyPartById(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -50,16 +51,14 @@ const getRutinayId = (req, res) => {
     });
 };
 
-const postNewRutina = (req, res) => {
-  const userObj = req.body
-  const { id } = req.params;
-
-  rutinaControllers.createNewRutina(userObj, id)
+const postNewBodyPart = (req, res) => {
+  const { name } = req.body;
+  BodyPartControllers.createNewBodyPart(name)
     .then((data) => {
       responses.success({
         status: 201,
         data,
-        message: `User created succesfully with id: ${data.id}`,
+        message: `body created succesfully with id: ${data.id}`,
         res,
       });
     })
@@ -67,39 +66,35 @@ const postNewRutina = (req, res) => {
       responses.error({
         status: 400,
         data: err,
-        message: "Error ocurred trying to create a new user",
+        message: "Error ocurred trying to create a new body",
         res,
         fields: {
-          name: "string",
-          series: "int",
-          repetitions: "string",
-          description: "string"
+          name: "String",
         },
       });
     });
 };
 
-const patchRutina = (req, res) => {
+const patchBodyPart = (req, res) => {
   const { id } = req.params;
-  const userObj = req.body;
+  const { name } = req.body;
 
-  rutinaControllers.updateRutina(id, userObj)
+  BodyPartControllers.updateBodyPart(id, name)
     .then((data) => {
       if (data) {
         responses.success({
           status: 200,
           data,
-          message: `User with id: ${id} modified successfully`,
+          message: `body with id: ${id} modified successfully`,
           res,
         });
       } else {
         responses.error({
           status: 404,
-          message: `The user with ID ${id} not found`,
+          message: `The body with ID ${id} not found`,
           res,
           fields: {
-            firstName: "String",
-            email: "example@example.com",
+            name: "String",
           },
         });
       }
@@ -111,17 +106,16 @@ const patchRutina = (req, res) => {
         message: `Error ocurred trying to update user with id ${id}`,
         res,
         fields: {
-          firstName: "String",
-          email: "example@example.com",
+          name: "String",
         },
       });
     });
 };
 
-const deleteRutina = (req, res) => {
+const deleteBodyPart = (req, res) => {
   const { id } = req.params;
 
-  rutinaControllers.deleteRutina(id)
+  BodyPartControllers.deleteBodyPart(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -149,11 +143,10 @@ const deleteRutina = (req, res) => {
     });
 };
 
-
 module.exports = {
-  getAllRutina,
-  postNewRutina,
-  patchRutina,
-  deleteRutina,
-  getRutinayId
+  getAllBodyPart,
+  postNewBodyPart,
+  patchBodyPart,
+  deleteBodyPart,
+  getBodyPartById,
 };
