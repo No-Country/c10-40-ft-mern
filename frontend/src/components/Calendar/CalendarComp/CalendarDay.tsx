@@ -1,5 +1,6 @@
 import React from 'react'
 import dayjs, { type Dayjs } from 'dayjs'
+import { Link, useNavigate } from 'react-router-dom'
 
 const CalendarDay = ({
   day,
@@ -10,6 +11,8 @@ const CalendarDay = ({
   rowIdx: React.Key
   date: Dayjs
 }): JSX.Element => {
+    const navigate = useNavigate()
+
   function getCurrentMonthClass(): string {
     return day.format('MM-YY') === date.format('MM-YY')
       ? 'bg-gray-400'
@@ -30,11 +33,11 @@ const CalendarDay = ({
         )}
         <div className={`text-sm p-2 flex flex-col h-full text-center ${getCurrentDayClass()}`}>
           <p>{day.format('DD')}</p>
-          {day.format('DD')==='01' && <button className='text-sm my-auto p-2 bg-blue-500'>Rutina de Hoy</button> }
-          {day.format('DD')==='04' && <button className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-400 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</button> }
-          {day.format('DD')==='12' && <button className='text-sm my-auto p-2 bg-blue-500'>Rutina de Hoy</button> }
-          {day.format('DD')==='19' && <button className='text-sm my-auto p-2 bg-blue-500'>Rutina de Hoy</button> }
-          {day.format('DD')==='23' && <button className='text-sm my-auto p-2 bg-blue-500'>Rutina de Hoy</button> }
+          {day.format('DD')==='01' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
+          {day.format('DD')==='04' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
+          {day.format('DD')==='12' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
+          {day.format('DD')==='19' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link>}
+          {day.format('DD')==='23' && <Link to='/dashboard/routine' className='text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200'>Rutina de Hoy</Link> }
         </div>
       </header>
     </div>
