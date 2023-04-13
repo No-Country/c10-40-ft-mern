@@ -1,7 +1,9 @@
 import dayjs, { type Dayjs } from 'dayjs'
 
-export function getMonth(month: any = dayjs().month()): Dayjs[][] {
-  const year = dayjs().year()
+export function getMonth(
+  month: any = dayjs().month(),
+  year: any = dayjs().year()
+): Dayjs[][] {
   const firstDayOfTheMonth = dayjs(new Date(year, month, 1)).day()
   let currentMonthCount = 0 - firstDayOfTheMonth
   const daysMatrix: Dayjs[][] = new Array(6).fill([]).map(() => {

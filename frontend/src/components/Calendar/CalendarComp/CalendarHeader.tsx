@@ -1,23 +1,32 @@
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import dayjs from 'dayjs'
+import { getMonth } from 'utils/calendarUtils'
 
 const CalendarHeader = ({
   date,
-  setDate
+  setDate,
+  setCurrentMonth
 }: {
   date: dayjs.Dayjs
   setDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs>>
+  setCurrentMonth: (arg: any) => void
 }): JSX.Element => {
   const formatDate = date.format('MMMM YYYY')
   const handlePrevMonth = (): void => {
-    setDate(date.subtract(1, 'month'))
+    const d = date.subtract(1, 'month')
+    setDate(d)
+    setCurrentMonth(getMonth(d.month(), d.year()))
   }
   const handleNextMonth = (): void => {
-    setDate(date.add(1, 'month'))
+    const d = date.add(1, 'month')
+    setDate(d)
+    setCurrentMonth(getMonth(d.month(), d.year()))
   }
   const handleCurrentMonth = (): void => {
     setDate(dayjs())
+    setCurrentMonth(getMonth(dayjs().month()))
   }
+
   return (
     <header className="px-4 py-2 flex justify-around items-center">
       <p> Logo </p>
