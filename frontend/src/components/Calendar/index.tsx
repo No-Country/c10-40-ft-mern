@@ -19,7 +19,7 @@ const Calendar = (): JSX.Element => {
           date={date}
           setDate={setDate}
         />
-        <div className="flex flex-1">
+        <div className="flex md:flex-1 m-5">
           <CalendarSidebar />
           <CalendarMonth date={date} month={currentMonth} />
         </div>
