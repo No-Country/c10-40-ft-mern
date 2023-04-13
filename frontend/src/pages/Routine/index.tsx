@@ -1,4 +1,4 @@
-import { ExerciseCard } from 'components'
+import { ExerciseCard, Loader } from 'components'
 import { useRoutine } from 'hooks/useRoutine'
 import { type IBodyPart } from 'app/types'
 
@@ -13,6 +13,14 @@ const Routine = (): JSX.Element => {
   }
   return (
     <>
+    {isLoading && (
+        <>
+            <Loader type={'routine'} />
+            <Loader type={'routine'} />
+            <Loader type={'routine'} />
+            <Loader type={'routine'} />
+        </>
+    )}
       {data &&
         data.flatMap((routines: IBodyPart) =>
         routines.rutinas.length > 1 ? (
