@@ -10,7 +10,7 @@ dayjs.locale('es')
 const Calendar = (): JSX.Element => {
   const calendarMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   const a = calendarMonths[2]
-  const [currentMonth, setCurrentMonth] = useState(getMonth())
+  const [currentMonth, setCurrentMonth] = useState(getMonth(a))
   const [date, setDate] = useState(dayjs())
   const [clickCount, setClickCount] = useState(0);
 
@@ -28,22 +28,21 @@ const Calendar = (): JSX.Element => {
     handleActualMonth()
   }
   const handlePrevMonthWrapper = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    setClickCount(0)
     setClickCount(clickCount - 1)
     handlePrevMonth(a)
   }
   const handleNextMonthWrapper = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    setClickCount(0)
     setClickCount(clickCount + 1)
     handleNextMonth(a)
   }
   return (
     <>
       <div className="w-screen flex flex-col">
+
+        <CalendarHeader date={date} setDate={setDate} />
         <button onClick={handlePrevMonthWrapper}>Anterior</button>
         <button onClick={handleActualMonthWrapper}>Actual</button>
         <button onClick={handleNextMonthWrapper}>Siguiente</button>
-        <CalendarHeader date={date} setDate={setDate} />
         <div className="flex flex-1">
           <CalendarSidebar />
           <CalendarMonth month={currentMonth}/>

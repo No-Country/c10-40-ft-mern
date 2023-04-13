@@ -27,6 +27,7 @@ const CalendarDay = ({
         <p className={`text-sm p-1 my-1 text-center ${getCurrentDayClass()}`}>
           {day.format('DD')}
         </p>
+        <p>Tenes que hacer ejercicio</p>
       </header>
     </div>
   )
