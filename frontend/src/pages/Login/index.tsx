@@ -29,7 +29,7 @@ const Login = (): JSX.Element => {
     }
   }, [userQuery.data])
 
-  const { mutate, isLoading, error } = useMutation({
+  const { mutateAsync, isLoading, error } = useMutation({
     mutationFn: loginUser,
     onSuccess: ({ data }) => {
       localStorage.setItem(JWT_TOKEN, data)
@@ -57,8 +57,8 @@ const Login = (): JSX.Element => {
         <Formik
           initialValues={INITIAL_STATE}
           validationSchema={SignInSchema}
-          onSubmit={(values, actions) => {
-            mutate(values)
+          onSubmit={async (values, actions) => {
+            await mutateAsync(values)
             actions.resetForm({ values: INITIAL_STATE })
           }}>
           {({ errors, touched }) => (
