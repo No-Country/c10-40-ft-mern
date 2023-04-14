@@ -53,32 +53,30 @@ const getRutinayId = (req, res) => {
 const postNewRutina = (req, res) => {
   const userObj = req.body
   const { id } = req.params;
-
-  rutinaControllers.createNewRutina(userObj, id)
-    .then((data) => {
-      responses.success({
-        status: 201,
-        data,
-        message: `User created succesfully with id: ${data.id}`,
-        res,
-      });
-    })
-    .catch((err) => {
-      responses.error({
-        status: 400,
-        data: err,
-        message: "Error ocurred trying to create a new user",
-        res,
-        fields: {
-          name: "string",
-          series: "int",
-          repetitions: "string",
-          description: "string"
-        },
-      });
-    });
-};
-
+  
+  rutinaControllers.createNewRutina(userObj, id,)
+  .then((data) => {
+    responses.success({
+      res,
+      status:201,
+      data,
+      message: `User created succesfully with id: ${data.id}`
+  })})
+  .catch((err) => {
+  responses.error({
+    status: 400,
+    data: err,
+    message: "Error ocurred trying to create a new user",
+    res,
+    fields: {
+      name: "string",
+      series: "int",
+      repetitions: "string",
+      description: "string"
+    },
+  })})
+} 
+  
 const patchRutina = (req, res) => {
   const { id } = req.params;
   const userObj = req.body;
