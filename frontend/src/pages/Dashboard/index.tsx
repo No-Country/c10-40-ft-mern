@@ -1,21 +1,20 @@
-import { Dash } from 'components'
-import SideBarMenu from 'components/SideBarMenu'
-import { useUser } from 'hooks/useUser'
-import { useEffect } from 'react'
+import { Dash, Loader } from 'components'
+import { useAuth } from 'hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
 
 const Dashboard = (): JSX.Element => {
-  const userQuery = useUser()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!userQuery.isLoading && !userQuery.data) {
-      navigate('/login')
-    }
-  }, [userQuery.data])
+  const { isAuthenticated, isLoading } = useAuth()
 
-  return (
-      <Dash />
-  )
+  if (isLoading) {
+    return <Loader />
+  }
+
+  if (!isAuthenticated) {
+    navigate('/login')
+  }
+
+  return <Dash />
 }
 export default Dashboard
