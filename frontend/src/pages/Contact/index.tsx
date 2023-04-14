@@ -5,7 +5,9 @@ import * as Yup from 'yup'
 import { Tooltip } from 'components'
 import { useMutation } from '@tanstack/react-query'
 import { ImSpinner8 } from 'react-icons/im'
-import { sendEmail } from 'utils/sendMail'
+import { sendEmail } from 'utils'
+import { type IContact } from 'app/types'
+import { useState } from 'react'
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,7 +20,7 @@ const ContactSchema = Yup.object().shape({
   message: Yup.string().required('Required')
 })
 
-const INITIAL_STATE: Record<string, string> = {
+const INITIAL_STATE: IContact = {
   name: '',
   email: '',
   subject: '',
@@ -26,12 +28,13 @@ const INITIAL_STATE: Record<string, string> = {
 }
 
 const Contact = (): JSX.Element => {
+  const [result, setResult] = useState()
   const navigate = useNavigate()
 
   const { mutate, isLoading, error } = useMutation({
     mutationFn: sendEmail,
-    onSuccess: () => {
-      alert('email sent')
+    onSuccess: (data) => {
+      setResult(data)
     }
   })
   return (
@@ -60,7 +63,7 @@ const Contact = (): JSX.Element => {
                 <Field
                   name="name"
                   className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
-                    errors.firstName && touched.firstName
+                    errors.name && touched.name
                       ? 'border border-red-500'
                       : 'border border-gray-300'
                   }`}
@@ -82,7 +85,7 @@ const Contact = (): JSX.Element => {
                   type="email"
                   name="email"
                   className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
-                    errors.firstName && touched.firstName
+                    errors.name && touched.name
                       ? 'border border-red-500'
                       : 'border border-gray-300'
                   }`}
@@ -103,7 +106,7 @@ const Contact = (): JSX.Element => {
                 <Field
                   name="subject"
                   className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
-                    errors.subject && touched.firstName
+                    errors.subject && touched.subject
                       ? 'border border-red-500'
                       : 'border border-gray-300'
                   }`}
@@ -149,6 +152,16 @@ const Contact = (): JSX.Element => {
                 className="flex items-center justify-center uppercase bg-gray-300 hover:bg-gray-500 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
                 {isLoading ? <ImSpinner8 className="animate-spin" /> : 'Enviar'}
               </button>
+              {error ? (
+                <span className="text-red-500">
+                  Hubo un error enviando el email.
+                </span>
+              ) : null}
+              {result ? (
+                <span className="text-green-500">
+                  Email enviado correctamente
+                </span>
+              ) : null}
             </Form>
           )}
         </Formik>
