@@ -51,7 +51,7 @@ const Login = (): JSX.Element => {
         <img
           className="h-14 invert"
           src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
-          alt=""
+          alt="exercify-logo"
         />
         <div className="my-5">Ingresá a tu cuenta</div>
         <Formik

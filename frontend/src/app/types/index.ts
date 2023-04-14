@@ -11,6 +11,13 @@ export interface IUser {
   googleId?: string
 }
 
+export interface IUserProfile {
+    gender: string
+    age: number | null
+    height: number | null
+    weight: number | null
+}
+
 export interface ILoginUser {
   email: string
   password: string

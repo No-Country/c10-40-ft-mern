@@ -1,4 +1,4 @@
-import type { IContact, ILoginUser, INewUser } from 'app/types'
+import type { IContact, ILoginUser, INewUser, IUserProfile } from 'app/types'
 import axios from 'axios'
 
 export const server = axios.create({
@@ -45,3 +45,17 @@ export const sendEmail = async (data: IContact): Promise<any> => {
 
   return response
 }
+
+export const completeProfile = async (user: IUserProfile): Promise<any> => {
+    const { gender, age, weight, height } = user
+  console.log(user)
+    if (gender === '' || (age ?? 0) <= 0 || (weight ?? 0)  <= 0 || (height ?? 0) <= 0 ) {
+      throw new Error(`${gender} ${age} ${weight} ${height} missing`)
+    }
+  
+    const completed = await server.patch('/completeProfile', user).catch((error) => {
+      console.log(error)
+    })
+  
+    return completed
+  }

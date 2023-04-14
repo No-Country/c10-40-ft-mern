@@ -18,7 +18,7 @@ const Dash = (): JSX.Element => {
         <div className="flex flex-col justify-around mx-5 h-full">
           <p className="uppercase text-2xl">Hacete miembro!</p>
           <p className="font-bold text-5xl font-mono">
-            SE <span className="text-green-500">POWERPRO</span>
+            SE <span className="text-green-500">PRO-Fy</span>
           </p>
           <p className="mx-auto text-2xl font-semibold">
             Ahorra hasta un <span className="text-green-500">50%</span> con

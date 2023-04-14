@@ -4,7 +4,6 @@ import { type IBodyPart } from 'app/types'
 
 const Routine = (): JSX.Element => {
   const { data, isLoading, error } = useRoutine()
-  console.log(data)
   
   return (
     <>
