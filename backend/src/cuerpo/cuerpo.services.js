@@ -155,6 +155,18 @@ const getId2d = (req, res) => {
     .catch((err) => {responses.error({status: 400,data: err,message: "Something bad getting the user",res,});});
 };
 
+const getId3d = (req, res) => {
+  cuerpoControllers.findCuerpoByname3d()
+    .then((data) => {
+      if (data) {
+        responses.success({status: 200,data,message: `Getting User with id`,res,});
+      } else {
+        responses.error({status: 404,message: `User with ID not found`,res,});
+      }
+    })
+    .catch((err) => {responses.error({status: 400,data: err,message: "Something bad getting the user",res,});});
+};
+
 
 module.exports = {
   getAllCuerpo,
@@ -162,5 +174,6 @@ module.exports = {
   patchCuerpo,
   deleteCuerpo,
   getCuerpoyId,
-  getId2d
+  getId2d,
+  getId3d
 };
