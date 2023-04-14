@@ -39,7 +39,7 @@ export const sendEmail = async (data: IContact): Promise<any> => {
     throw new Error(`${name} ${subject} ${email} missing`)
   }
 
-  const response = await server.post('/sendEmail', data).catch((error) => {
+  const response = await server.post('/sendMail', data).catch((error) => {
     console.log(error)
   })
 
