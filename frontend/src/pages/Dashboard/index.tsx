@@ -9,7 +9,9 @@ const Dashboard = (): JSX.Element => {
   const userQuery = useUser()
   const { data, isLoading } = useQuery({
     queryKey: ['authStatus'],
-    queryFn: checkSession
+    queryFn: checkSession,
+    cacheTime: 0,
+    staleTime: 0
   })
 
   const navigate = useNavigate()
@@ -18,7 +20,7 @@ const Dashboard = (): JSX.Element => {
     if (!isLoading && !data) {
       navigate('/login')
     }
-  }, [data])
+  }, [data, isLoading])
 
   return <Dash />
 }
