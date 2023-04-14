@@ -10,7 +10,9 @@ router.get("/:id", cuerpoServices.getCuerpoyId)
 router.delete("/:id", cuerpoServices.deleteCuerpo)
 router.patch("/:id", cuerpoServices.patchCuerpo)
 
-router.get("/front/2d", cuerpoServices.getId2d)
+router.get("/rutina/2d", cuerpoServices.getId2d)
+router.get("/rutina/3d", cuerpoServices.getId3d)
+router.get("/rutina/5d", cuerpoServices.getAllCuerpo)
 
 //asi creamos la relacion con la tabla
 //* el post esta en cuerpo, le pasas el id de la tabla que quieres agregar (como parametro) y lo datos de body 

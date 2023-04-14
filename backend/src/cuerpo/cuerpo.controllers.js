@@ -57,8 +57,27 @@ const deleteCuerpo = async (id) => {
 };
 
 //*para los de front
-const findCuerpoByname = async (id) => {
+const findCuerpoByname = async () => {
     const data = [1]
+    data[0] = await Cuerpo.findOne({
+        where: {id:"1"},
+        include: {
+            model: Rutina,
+            attributes: { exclude: ['id','createdAt', 'updatedAt' ,"CuerpoId"]}},
+        attributes: {exclude: [ "id", "createdAt", "updatedAt"],},
+    });
+    data[1] = await Cuerpo.findOne({
+        where: {id:"3"},
+        include: {
+            model: Rutina,
+            attributes: { exclude: ['id','createdAt', 'updatedAt' ,'CuerpoId']}},
+        attributes: {exclude: [ "id", "createdAt", "updatedAt"],},
+    });
+
+    return data;
+};
+const findCuerpoByname3d = async () => {
+    const data = [2]
     data[0] = await Cuerpo.findOne({
         where: {id:"2"},
         include: {
@@ -68,6 +87,13 @@ const findCuerpoByname = async (id) => {
     });
     data[1] = await Cuerpo.findOne({
         where: {id:"4"},
+        include: {
+            model: Rutina,
+            attributes: { exclude: ['id','createdAt', 'updatedAt' ,'CuerpoId']}},
+        attributes: {exclude: [ "id", "createdAt", "updatedAt"],},
+    });
+    data[2] = await Cuerpo.findOne({
+        where: {id:"5"},
         include: {
             model: Rutina,
             attributes: { exclude: ['id','createdAt', 'updatedAt' ,'CuerpoId']}},
@@ -83,5 +109,6 @@ module.exports = {
     updateCuerpo,
     deleteCuerpo,
     findCuerpoById,
-    findCuerpoByname
+    findCuerpoByname,
+    findCuerpoByname3d
 };
