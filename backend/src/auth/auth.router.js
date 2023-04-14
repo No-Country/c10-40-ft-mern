@@ -18,4 +18,8 @@ router.get(
   authServices.postSocial
 );
 
+router.put("/forgot-password", authServices.forgotPassword);
+
+router.put("/new-password", authServices.createNewPassword);
+
 module.exports = router;

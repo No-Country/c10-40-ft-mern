@@ -3,6 +3,7 @@ const userControllers = require("../users/users.controllers");
 const response = require("../utils/handleResponses");
 const jwt = require("jsonwebtoken");
 const config = require("../../config").api;
+const { hashPassword } = require("../utils/crypto");
 
 //*Asignacion del token JWT
 const postLogin = (req, res) => {
@@ -92,4 +93,94 @@ const postSocial = async (req, res) => {
     });
 };
 
-module.exports = { postLogin, postSocial };
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  userControllers.findUserByEmail(email)
+    .then((data) => {
+      if (data) {
+        const token = jwt.sign(
+          {
+            id: data.id,
+            email: data.email,
+            firstName: data.firstName,
+          },
+          config.secretOrKey,
+          {
+            expiresIn: "1d",
+          }
+        );
+        const verificationEmail = `${config.host}/api/v1/auth/new-password/?token=${token}`;
+        /*
+          AQUI SE ENVIA EL EMAIL, SI TODO SALE BIEN SE ENVIA EL MENSAJE, SI NO, SE ARROJA EL ERROR 400
+        */
+        response.success({
+          res,
+          status: 200,
+          message: "Check your email to change the password",
+          data: verificationEmail,
+        });
+      } else {
+        response.error({
+          res,
+          status: 401,
+          message: "email not found"
+        });
+      }
+    })
+    .catch((err) => {
+      response.error({
+        res,
+        status: 400,
+        data: err,
+        message: "Something bad in login auth.services"
+      });
+    });
+};
+
+const createNewPassword = async (req, res) => {
+  const { newPassword } = req.body;
+  const token = req.query.token;
+  if (!(token && newPassword)) {
+    response.error({
+      res,
+      status: 401,
+      message: "Todos los campos deben ser llenados"
+    });
+  }
+  try {
+    const jwtPayload = jwt.verify(token, config.secretOrKey);
+    await userControllers.updateUser(jwtPayload.id, { password: hashPassword(newPassword) })
+      .then((data) => {
+        if (data) {
+          response.success({
+            res,
+            status: 200,
+            message: "Se ha cambiado la contraseña!",
+          });
+        } else {
+          response.error({
+            res,
+            status: 401,
+            message: "No se ha podido cambiar la contraseña",
+          });
+        }
+      })
+      .catch((err) => {
+        response.error({
+          res,
+          status: 400,
+          data: err,
+          message: "Something bad",
+        });
+      });
+  }
+  catch {
+    response.error({
+      res,
+      status: 400,
+      message: "Something bad",
+    })
+  }
+}
+
+module.exports = { postLogin, postSocial, forgotPassword, createNewPassword };
