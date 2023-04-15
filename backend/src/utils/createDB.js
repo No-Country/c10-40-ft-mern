@@ -113,7 +113,6 @@ const exercises = [
   },
 ];
 
-// WARN: EJECUTAR UNA VEZ. O FIXEÁ LOS BUGS
 async function createDB() {
   await User.bulkCreate(users);
   await Day.bulkCreate(days);

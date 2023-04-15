@@ -11,8 +11,6 @@ const findRandomExercise = async () => {
 
 /**INFO: creá rutinas dinámicamente.
  *
- * FIX: error creating multiple exercises in one day when you call the function twice with the same name
- *
  * @params: (
  * name: String  Nombre de la rutina
  * days: Number número de días
@@ -27,6 +25,9 @@ async function createRoutine(name, days, weekDays) {
   });
 
   const routine = createRoutine[0];
+  const isCreated = createRoutine[1];
+
+  if (!isCreated) return false;
 
   const daysCreated = await Day.findAll({
     where: {
@@ -34,10 +35,13 @@ async function createRoutine(name, days, weekDays) {
     },
   });
 
-  await createRoutine[0].addDays(daysCreated);
+  await routine.addDays(daysCreated);
 
   daysCreated.forEach(async (day) => {
     const randomExercise = await findRandomExercise();
+    const has = await day.hasExercise(randomExercise);
+
+    if (has) return;
 
     await day.addExercise(randomExercise);
   });

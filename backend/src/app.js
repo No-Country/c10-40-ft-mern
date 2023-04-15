@@ -34,7 +34,7 @@ db.authenticate()
   .catch((err) => console.log(err));
 
 //* NOTE: quitar force true para no resetear la db
-db.sync({ force: false, alter: true })
+db.sync({ force: false, alter: false })
   .then(() => console.log("Database Synced"))
   .catch((err) => console.log(err));
 
