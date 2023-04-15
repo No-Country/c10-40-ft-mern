@@ -5,7 +5,9 @@ const Routine = require("../models/routines.models");
 
 const findAllUser = async () => {
   const data = await Users.findAll({
-    include: [Routine],
+    include: {
+      model: Routine,
+    },
     attributes: {
       //evita ciertos datos
       exclude: ["password", "createdAt", "updatedAt"],

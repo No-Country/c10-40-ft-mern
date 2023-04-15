@@ -5,11 +5,15 @@ const findAllExercise = async () => {
   const data = await Exercise.findAll({
     include: {
       model: BodyPart,
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
     },
     attributes: {
       exclude: ["createdAt", "updatedAt"],
     },
   });
+
   return data;
 };
 

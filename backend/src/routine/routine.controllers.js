@@ -1,10 +1,22 @@
 const User = require("../models/users.models");
 const Routine = require("../models/routines.models");
 const Exercise = require("../models/exercise.models");
+const BodyPart = require("../models/bodyPart.models");
 
 const findAllRoutines = async () => {
   const data = await Routine.findAll({
-    include: [Exercise],
+    include: {
+      model: Exercise,
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+      include: {
+        model: BodyPart,
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
+      },
+    },
     attributes: {
       exclude: ["createdAt", "updatedAt"],
     },
@@ -26,9 +38,10 @@ const findRoutineById = async (id) => {
   return data;
 };
 
-const createNewRoutine = async (userObj, id) => {
+const createNewRoutine = async (userObj, id, exerciseId) => {
   const data = await Routine.create({
     name: userObj.weekDays,
+    exerciseId: exerciseId,
     userId: id,
   });
 

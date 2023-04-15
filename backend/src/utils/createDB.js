@@ -29,35 +29,41 @@ async function createDB() {
     },
   ]);
 
-  await Exercise.bulkCreate([
-    {
-      name: "abdominales",
-      series: 4,
-      repetitions: "10 a 12",
-      description: "descripción del ejercicio",
-      bodyPartId: 3,
-    },
-    {
-      name: "flexiones cerradas",
-      series: 4,
-      repetitions: "10 a 12",
-      description: "descripción del ejercicio",
-      bodyPartId: 1,
-    },
-  ]);
+  await Exercise.bulkCreate(
+    [
+      {
+        name: "abdominales",
+        series: 4,
+        repetitions: "10 a 12",
+        description: "descripción del ejercicio",
+        bodyPartId: 3,
+      },
+      {
+        name: "flexiones cerradas",
+        series: 4,
+        repetitions: "10 a 12",
+        description: "descripción del ejercicio",
+        bodyPartId: 1,
+      },
+    ],
+    { include: BodyPart }
+  );
 
-  await Routine.bulkCreate([
-    {
-      weekDay: "monday",
-      exerciseId: 1,
-      userId: "924b99be-b786-4281-832a-5d83771d2cfb",
-    },
-    {
-      weekDay: "tuesday",
-      exerciseId: 2,
-      userId: "924b99be-b786-4281-832a-5d83771d2cfb",
-    },
-  ]);
+  await Routine.bulkCreate(
+    [
+      {
+        weekDay: "monday",
+        exerciseId: 1,
+        userId: "924b99be-b786-4281-832a-5d83771d2cfb",
+      },
+      {
+        weekDay: "tuesday",
+        exerciseId: 2,
+        userId: "924b99be-b786-4281-832a-5d83771d2cfb",
+      },
+    ],
+    { include: [Exercise, BodyPart] }
+  );
 }
 
 module.exports = createDB;

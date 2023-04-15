@@ -9,11 +9,11 @@ const initModels = () => {
   // Exercise;
   // TODO: Check associations
   // BodyPart.hasMany(Exercise);
-  Exercise.hasOne(BodyPart);
+  Exercise.belongsTo(BodyPart);
   BodyPart.hasMany(Exercise);
 
-  Routine.hasMany(Exercise);
-  Exercise.belongsTo(Routine);
+  Routine.belongsTo(Exercise);
+  Exercise.hasMany(Routine);
 
   User.belongsToMany(Routine, { through: "user_routines" });
   Routine.belongsToMany(User, { through: "user_routines" });

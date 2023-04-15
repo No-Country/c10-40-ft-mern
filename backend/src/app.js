@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
   });
 });
 
-createDB();
+// createDB();
 
 // Swagger
 
