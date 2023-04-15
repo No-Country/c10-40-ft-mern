@@ -81,6 +81,11 @@ const deleteUser = async (id) => {
   return data;
 };
 
+/* INFO: Add new routine in the user table
+ * note the addRoutine method provided by sequelize associations methods
+ * https://sequelize.org/docs/v6/core-concepts/assocs/#special-methodsmixins-added-to-instances
+ */
+
 const addUserRoutine = async (userId, routineId) => {
   const routine = await Routine.findOne({ where: { id: routineId } });
   const user = await Users.findOne({ where: { id: userId } });

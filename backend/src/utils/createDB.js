@@ -4,6 +4,8 @@ const Routine = require("../models/routines.models");
 const Day = require("../models/day.models");
 const createRoutine = require("./createRoutine");
 
+// WARN: EJECUTAR UNA VEZ. O FIXEÁ LOS BUGS
+
 // Sample data for User model
 const users = [
   {
@@ -111,7 +113,7 @@ const exercises = [
   },
 ];
 
-// Use bulkCreate to insert the sample data into the database
+// WARN: EJECUTAR UNA VEZ. O FIXEÁ LOS BUGS
 async function createDB() {
   await User.bulkCreate(users);
   await Day.bulkCreate(days);
@@ -124,7 +126,10 @@ const getRandomDays = (days, numDays) => {
 };
 
 async function seedDB() {
+  // INFO: crea las tablas en la DB
   // await createDB();
+
+  // INFO: crea las rutinas en la DB
   const createdRoutine2Days = await createRoutine(
     "2 days",
     2,
@@ -141,6 +146,7 @@ async function seedDB() {
     getRandomDays(days, 5)
   );
 
+  // INFO: las relaciona con algún usuario
   const user = await User.findAll();
 
   user[0].addRoutine(createdRoutine3Days);
