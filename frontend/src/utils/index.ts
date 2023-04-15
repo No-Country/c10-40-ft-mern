@@ -1,5 +1,6 @@
 import type { IContact, ILoginUser, INewUser, IUserProfile } from 'app/types'
 import axios from 'axios'
+import { checkSession } from './checkSession'
 
 export const server = axios.create({
   baseURL: '/.netlify/functions'
@@ -46,10 +47,11 @@ export const sendEmail = async (data: IContact): Promise<any> => {
   return response
 }
 
-export const completeProfile = async (
-  user: IUserProfile,
-  options: { token: string }
-): Promise<any> => {
+export const completeProfile = async (user: IUserProfile): Promise<any> => {
+  const token: string = await checkSession()
+
+  if (!token && typeof token !== 'string') throw new Error('missing token')
+
   const { gender, age, weight, height } = user
   if (
     gender === '' ||
@@ -61,7 +63,7 @@ export const completeProfile = async (
   }
 
   const completed = await server.patch('/completeProfile', user, {
-    headers: { Authorization: `Bearer ${options.token}` }
+    headers: { Authorization: `Bearer ${token}` }
   })
 
   return completed

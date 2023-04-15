@@ -6,20 +6,8 @@ import { Field, Form, Formik } from 'formik'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { completeProfile } from 'utils'
-import { useUser } from 'hooks/useUser'
-import { useEffect, useState } from 'react'
 
 const CompleteProfile = (): JSX.Element => {
-  const { data } = useUser()
-  const [token, setToken] = useState<string>('')
-
-  useEffect(() => {
-    const jwtToken = localStorage.getItem('jwtToken')
-    if (jwtToken) {
-      setToken(jwtToken)
-    }
-  }, [data])
-
   const CompleteSchema = Yup.object().shape({
     age: Yup.number()
       .min(10, 'U must have 10 years')
@@ -42,8 +30,7 @@ const CompleteProfile = (): JSX.Element => {
 
   const navigate = useNavigate()
   const { mutate, isLoading, error } = useMutation({
-    mutationFn: async (user: IUserProfile) =>
-      await completeProfile(user, { token }),
+    mutationFn: async (user: IUserProfile) => await completeProfile(user),
     onSuccess: () => {
       navigate('/dashboard/profile')
     }
@@ -72,7 +59,7 @@ const CompleteProfile = (): JSX.Element => {
           initialValues={INITIAL_STATE}
           validationSchema={CompleteSchema}
           onSubmit={(values, actions) => {
-            mutate({ ...values, token })
+            mutate({ ...values })
             actions.resetForm({ values: INITIAL_STATE })
           }}>
           {({ values, errors, touched }) => (
