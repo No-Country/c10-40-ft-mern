@@ -11,6 +11,11 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   userServices.getMyUser
 );
+router.post(
+  "/me/:routineId",
+  passport.authenticate("jwt", { session: false }),
+  userServices.addRoutine
+);
 router.patch(
   "/me",
   passport.authenticate("jwt", { session: false }),

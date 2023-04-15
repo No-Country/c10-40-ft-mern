@@ -9,18 +9,18 @@ const Routine = db.define("routine", {
     unique: true,
     autoIncrement: true,
   },
-  weekDay: {
-    type: DataTypes.ENUM,
-    values: [
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday",
-      "saturday",
-      "sunday",
-    ],
+  name: {
+    type: DataTypes.STRING,
     allowNull: false,
+  },
+  daysNumber: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  isCompleted: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
   },
 });
 

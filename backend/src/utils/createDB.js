@@ -1,69 +1,150 @@
-const BodyPart = require("../models/bodyPart.models");
 const Exercise = require("../models/exercise.models");
 const User = require("../models/users.models");
 const Routine = require("../models/routines.models");
+const Day = require("../models/day.models");
+const createRoutine = require("./createRoutine");
 
+// Sample data for User model
+const users = [
+  {
+    firstName: "maxi",
+    email: "arbelaism@outlook.com",
+    password: "12345",
+  },
+  {
+    firstName: "maxi2",
+    email: "arbelaism@test.com",
+    password: "12345",
+  },
+];
+
+// Sample data for Day model
+const days = [
+  { day: "monday" },
+  { day: "tuesday" },
+  { day: "wednesday" },
+  { day: "thursday" },
+  { day: "friday" },
+];
+
+// Sample data for Ejercicio model
+const exercises = [
+  {
+    name: "Push-ups",
+    series: 4,
+    bodyPart: "tren superior",
+    repetitions: "12 a 14",
+    description: "somedescription",
+    isCompleted: false,
+  },
+  {
+    name: "Squats",
+    series: 4,
+    bodyPart: "tren inferior",
+    repetitions: "12 a 14",
+    description: "somedescription",
+    isCompleted: false,
+  },
+  {
+    name: "Crunches",
+    series: 4,
+    bodyPart: "tren inferior",
+    repetitions: "12 a 14",
+    description: "somedescription",
+    isCompleted: false,
+  },
+  {
+    name: "Lunges",
+    series: 4,
+    bodyPart: "tren superior",
+    repetitions: "12 a 14",
+    description: "somedescription",
+    isCompleted: false,
+  },
+  {
+    name: "Burpees",
+    series: 4,
+    repetitions: "12 a 14",
+    bodyPart: "core",
+    description: "somedescription",
+    isCompleted: false,
+  },
+  {
+    name: "Plank",
+    series: 4,
+    repetitions: "12 a 14",
+    bodyPart: "core",
+    description: "somedescription",
+    isCompleted: false,
+  },
+  {
+    name: "Pull-ups",
+    series: 4,
+    repetitions: "12 a 14",
+    bodyPart: "core",
+    description: "somedescription",
+    isCompleted: false,
+  },
+  {
+    name: "Leg curls",
+    series: 4,
+    repetitions: "12 a 14",
+    description: "somedescription",
+    bodyPart: "piernas",
+    isCompleted: false,
+  },
+  {
+    name: "Dumbbell press",
+    series: 4,
+    repetitions: "12 a 14",
+    description: "somedescription",
+    bodyPart: "brazos",
+    isCompleted: false,
+  },
+  {
+    name: "Bicep curls",
+    series: 4,
+    repetitions: "12 a 14",
+    description: "somedescription",
+    bodyPart: "cabeza",
+    isCompleted: false,
+  },
+];
+
+// Use bulkCreate to insert the sample data into the database
 async function createDB() {
-  await User.bulkCreate([
-    {
-      firstName: "maxi",
-      email: "arbelaism@outlook.com",
-      password: "12345",
-    },
-    {
-      firstName: "maxi2",
-      email: "arbelaism@test.com",
-      password: "12345",
-    },
-  ]);
-
-  await BodyPart.bulkCreate([
-    {
-      name: "tren superior",
-    },
-    {
-      name: "tren inferior",
-    },
-    {
-      name: "core",
-    },
-  ]);
-
-  await Exercise.bulkCreate(
-    [
-      {
-        name: "abdominales",
-        series: 4,
-        repetitions: "10 a 12",
-        description: "descripción del ejercicio",
-        bodyPartId: 3,
-      },
-      {
-        name: "flexiones cerradas",
-        series: 4,
-        repetitions: "10 a 12",
-        description: "descripción del ejercicio",
-        bodyPartId: 1,
-      },
-    ],
-    { include: BodyPart }
-  );
-
-  await Routine.bulkCreate(
-    [
-      {
-        weekDay: "monday",
-        exerciseId: 1,
-        userId: "924b99be-b786-4281-832a-5d83771d2cfb",
-      },
-      {
-        weekDay: "tuesday",
-        exerciseId: 2,
-        userId: "924b99be-b786-4281-832a-5d83771d2cfb",
-      },
-    ],
-    { include: [Exercise, BodyPart] }
-  );
+  await User.bulkCreate(users);
+  await Day.bulkCreate(days);
+  await Exercise.bulkCreate(exercises);
 }
 
-module.exports = createDB;
+const getRandomDays = (days, numDays) => {
+  const shuffledDays = days.sort(() => 0.5 - Math.random());
+  return shuffledDays.slice(0, numDays).map((day) => day.day);
+};
+
+async function seedDB() {
+  // await createDB();
+  const createdRoutine2Days = await createRoutine(
+    "2 days",
+    2,
+    getRandomDays(days, 2)
+  );
+  const createdRoutine3Days = await createRoutine(
+    "3 days",
+    3,
+    getRandomDays(days, 3)
+  );
+  const createdRoutine5Days = await createRoutine(
+    "5 days",
+    5,
+    getRandomDays(days, 5)
+  );
+
+  const user = await User.findAll();
+
+  user[0].addRoutine(createdRoutine3Days);
+  user[1].addRoutine(createdRoutine5Days);
+}
+
+module.exports = seedDB;

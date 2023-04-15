@@ -12,11 +12,12 @@ const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../workout-tracker-api.json");
 //*agrege estas rutas
-const bodyPartRouter = require("./bodyPart/bodyPart.routes");
+const dayRouter = require("./day/day.router");
 const exerciseRouter = require("./exercise/exercise.router");
 const routineRouter = require("./routine/routine.router");
 const contactRouter = require("./contact/contact.routes");
-const createDB = require("./utils/createDB");
+const seedDB = require("./utils/createDB");
+
 app.use(
   cors({
     origin: config.client,
@@ -33,14 +34,14 @@ db.authenticate()
   .catch((err) => console.log(err));
 
 //* NOTE: quitar force true para no resetear la db
-db.sync({ force: false })
+db.sync({ force: false, alter: true })
   .then(() => console.log("Database Synced"))
   .catch((err) => console.log(err));
 
 app.use("/api/v1/users", UsersRouter);
 app.use("/api/v1/auth", authRouter);
 //*estas tambies
-app.use("/api/v1/body-part", bodyPartRouter);
+app.use("/api/v1/day", dayRouter);
 app.use("/api/v1/exercise", exerciseRouter);
 app.use("/api/v1/routine", routineRouter);
 app.use("/api/v1/contact", contactRouter);
@@ -56,14 +57,13 @@ app.get("/", (req, res) => {
       "Users-id": `${config.host}/api/v1/users/:id`,
       MyUsuario: `${config.host}/api/v1/users/me`,
       Swagger: `${config.host}/api-docs`,
-      BodyPart: `${config.host}/api/v1/body-part`,
       Exercise: `${config.host}/api/v1/exercise`,
       Routine: `${config.host}/api/v1/routine`,
     },
   });
 });
 
-// createDB();
+// seedDB();
 
 // Swagger
 

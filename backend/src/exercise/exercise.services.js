@@ -7,7 +7,7 @@ const getAllExercise = (req, res) => {
       responses.success({
         status: 200,
         data: data,
-        message: "Getting all Exercise",
+        message: "Getting all exercises",
         res,
       });
     })
@@ -52,9 +52,8 @@ const getExerciseById = (req, res) => {
 
 const postNewExercise = (req, res) => {
   const userObj = req.body;
-  const { id } = req.params;
 
-  ExerciseControllers.createNewExercise(userObj, id)
+  ExerciseControllers.createNewExercise(userObj)
     .then((data) => {
       responses.success({
         status: 201,
