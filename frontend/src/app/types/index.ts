@@ -12,11 +12,11 @@ export interface IUser {
 }
 
 export interface IUserProfile {
-  id: string
   gender: string
   age: number | null
   height: number | null
   weight: number | null
+  token?: string
 }
 
 export interface ILoginUser {

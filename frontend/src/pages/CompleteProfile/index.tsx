@@ -10,15 +10,15 @@ import { useUser } from 'hooks/useUser'
 import { useEffect, useState } from 'react'
 
 const CompleteProfile = (): JSX.Element => {
-  const [userId, setUserId] = useState('')
-  const { data, isLoading: useLoading } = useUser()
-  console.log(data)
+  const { data } = useUser()
+  const [token, setToken] = useState<string>('')
 
   useEffect(() => {
-    if (!useLoading && data) {
-      setUserId(data.id)
+    const jwtToken = localStorage.getItem('jwtToken')
+    if (jwtToken) {
+      setToken(jwtToken)
     }
-  }, [useLoading])
+  }, [data])
 
   const CompleteSchema = Yup.object().shape({
     age: Yup.number()
@@ -34,7 +34,6 @@ const CompleteProfile = (): JSX.Element => {
   })
 
   const INITIAL_STATE: IUserProfile = {
-    id: userId,
     gender: '',
     age: null,
     weight: null,
@@ -42,14 +41,13 @@ const CompleteProfile = (): JSX.Element => {
   }
 
   const navigate = useNavigate()
-
   const { mutate, isLoading, error } = useMutation({
-    mutationFn: completeProfile,
+    mutationFn: async (user: IUserProfile) =>
+      await completeProfile(user, { token }),
     onSuccess: () => {
       navigate('/dashboard/profile')
     }
   })
-
   return (
     <div className="flex items-center justify-center h-screen w-full">
       <div className="flex flex-col items-center bg-white rounded-xl mx-5 w-[80%] md:max-w-[50%] lg:max-w-[40%]">
@@ -74,7 +72,7 @@ const CompleteProfile = (): JSX.Element => {
           initialValues={INITIAL_STATE}
           validationSchema={CompleteSchema}
           onSubmit={(values, actions) => {
-            mutate(values)
+            mutate({ ...values, token })
             actions.resetForm({ values: INITIAL_STATE })
           }}>
           {({ values, errors, touched }) => (

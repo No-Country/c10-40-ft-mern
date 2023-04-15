@@ -17,11 +17,17 @@ const handler: Handler = async (
   if (event.body === null) {
     return { statusCode: 400 }
   }
-
-  const { gender, age, weight, height } = JSON.parse(event.body)
+  console.log(event.body)
+  const { gender, age, weight, height }: IUserProfile = JSON.parse(event.body)
 
   if (!gender || !age || !weight || !height) {
     throw new Error('prop missing')
+  }
+
+  const token = event.headers.authorization?.replace('Bearer ', '')
+  if (token) {
+    // Agrega el token a la instancia de axios
+    server.defaults.headers.common.Authorization = `Bearer ${token}`
   }
 
   try {

@@ -46,10 +46,11 @@ export const sendEmail = async (data: IContact): Promise<any> => {
   return response
 }
 
-export const completeProfile = async (user: IUserProfile): Promise<any> => {
-  const { id, gender, age, weight, height } = user
-  console.log(user)
-  console.log(id)
+export const completeProfile = async (
+  user: IUserProfile,
+  options: { token: string }
+): Promise<any> => {
+  const { gender, age, weight, height } = user
   if (
     gender === '' ||
     (age ?? 0) <= 0 ||
@@ -59,11 +60,9 @@ export const completeProfile = async (user: IUserProfile): Promise<any> => {
     throw new Error(' missing')
   }
 
-  const completed = await server
-    .patch('/completeProfile', user)
-    .catch((error) => {
-      console.log(error)
-    })
+  const completed = await server.patch('/completeProfile', user, {
+    headers: { Authorization: `Bearer ${options.token}` }
+  })
 
   return completed
 }
