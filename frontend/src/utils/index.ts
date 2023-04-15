@@ -1,5 +1,12 @@
-import type { IContact, ILoginUser, INewUser, IUserProfile } from 'app/types'
+import type {
+  IContact,
+  ILoginUser,
+  INewUser,
+  IUser,
+  IUserProfile
+} from 'app/types'
 import axios from 'axios'
+import { useUser } from 'hooks/useUser'
 
 export const server = axios.create({
   baseURL: '/.netlify/functions'
@@ -47,15 +54,23 @@ export const sendEmail = async (data: IContact): Promise<any> => {
 }
 
 export const completeProfile = async (user: IUserProfile): Promise<any> => {
-    const { gender, age, weight, height } = user
+  const { id, gender, age, weight, height } = user
   console.log(user)
-    if (gender === '' || (age ?? 0) <= 0 || (weight ?? 0)  <= 0 || (height ?? 0) <= 0 ) {
-      throw new Error(`${gender} ${age} ${weight} ${height} missing`)
-    }
-  
-    const completed = await server.patch('/completeProfile', user).catch((error) => {
+  console.log(id)
+  if (
+    gender === '' ||
+    (age ?? 0) <= 0 ||
+    (weight ?? 0) <= 0 ||
+    (height ?? 0) <= 0
+  ) {
+    throw new Error(' missing')
+  }
+
+  const completed = await server
+    .patch('/completeProfile', user)
+    .catch((error) => {
       console.log(error)
     })
-  
-    return completed
-  }
+
+  return completed
+}

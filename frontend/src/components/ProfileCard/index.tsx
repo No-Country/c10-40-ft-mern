@@ -30,7 +30,7 @@ const ProfileCard = (): JSX.Element => {
             </div>
           </div>
         )}
-        
+
         {/* Data User */}
         {isLoading ? (
           <Loader type={'text'} />

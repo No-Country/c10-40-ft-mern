@@ -6,8 +6,20 @@ import { Field, Form, Formik } from 'formik'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { completeProfile } from 'utils'
+import { useUser } from 'hooks/useUser'
+import { useEffect, useState } from 'react'
 
 const CompleteProfile = (): JSX.Element => {
+  const [userId, setUserId] = useState('')
+  const { data, isLoading: useLoading } = useUser()
+  console.log(data)
+
+  useEffect(() => {
+    if (!useLoading && data) {
+      setUserId(data.id)
+    }
+  }, [useLoading])
+
   const CompleteSchema = Yup.object().shape({
     age: Yup.number()
       .min(10, 'U must have 10 years')
@@ -20,7 +32,9 @@ const CompleteProfile = (): JSX.Element => {
       .min(70, 'Greater than 70cm')
       .required('Height required')
   })
+
   const INITIAL_STATE: IUserProfile = {
+    id: userId,
     gender: '',
     age: null,
     weight: null,
