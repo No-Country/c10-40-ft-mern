@@ -4,15 +4,16 @@ import { type Dayjs } from 'dayjs'
 
 interface Props {
   month: Dayjs[][]
+  date: Dayjs
 }
 
-const CalendarMonth = ({ month }: Props): JSX.Element => {
+const CalendarMonth = ({ date, month }: Props): JSX.Element => {
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-6">
+    <div className="flex-1 grid grid-cols-7 grid-rows-7">
       {month.map((row: any[], i: React.Key) => (
         <React.Fragment key={i}>
           {row.map((day, idx) => (
-            <CalendarDay day={day} key={idx} rowIdx={i} />
+            <CalendarDay date={date} day={day} key={idx} rowIdx={i} />
           ))}
         </React.Fragment>
       ))}

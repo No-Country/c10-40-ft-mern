@@ -22,6 +22,11 @@ const Routine = db.define("routine", {
     allowNull: false,
     defaultValue: false,
   },
+  imagen: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    initialValue: null,
+  },
 });
 
 module.exports = Routine;

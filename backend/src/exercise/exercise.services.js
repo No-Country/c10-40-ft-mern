@@ -1,8 +1,9 @@
-const ExerciseControllers = require("./exercise.controllers");
+const exerciseControllers = require("./exercise.controllers");
 const responses = require("../utils/handleResponses");
 
 const getAllExercise = (req, res) => {
-  ExerciseControllers.findAllExercise()
+  exerciseControllers
+    .findAllExercise()
     .then((data) => {
       responses.success({
         status: 200,
@@ -23,7 +24,8 @@ const getAllExercise = (req, res) => {
 
 const getExerciseById = (req, res) => {
   const { id } = req.params;
-  ExerciseControllers.findExerciseById(id)
+  exerciseControllers
+    .findExerciseById(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -53,7 +55,8 @@ const getExerciseById = (req, res) => {
 const postNewExercise = (req, res) => {
   const userObj = req.body;
 
-  ExerciseControllers.createNewExercise(userObj)
+  exerciseControllers
+    .createNewExercise(userObj)
     .then((data) => {
       responses.success({
         status: 201,
@@ -82,7 +85,8 @@ const patchExercise = (req, res) => {
   const { id } = req.params;
   const userObj = req.body;
 
-  ExerciseControllers.updateExercise(id, userObj)
+  exerciseControllers
+    .updateExercise(id, userObj)
     .then((data) => {
       if (data) {
         responses.success({
@@ -120,7 +124,8 @@ const patchExercise = (req, res) => {
 const deleteExercise = (req, res) => {
   const { id } = req.params;
 
-  ExerciseControllers.deleteExercise(id)
+  exerciseControllers
+    .deleteExercise(id)
     .then((data) => {
       if (data) {
         responses.success({

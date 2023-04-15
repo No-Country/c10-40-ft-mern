@@ -37,35 +37,44 @@ const NavbarResponsive = (): JSX.Element => {
         </button>
       </div>
       <div className={menuClasses}>
-        <div className="text-sm md:text-center lg:text-end lg:flex-grow">
+        <div className="text-sm md:text-center lg:text-end lg:flex-grow text-white">
           <Link
             to="#"
-            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+            className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
             ¿Cómo funciona?
           </Link>
           <Link
             to="/about"
-            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+            className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
             Nosotros
           </Link>
-          <Link
-            to="/register"
-            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
-            Comenzá
-          </Link>
+          {data ? (
+            ''
+          ) : (
+            <Link
+              to="/register"
+              className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
+              Comenzá
+            </Link>
+          )}
+
           <Link
             to="/contact"
-            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+            className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
             Contacto
           </Link>
         </div>
-        <div className="md:text-center lg:text-end">
+        <div className="md:text-center lg:text-end ">
           {!isLoading && data ? (
-            <Link to={'/dashboard'}>{data.firstName.toUpperCase()}</Link>
+            <Link
+              to={'/dashboard'}
+              className="block mt-4 lg:inline-block lg:mt-0 p-2 text-white border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
+              {data.firstName.toUpperCase()}
+            </Link>
           ) : (
             <Link
               to="/login"
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-white hover:bg-black ease-in duration-200 mt-4 mr-4 lg:mt-0">
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white hover:scale-110 hover:bg-green-400 hover:text-black ease-in duration-200 mt-4 mr-4 lg:mt-0">
               LOGIN
             </Link>
           )}

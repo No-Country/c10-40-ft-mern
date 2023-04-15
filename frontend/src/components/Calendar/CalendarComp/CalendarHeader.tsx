@@ -1,29 +1,42 @@
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import dayjs from 'dayjs'
+import { getMonth } from 'utils/calendarUtils'
 
 const CalendarHeader = ({
   date,
-  setDate
+  setDate,
+  setCurrentMonth
 }: {
   date: dayjs.Dayjs
   setDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs>>
+  setCurrentMonth: (arg: any) => void
 }): JSX.Element => {
-  const formatDate = date.format('DD-MMMM-YY')
+  const formatDate = date.format('MMMM YYYY')
   const handlePrevMonth = (): void => {
-    setDate(date.subtract(1, 'month'))
+    const d = date.subtract(1, 'month')
+    setDate(d)
+    setCurrentMonth(getMonth(d.month(), d.year()))
   }
   const handleNextMonth = (): void => {
-    setDate(date.add(1, 'month'))
+    const d = date.add(1, 'month')
+    setDate(d)
+    setCurrentMonth(getMonth(d.month(), d.year()))
   }
   const handleCurrentMonth = (): void => {
     setDate(dayjs())
+    setCurrentMonth(getMonth(dayjs().month()))
   }
+
   return (
     <header className="px-4 py-2 flex justify-around items-center">
-      <p> Logo </p>
-      <h1 className="mr-10 text-xl text-gray-500 font-bold">
+      <img
+            className="h-14 pl-10"
+            src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
+            alt=""
+          />
+      <p className="mr-10 text-xl text-gray-500 font-bold">
         {formatDate.toUpperCase()}
-      </h1>
+      </p>
       <div className="flex justify-center items-center gap-4">
         <button
           className="border rounded-3xl py-2 px-4 mr-5 bg-[#fb8500]"
