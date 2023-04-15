@@ -1,12 +1,5 @@
-import type {
-  IContact,
-  ILoginUser,
-  INewUser,
-  IUser,
-  IUserProfile
-} from 'app/types'
+import type { IContact, ILoginUser, INewUser, IUserProfile } from 'app/types'
 import axios from 'axios'
-import { useUser } from 'hooks/useUser'
 
 export const server = axios.create({
   baseURL: '/.netlify/functions'
