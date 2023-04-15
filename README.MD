@@ -3,13 +3,13 @@
  <p Align="center">La solucion definitiva para entrenar. En colaboración con:</p>
 </p>
   <p Align="center">
-    <a href="https://www.nocountry.tech/" target="blank">
+    <a href="https://www.nocountry.tech/" target="_blank">
       <img src="https://res.cloudinary.com/du2ewwzsg/image/upload/v1681579241/Captura_de_pantalla_2023-04-15_141857_vcjf5e.jpg"/>
     </a>
   </p>
    <p Align="center">
     🏋️‍♂️ 
-    <a href="https://exercify.netlify.app/ " target="blank">Página del proyecto</a>
+    <a href="https://exercify.netlify.app/ " target="_blank">Página del proyecto</a>
     🏋️‍♂️ 
 </p>
   <p Align="center">
@@ -37,7 +37,7 @@
 
 <h3 id="herramientas-utilizadas">Herramientas Utilizadas</h3>
 
-<a href="https://tailwindcss.com/" target="blank">![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)</a> <a href="https://es.reactjs.org/" target="blank">![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)</a> <a href="https://www.typescriptlang.org/" target="blank">![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)</a> <a href="https://www.netlify.com/" target="blank">![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)</a> <a href="https://expressjs.com/es/" target="blank">![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)</a> <a href="https://sequelize.org/" target="blank">![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)</a> <a href="https://www.postgresql.org/" target="blank">![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)</a> <a href="https://swagger.io/" target="blank">![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)</a> <a href="https://jwt.io/" target="blank">![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)</a> <a href="https://code.visualstudio.com/" target="blank">![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)</a> <a href="https://git-scm.com/" target="blank">![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)</a> <a href="https://eslint.org/" target="blank">![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)</a> <a href="https://nodemailer.com/about/" target="blank">![Nodemailer](https://img.shields.io/badge/Nodemailer-0F9DCE?style=for-the-badge&logo=Nodemailer&logoColor=fff)</a>
+<a href="https://tailwindcss.com/" target="_blank">![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)</a> <a href="https://es.reactjs.org/" target="_blank">![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)</a> <a href="https://www.typescriptlang.org/" target="_blank">![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)</a> <a href="https://www.netlify.com/" target="_blank">![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)</a> <a href="https://expressjs.com/es/" target="_blank">![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)</a> <a href="https://sequelize.org/" target="_blank">![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)</a> <a href="https://www.postgresql.org/" target="_blank">![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)</a> <a href="https://swagger.io/" target="_blank">![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)</a> <a href="https://jwt.io/" target="_blank">![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)</a> <a href="https://code.visualstudio.com/" target="_blank">![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)</a> <a href="https://git-scm.com/" target="_blank">![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)</a> <a href="https://eslint.org/" target="_blank">![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)</a> <a href="https://nodemailer.com/about/" target="_blank">![Nodemailer](https://img.shields.io/badge/Nodemailer-0F9DCE?style=for-the-badge&logo=Nodemailer&logoColor=fff)</a>
 
 <br></br>
 
@@ -65,9 +65,9 @@
 
        <h3>Iniciar Frontend</h3>
 
-        ```sh
-        netlify dev
-        ```
+    ```sh
+    npm run netlify
+    ```
 
     <br></br>
 
@@ -80,32 +80,32 @@
       <div Align="center">
         <img width="110" src="https://avatars.githubusercontent.com/u/105481641?v=4"/>
         <h4 style="margin-top: 1rem;">Maximiliano Arbelais</h4>
-        <a href="https://github.com/arbelais" target="blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
-        <a href="https://github.com/arbelais" target="blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
+        <a href="https://github.com/arbelais" target="__blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
+        <a href="https://github.com/arbelais" target="__blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
         </div>
       </td>
       <td>
       <div Align="center">
         <img width="110" src="https://avatars.githubusercontent.com/u/99854895?v=4"/>
         <h4 style="margin-top: 1rem;">Mateo Salinas</h4>
-        <a href="https://github.com/matuumdq" target="blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
-        <a href="https://www.linkedin.com/in/mateosalinas/" target="blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
+        <a href="https://github.com/matuumdq" target="_blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
+        <a href="https://www.linkedin.com/in/mateosalinas/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
         </div>
       </td>
       <td>
       <div Align="center">
         <img width="110" src="https://avatars.githubusercontent.com/u/95669607?v=4"/>
         <h4 style="margin-top: 1rem;">Damián Barera</h4>
-        <a href="https://github.com/Damian-Barera" target="blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
-        <a href="https://www.linkedin.com/in/damian-barera/" target="blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
+        <a href="https://github.com/Damian-Barera" target="_blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
+        <a href="https://www.linkedin.com/in/damian-barera/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
         </div>
       </td>
       <td>
       <div Align="center">
         <img width="110" src="https://avatars.githubusercontent.com/u/62260320?v=4"/>
         <h4 style="margin-top: 1rem;">Diego Yako</h4>
-        <a href="https://github.com/diegoyako" target="blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
-        <a href="https://www.linkedin.com/in/diegoyako/" target="blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
+        <a href="https://github.com/diegoyako" target="_blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
+        <a href="https://www.linkedin.com/in/diegoyako/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
         </div>
       </td>
 </tr>
@@ -119,24 +119,24 @@
       <div Align="center">
         <img width="110" src="https://media.licdn.com/dms/image/D4E03AQHjnuKw3LR3FQ/profile-displayphoto-shrink_400_400/0/1674691852739?e=1686787200&v=beta&t=ORhlQoE3_2P8848aOf5tvHk6kyyhBxailWZih_Isl-M"/>
         <h4 style="margin-top: 1rem;">Lucas Macias</h4>
-        <a href="https://github.com/l-macias" target="blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
-        <a href="https://www.linkedin.com/in/l-macias/" target="blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
+        <a href="https://github.com/l-macias" target="_blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
+        <a href="https://www.linkedin.com/in/l-macias/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
         </div>
       </td>
       <td>
       <div Align="center">
         <img width="110" src="https://avatars.githubusercontent.com/u/91107387?v=4"/>
         <h4 style="margin-top: 1rem;">Yon Roa</h4>
-        <a href="https://github.com/yonroa" target="blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
-        <a href="https://www.linkedin.com/in/yompa/" target="blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
+        <a href="https://github.com/yonroa" target="_blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
+        <a href="https://www.linkedin.com/in/yompa/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
         </div>
       </td>
       <td>
       <div Align="center">
         <img width="90" src="https://res.cloudinary.com/du2ewwzsg/image/upload/v1681593817/WhatsApp_Image_2023-04-15_at_18.14.34_nwegv4.jpg"/>
         <h4 style="margin-top: 1rem;">Leonardo Jose García</h4>
-        <a href="https://github.com/Jose-Leonardo" target="blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
-        <a href="https://github.com/arbelais" target="blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
+        <a href="https://github.com/Jose-Leonardo" target="_blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
+        <a href="https://github.com/arbelais" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
         </div>
       </td>
 </tr>   
