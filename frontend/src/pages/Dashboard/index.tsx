@@ -8,9 +8,8 @@ const Dashboard = (): JSX.Element => {
 
   const { isAuthenticated, isLoading } = useAuth()
   const { data, isLoading: userIsLoading } = useUser()
-  console.log(data)
   if (isLoading) {
-    return <Loader />
+    return <Loader type="dash" />
   }
 
   if (!isAuthenticated) {
