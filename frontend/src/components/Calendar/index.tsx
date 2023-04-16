@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getMonth } from 'components/Calendar/CalendarComp/calendarUtils'
+import { getMonth } from 'utils/calendarUtils'
 import CalendarHeader from './CalendarComp/CalendarHeader'
 import CalendarSidebar from './CalendarComp/CalendarSidebar'
 import CalendarMonth from './CalendarComp/CalendarMonth'
@@ -50,7 +50,7 @@ const Calendar = (): JSX.Element => {
         <button onClick={handleNextMonthWrapper}>Siguiente</button>
         <div className="flex flex-1">
           <CalendarSidebar />
-          <CalendarMonth month={currentMonth} />
+          <CalendarMonth month={currentMonth}/>
         </div>
       </div>
     </>

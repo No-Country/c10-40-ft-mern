@@ -3,13 +3,15 @@ import dayjs, { type Dayjs } from 'dayjs'
 
 const CalendarDay = ({
   day,
-  rowIdx
+  rowIdx,
+  date
 }: {
   day: Dayjs
   rowIdx: React.Key
+  date: Dayjs
 }): JSX.Element => {
   function getCurrentMonthClass(): string {
-    return day.format('MM-YY') === dayjs().format('MM-YY')
+    return day.format('MM-YY') === date.format('MM-YY')
       ? 'bg-orange-500'
       : 'bg-white'
   }
@@ -18,8 +20,10 @@ const CalendarDay = ({
       ? 'bg-blue-600 text-white rounded-full w-7'
       : ''
   }
+
   return (
-    <div className={`border border-black flex flex-col ${getCurrentMonthClass()}`}>
+    <div
+      className={`border border-black flex flex-col ${getCurrentMonthClass()}`}>
       <header className="flex flex-col items-center">
         {rowIdx === 0 && (
           <p className="text-sm mt-1">{day.format('ddd').toUpperCase()}</p>
