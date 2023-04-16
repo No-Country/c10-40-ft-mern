@@ -46,7 +46,7 @@ const Register = (): JSX.Element => {
   const { mutate, isLoading, error } = useMutation({
     mutationFn: registerUser,
     onSuccess: () => {
-      navigate('/completeprofile')
+      navigate('/login')
     }
   })
 
@@ -58,11 +58,15 @@ const Register = (): JSX.Element => {
             onClick={() => {
               navigate('/')
             }}>
-            <BsFillArrowLeftCircleFill size={30} />
+            <BsFillArrowLeftCircleFill size={30} color="gray" />
           </button>
         </div>
-        <div>Imagen</div>
-        <div className="my-5">Registrate</div>
+        <img
+          className="h-14 invert"
+          src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
+          alt="exercify-logo"
+        />
+        <div className="mt-7 font-bold text-gray-500 text-lg">Registrate</div>
 
         <Formik
           initialValues={INITIAL_STATE}
