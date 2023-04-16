@@ -32,7 +32,7 @@ const handler: Handler = async (
     })
 
     const user: IUser = await res.data
-
+    console.log('asd', user)
     return {
       statusCode: 201,
       body: JSON.stringify(user)

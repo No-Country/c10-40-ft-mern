@@ -44,8 +44,8 @@ const CompleteProfile = (): JSX.Element => {
   const { mutate, isLoading, error } = useMutation({
     mutationFn: async (user: IUserProfile) =>
       await completeProfile(user, { token }),
-    onSuccess: () => {
-      navigate('/dashboard/profile')
+    onSuccess: (data) => {
+      navigate('/dashboard/profile', { state: { someData: data } })
     }
   })
   return (
@@ -87,9 +87,9 @@ const CompleteProfile = (): JSX.Element => {
                       : ''
                   }`}>
                   <option value="">Seleccione su genero</option>
-                  <option value="m">Masculino</option>
-                  <option value="f">Femenino</option>
-                  <option value="o">Otro</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Otro">Otro</option>
                 </Field>
                 {errors.gender && touched.gender ? (
                   <div className="mt-1 text-sm text-red-600">

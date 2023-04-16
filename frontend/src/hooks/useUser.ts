@@ -8,7 +8,6 @@ async function getUser(): Promise<IUser | boolean> {
   if (!jwtToken) {
     return false
   }
-
   const response = await server
     .get('/getUser', {
       headers: { Authorization: `Bearer ${jwtToken}` }

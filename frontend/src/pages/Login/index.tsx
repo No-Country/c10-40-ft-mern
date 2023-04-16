@@ -22,7 +22,6 @@ const Login = (): JSX.Element => {
   const navigate = useNavigate()
 
   const userQuery = useUser()
-
   useEffect(() => {
     if (!userQuery.isLoading && userQuery.data) {
       navigate('/dashboard')

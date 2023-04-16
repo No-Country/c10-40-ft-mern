@@ -46,7 +46,7 @@ const Register = (): JSX.Element => {
   const { mutate, isLoading, error } = useMutation({
     mutationFn: registerUser,
     onSuccess: () => {
-      navigate('/completeprofile')
+      navigate('/login')
     }
   })
 
