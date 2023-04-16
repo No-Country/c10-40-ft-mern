@@ -136,7 +136,7 @@
         <img width="90" src="https://res.cloudinary.com/du2ewwzsg/image/upload/v1681593817/WhatsApp_Image_2023-04-15_at_18.14.34_nwegv4.jpg"/>
         <h4 style="margin-top: 1rem;">Leonardo Jose García</h4>
         <a href="https://github.com/Jose-Leonardo" target="_blank"> <img src="https://skillicons.dev/icons?i=github" /></a>
-        <a href="https://github.com/arbelais" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
+        <a href="https://www.linkedin.com/in/leonardo-garcia-a14b7924b/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" /></a>
         </div>
       </td>
 </tr>   
