@@ -12,40 +12,45 @@ const Calendar = (): JSX.Element => {
   const a = calendarMonths[2]
   const [currentMonth, setCurrentMonth] = useState(getMonth(a))
   const [date, setDate] = useState(dayjs())
-  const [clickCount, setClickCount] = useState(0);
+  const [clickCount, setClickCount] = useState(0)
 
-  const handleActualMonth = () => {
+  const handleActualMonth = (): void => {
     setCurrentMonth(getMonth())
   }
-  const handlePrevMonth = (a: number) => {
+  const handlePrevMonth = (a: number): void => {
     setCurrentMonth(getMonth(a - (clickCount + 1)))
   }
-  const handleNextMonth = (a: number) => {
+  const handleNextMonth = (a: number): void => {
     setCurrentMonth(getMonth(a + (clickCount + 1)))
   }
-  const handleActualMonthWrapper = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleActualMonthWrapper = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
     setClickCount(0)
     handleActualMonth()
   }
-  const handlePrevMonthWrapper = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handlePrevMonthWrapper = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
     setClickCount(clickCount - 1)
     handlePrevMonth(a)
   }
-  const handleNextMonthWrapper = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleNextMonthWrapper = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
     setClickCount(clickCount + 1)
     handleNextMonth(a)
   }
   return (
     <>
       <div className="w-screen flex flex-col">
-
         <CalendarHeader date={date} setDate={setDate} />
         <button onClick={handlePrevMonthWrapper}>Anterior</button>
         <button onClick={handleActualMonthWrapper}>Actual</button>
         <button onClick={handleNextMonthWrapper}>Siguiente</button>
         <div className="flex flex-1">
           <CalendarSidebar />
-          <CalendarMonth month={currentMonth}/>
+          <CalendarMonth month={currentMonth} />
         </div>
       </div>
     </>
