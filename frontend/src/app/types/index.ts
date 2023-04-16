@@ -12,17 +12,17 @@ export interface IUser {
 }
 
 export interface ILoginUser {
-  firstName?: string
   email: string
   password: string
 }
 
 export interface INewUser extends ILoginUser {
+  firstName: string
   password: string
   repassword: string
 }
 
-export interface ICharacters {
+export interface IBodyPart {
   name: string
   rutinas: IRoutine[]
 }
@@ -32,5 +32,13 @@ export interface IRoutine {
   series: number
   repetitions: string
   description: string
-  CuerpoId: number
+  cuerpoId: number
+  imagen: string
+}
+
+export interface IContact {
+  name: string
+  email: string
+  subject: string
+  message: string
 }

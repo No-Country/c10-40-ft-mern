@@ -36,6 +36,7 @@ const configs = {
         underscoredAll: true,
       },
     },
+
     production: {
       //? Aqui deberan estar las configuraciones para la conexion con sequelize
       dialect: "postgres",
@@ -69,6 +70,14 @@ const configs = {
         underscored: true,
         underscoredAll: true,
       },
+    },
+  },
+  nodemailer: {
+    service: process.env.NODEMAILER_GMAIL_SERVICE,
+    port: process.env.NODEMAILER_GMAIL_PORT,
+    auth: {
+      user: process.env.NODEMAILER_GMAIL_MAIL,
+      pass: process.env.NODEMAILER_GMAIL_PASS,
     },
   },
 };

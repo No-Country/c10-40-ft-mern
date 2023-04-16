@@ -1,18 +1,28 @@
-import { ExerciseCard, SideBarMenu } from 'components'
+import { ExerciseCard, Loader } from 'components'
+import { useRoutine } from 'hooks/useRoutine'
+import { type IBodyPart } from 'app/types'
 
 const Routine = (): JSX.Element => {
-  const exercise = {
-    name: 'Brazos',
-    exercises: 'Estiramiento de Codo',
-    explanation:
-      'Se hace asi, de la siguiente, manera, solo estoy escribiendo para llegar a tener un texto largo. Se hace asi, de la siguiente, manera, solo estoy escribiendo para llegar a tener un texto largo.',
-    img: 'https://res.cloudinary.com/dnqmez68n/image/upload/v1680622304/festejo_ieviva.jpg'
-  }
+  const { data, isLoading, error } = useRoutine()
+  console.log(data)
+  
   return (
-    <div className="flex justify-start h-screen max-w-screen">
-      <SideBarMenu />
-      <ExerciseCard exercise={exercise} />
-    </div>
+    <>
+    {isLoading && (
+        <>
+            <Loader type={'routine'} />
+            <Loader type={'routine'} />
+            <Loader type={'routine'} />
+            <Loader type={'routine'} />
+            <Loader type={'routine'} />
+        </>
+    )}
+      {data &&
+        data[0].rutinas.map((rut: any) =>(
+            <ExerciseCard isLoading={isLoading} exercise={rut} />
+        ) 
+      )}
+    </>
   )
 }
 

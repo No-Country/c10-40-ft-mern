@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { getMonth } from 'utils/calendarUtils'
 import CalendarHeader from './CalendarComp/CalendarHeader'
-import CalendarSidebar from './CalendarComp/CalendarSidebar'
 import CalendarMonth from './CalendarComp/CalendarMonth'
 import dayjs from 'dayjs'
 import 'dayjs/locale/es'
@@ -44,13 +43,13 @@ const Calendar = (): JSX.Element => {
   return (
     <>
       <div className="w-screen flex flex-col">
-        <CalendarHeader date={date} setDate={setDate} />
-        <button onClick={handlePrevMonthWrapper}>Anterior</button>
-        <button onClick={handleActualMonthWrapper}>Actual</button>
-        <button onClick={handleNextMonthWrapper}>Siguiente</button>
+        <CalendarHeader
+          setCurrentMonth={setCurrentMonth}
+          date={date}
+          setDate={setDate}
+        />
         <div className="flex flex-1">
-          <CalendarSidebar />
-          <CalendarMonth month={currentMonth}/>
+          <CalendarMonth date={date} month={currentMonth} />
         </div>
       </div>
     </>

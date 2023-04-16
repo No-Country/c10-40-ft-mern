@@ -29,10 +29,14 @@ const CalendarHeader = ({
 
   return (
     <header className="px-4 py-2 flex justify-around items-center">
-      <p> Logo </p>
-      <h1 className="mr-10 text-xl text-gray-500 font-bold">
+      <img
+            className="h-14 pl-10"
+            src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
+            alt=""
+          />
+      <p className="mr-10 text-xl text-gray-500 font-bold">
         {formatDate.toUpperCase()}
-      </h1>
+      </p>
       <div className="flex justify-center items-center gap-4">
         <button
           className="border rounded-3xl py-2 px-4 mr-5 bg-[#fb8500]"
