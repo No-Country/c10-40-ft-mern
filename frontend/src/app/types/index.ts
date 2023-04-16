@@ -20,6 +20,7 @@ export interface INewUser extends ILoginUser {
   firstName: string
   password: string
   repassword: string
+  terms: boolean
 }
 
 export interface IBodyPart {
