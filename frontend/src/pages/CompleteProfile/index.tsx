@@ -10,7 +10,7 @@ import { completeProfile } from 'utils'
 const CompleteProfile = (): JSX.Element => {
   const CompleteSchema = Yup.object().shape({
     age: Yup.number()
-      .min(10, 'U must have 10 years')
+      .min(10, 'You must have 10 years')
       .max(100, 'Too old, not recommended')
       .required('Age required'),
     weight: Yup.number()
@@ -30,8 +30,7 @@ const CompleteProfile = (): JSX.Element => {
 
   const navigate = useNavigate()
   const { mutate, isLoading, error } = useMutation({
-    mutationFn: async (user: IUserProfile) =>
-      await completeProfile(user, { token }),
+    mutationFn: async (user: IUserProfile) => await completeProfile(user),
     onSuccess: (data) => {
       navigate('/dashboard/profile', { state: { someData: data } })
     }
