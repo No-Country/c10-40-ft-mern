@@ -32,89 +32,99 @@ const days = [
 // Sample data for Ejercicio model
 const exercises = [
   {
-    name: "Push-ups",
+    name: "Sentadillas",
     series: 4,
-    bodyPart: "tren superior",
+    bodyPart: "Piernas",
     repetitions: "12 a 14",
-    description: "somedescription",
+    description:
+      "Párate con los pies separados al ancho de los hombros y baja lentamente hasta que tus muslos estén paralelos al suelo. Luego, vuelve a subir lentamente.",
     isCompleted: false,
   },
   {
-    name: "Squats",
+    name: "Flexiones de brazos",
     series: 4,
-    bodyPart: "tren inferior",
+    bodyPart: "Pecho y brazos",
     repetitions: "12 a 14",
-    description: "somedescription",
+    description:
+      "Ponte en posición de plancha con las manos y los pies en el suelo, con los brazos extendidos. Luego baja el cuerpo hasta que el pecho casi toque el suelo y luego vuelve a subir.",
     isCompleted: false,
   },
   {
-    name: "Crunches",
+    name: "Plancha",
     series: 4,
-    bodyPart: "tren inferior",
+    bodyPart: "Abdominales y espalda",
     repetitions: "12 a 14",
-    description: "somedescription",
+    description:
+      "Coloca tus manos y pies en el suelo, con el cuerpo en línea recta y los músculos abdominales contraídos. Aguanta la posición el mayor tiempo posible.",
     isCompleted: false,
   },
   {
-    name: "Lunges",
+    name: "Zancadas",
     series: 4,
-    bodyPart: "tren superior",
+    bodyPart: "Piernas",
     repetitions: "12 a 14",
-    description: "somedescription",
+    description:
+      "Da un paso hacia adelante con una pierna y baja el cuerpo hasta que ambas rodillas estén en ángulo recto. Luego, vuelve a la posición inicial y repite con la otra pierna.",
     isCompleted: false,
   },
   {
-    name: "Burpees",
+    name: "Fondos en paralelas",
     series: 4,
+    bodyPart: "Tríceps y hombros",
     repetitions: "12 a 14",
-    bodyPart: "core",
-    description: "somedescription",
+    description:
+      "Agarra las barras paralelas con las manos y baja el cuerpo hasta que los brazos estén en ángulo recto. Luego, vuelve a subir.",
     isCompleted: false,
   },
   {
-    name: "Plank",
+    name: "Abdominales bicicleta",
     series: 4,
+    bodyPart: "Abdominales",
     repetitions: "12 a 14",
-    bodyPart: "core",
-    description: "somedescription",
+    description:
+      "Acuéstate en el suelo con las manos detrás de la cabeza y las rodillas flexionadas. Luego, levanta el pecho y lleva el codo derecho hacia la rodilla izquierda, mientras estiras la pierna derecha. Repite con el otro lado.",
     isCompleted: false,
   },
   {
-    name: "Pull-ups",
+    name: "Elevación de talones",
     series: 4,
+    bodyPart: "Pantorrillas",
     repetitions: "12 a 14",
-    bodyPart: "core",
-    description: "somedescription",
+    description:
+      "Ponte de pie con los pies separados al ancho de los hombros y eleva los talones hasta estar de puntillas. Luego baja lentamente.",
     isCompleted: false,
   },
   {
-    name: "Leg curls",
+    name: "Dominadas",
     series: 4,
+    bodyPart: "Espalda y bíceps",
     repetitions: "12 a 14",
-    description: "somedescription",
-    bodyPart: "piernas",
+    description:
+      "Agarra una barra con las manos en pronación (palmas hacia afuera) y sube el cuerpo hasta que la barbilla esté por encima de la barra. Luego baja lentamente hasta la posición inicial.",
     isCompleted: false,
   },
   {
-    name: "Dumbbell press",
+    name: "Elevación lateral de hombros",
     series: 4,
+    bodyPart: "Hombros",
     repetitions: "12 a 14",
-    description: "somedescription",
-    bodyPart: "brazos",
+    description:
+      "Ponte de pie con las mancuernas a los lados, y levanta los brazos hacia los lados hasta que estén paralelos al suelo. Luego baja lentamente.",
     isCompleted: false,
   },
   {
-    name: "Bicep curls",
+    name: "Curl de bíceps con mancuernas",
     series: 4,
+    bodyPart: "Bíceps",
     repetitions: "12 a 14",
-    description: "somedescription",
-    bodyPart: "cabeza",
+    description:
+      "Ponte de pie con una mancuerna en cada mano, y levanta los brazos hasta los hombros con las palmas hacia arriba. Luego, baja lentamente las mancuernas.",
     isCompleted: false,
   },
 ];
 
 async function createDB() {
-  await User.bulkCreate(users);
+  // await User.bulkCreate(users);
   await Day.bulkCreate(days);
   await Exercise.bulkCreate(exercises);
 }
@@ -126,7 +136,7 @@ const getRandomDays = (days, numDays) => {
 
 async function seedDB() {
   // INFO: crea las tablas en la DB
-  // await createDB();
+  await createDB();
 
   // INFO: crea las rutinas en la DB
   const createdRoutine2Days = await createRoutine(
@@ -145,11 +155,11 @@ async function seedDB() {
     getRandomDays(days, 5)
   );
 
-  // INFO: las relaciona con algún usuario
-  const user = await User.findAll();
-
-  user[0].addRoutine(createdRoutine3Days);
-  user[1].addRoutine(createdRoutine5Days);
+  // // INFO: las relaciona con algún usuario
+  // const user = await User.findAll();
+  //
+  // user[0].addRoutine(createdRoutine3Days);
+  // user[1].addRoutine(createdRoutine5Days);
 }
 
 module.exports = seedDB;
