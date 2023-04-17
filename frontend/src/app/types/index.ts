@@ -30,6 +30,12 @@ export interface INewUser extends ILoginUser {
   repassword: string
   terms: boolean
 }
+export interface IContact {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
 
 export interface IForgotPassword {
   email: string
