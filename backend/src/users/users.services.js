@@ -264,7 +264,6 @@ const addRoutine = (req, res) => {
     });
     return;
   }
-
   usersControllers
     .addUserRoutine(id, routineId)
     .then(() => {
@@ -272,6 +271,37 @@ const addRoutine = (req, res) => {
         res,
         status: 200,
         message: "Your routine has been added succesfully!",
+      });
+    })
+    .catch((err) => {
+      responses.error({
+        res,
+        status: 400,
+        message: "Something bad happen",
+        data: err,
+      });
+    });
+};
+
+const deleteRoutine = (req, res) => {
+  const { id } = req.user;
+  const { routineId } = req.params;
+
+  if (!routineId) {
+    responses.error({
+      res,
+      status: 400,
+      message: "All fields are required",
+    });
+    return;
+  }
+  usersControllers
+    .removeUserRoutine(id, routineId)
+    .then(() => {
+      responses.success({
+        res,
+        status: 200,
+        message: "Your routine has been deleted succesfully!",
       });
     })
     .catch((err) => {
@@ -295,4 +325,5 @@ module.exports = {
   patchMyUser,
   patchMyProfile,
   addRoutine,
+  deleteRoutine,
 };

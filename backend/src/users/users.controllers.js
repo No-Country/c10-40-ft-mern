@@ -118,6 +118,15 @@ const addUserRoutine = async (userId, routineId) => {
   return data;
 };
 
+const removeUserRoutine = async (userId, routineId) => {
+  const routine = await Routine.findOne({ where: { id: routineId } });
+  const user = await Users.findOne({ where: { id: userId } });
+
+  const data = await user.removeRoutine(routine);
+
+  return data;
+};
+
 module.exports = {
   findAllUser,
   findUserById,
@@ -126,4 +135,5 @@ module.exports = {
   updateUser,
   deleteUser,
   addUserRoutine,
+  removeUserRoutine,
 };
