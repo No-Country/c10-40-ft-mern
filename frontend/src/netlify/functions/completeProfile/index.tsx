@@ -3,7 +3,7 @@ import {
   type HandlerEvent,
   type HandlerContext
 } from '@netlify/functions'
-import type { IUser } from 'app/types'
+import type { IUserProfile } from 'app/types'
 import axios from 'axios'
 
 const server = axios.create({
@@ -17,22 +17,29 @@ const handler: Handler = async (
   if (event.body === null) {
     return { statusCode: 400 }
   }
+  console.log(event.body)
+  const { gender, age, weight, height }: IUserProfile = JSON.parse(event.body)
 
-  const { firstName, email, password } = JSON.parse(event.body)
-
-  if (!firstName || !password || !email) {
+  if (!gender || !age || !weight || !height) {
     throw new Error('prop missing')
   }
 
+  const token = event.headers.authorization?.replace('Bearer ', '')
+  if (token) {
+    // Agrega el token a la instancia de axios
+    server.defaults.headers.common.Authorization = `Bearer ${token}`
+  }
+
   try {
-    const res = await server.post('/users', {
-      firstName,
-      password,
-      email
+    const res = await server.patch('/users/me/completeprofile', {
+      gender,
+      age,
+      weight,
+      height
     })
 
-    const user: IUser = await res.data
-    console.log('asd', user)
+    const user: IUserProfile = await res.data
+
     return {
       statusCode: 201,
       body: JSON.stringify(user)

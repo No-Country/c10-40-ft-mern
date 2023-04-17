@@ -1,7 +1,19 @@
 import { JWT_TOKEN } from 'app/constants'
-import { Link } from 'react-router-dom'
+import { useUser } from 'hooks/useUser'
+import { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Dash = (): JSX.Element => {
+  const userQuery = useUser()
+  const { data } = userQuery
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (data) {
+      if (!userQuery.isLoading && !data.profileCompleted) {
+        navigate('/completeprofile')
+      }
+    }
+  }, [data, userQuery.isLoading, navigate])
   return (
     <div className="max-w-[1024px] lg:w-[1024px] my-10 mx-10  flex flex-col justify-around md:grid md:grid-cols-2 md:grid-rows-3 gap-5 md:mx-5 xl:mx-auto">
       <Link
@@ -18,7 +30,7 @@ const Dash = (): JSX.Element => {
         <div className="flex flex-col justify-around mx-5 h-full">
           <p className="uppercase text-2xl">Hacete miembro!</p>
           <p className="font-bold text-5xl font-mono">
-            SE <span className="text-green-500">POWERPRO</span>
+            SE <span className="text-green-500">PRO-Fy</span>
           </p>
           <p className="mx-auto text-2xl font-semibold">
             Ahorra hasta un <span className="text-green-500">50%</span> con

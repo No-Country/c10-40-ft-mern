@@ -12,7 +12,6 @@ const CalendarDay = ({
   date: Dayjs
 }): JSX.Element => {
   const navigate = useNavigate()
-  console.log(getCurrentMonthClass())
 
   function getCurrentMonthClass(): string {
     return day.format('MM-YY') === date.format('MM-YY')

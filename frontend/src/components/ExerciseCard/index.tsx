@@ -7,7 +7,6 @@ interface ExerciseProps {
   isLoading: boolean
 }
 const ExerciseCard: React.FC<ExerciseProps> = ({ exercise, isLoading }) => {
-    
   const [isChecked, setIsChecked] = useState(false)
   return (
     <>
@@ -25,15 +24,19 @@ const ExerciseCard: React.FC<ExerciseProps> = ({ exercise, isLoading }) => {
           </div>
           <div className="flex flex-col gap-5 pt-6">
             <p className="text-white h-10">
-              Musculo trabajado: <span className="font-semibold">{exercise?.name}</span>{' '}
+              Musculo trabajado:{' '}
+              <span className="font-semibold">{exercise?.name}</span>{' '}
             </p>
             <p className="text-white">
               Series: <span className="font-semibold">{exercise?.series}</span>
             </p>
             <p className="text-white">
-              Repeticiones: <span className="font-semibold">{exercise?.repetitions}</span>
+              Repeticiones:{' '}
+              <span className="font-semibold">{exercise?.repetitions}</span>
             </p>
-            <p className="text-green-500 mx-auto font-bold">¿Cómo realizarlo?</p>
+            <p className="text-green-500 mx-auto font-bold">
+              ¿Cómo realizarlo?
+            </p>
 
             <p className="font-semibold text-white">{exercise?.description}</p>
             <div

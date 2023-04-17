@@ -4,11 +4,19 @@ export interface IUser {
   email: string
   role: string
   gender?: string
-  age?: string
-  height?: string
-  weight?: string
+  age: number | null
+  height: number | null
+  weight: number | null
   profileCompleted?: boolean
   googleId?: string
+}
+
+export interface IUserProfile {
+  gender: string
+  age: number | null
+  height: number | null
+  weight: number | null
+  token?: string
 }
 
 export interface ILoginUser {
@@ -20,6 +28,11 @@ export interface INewUser extends ILoginUser {
   firstName: string
   password: string
   repassword: string
+  terms: boolean
+}
+
+export interface IForgotPassword {
+  email: string
 }
 
 export interface IBodyPart {

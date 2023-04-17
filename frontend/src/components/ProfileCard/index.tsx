@@ -1,11 +1,11 @@
-import { JWT_TOKEN } from 'app/constants'
+import { type IUser } from 'app/types'
 import { Loader } from 'components'
 import { useUser } from 'hooks/useUser'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 const ProfileCard = (): JSX.Element => {
   const { data, isLoading } = useUser()
-  const navigate = useNavigate()
   // TODO: profile picture
   return (
     <div className=" max-w-screen-lg w-full h-full lg:mx-auto flex-1 ">
@@ -30,7 +30,7 @@ const ProfileCard = (): JSX.Element => {
             </div>
           </div>
         )}
-        
+
         {/* Data User */}
         {isLoading ? (
           <Loader type={'text'} />
@@ -41,13 +41,13 @@ const ProfileCard = (): JSX.Element => {
                 <div className="flex justify-between items-center border-b-2">
                   <p>Altura:</p>
                   <p className="font-bold bg-green-400 rounded-md p-2 m-2">
-                    {data?.height ?? 'n/a'}
+                    {data?.height ?? 'n/a'} cm
                   </p>
                 </div>
                 <div className="flex justify-between items-center border-b-2">
                   <p>Peso:</p>
                   <p className="font-bold bg-green-400 rounded-md p-2 m-2">
-                    {data?.weight ?? 'n/a'}
+                    {data?.weight ?? 'n/a'} Kg
                   </p>
                 </div>
                 <div className="flex justify-between items-center border-b-2">
@@ -59,7 +59,7 @@ const ProfileCard = (): JSX.Element => {
                 <div className="flex justify-between items-center border-b-2">
                   <p>Edad:</p>
                   <p className="font-bold bg-green-400 rounded-md p-2 m-2">
-                    {data?.age ?? 'n/a'}
+                    {data?.age ?? 'n/a'} years
                   </p>
                 </div>
               </div>
