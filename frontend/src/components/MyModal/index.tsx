@@ -39,7 +39,7 @@ const MyModal = ({ setModal }: MyModalProps): JSX.Element => {
           {/* Modal bddy  */}
           <div className="p-6 space-y-6">
             <div className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              <p>Bienvenido a exercify</p>
+              <p>Bienvenido a exercify!</p>
               El uso de nuestro sitio web está sujeto a los siguientes términos
               y condiciones. Al utilizar nuestro sitio web, usted acepta estar
               sujeto a estos términos y condiciones. Si no está de acuerdo con
