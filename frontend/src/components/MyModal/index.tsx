@@ -92,7 +92,7 @@ const MyModal = ({ setModal }: MyModalProps): JSX.Element => {
           <div className="flex items-center p-6 space-x-2 border-t border-gray-600 rounded-b">
             <button
               onClick={() => {
-                setModal(false) 
+                setModal(false)
               }}
               data-modal-hide="extralarge-modal"
               type="button"
