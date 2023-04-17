@@ -1,31 +1,31 @@
-const rutinaControllers = require("./rutina.controllers");
+const exerciseControllers = require("./exercise.controllers");
 const responses = require("../utils/handleResponses");
 
-const getAllRutina = (req, res) => {
-  rutinaControllers
-    .findAllRutina()
+const getAllExercise = (req, res) => {
+  exerciseControllers
+    .findAllExercise()
     .then((data) => {
       responses.success({
         status: 200,
         data: data,
-        message: "Getting all Rutina",
+        message: "Getting all exercises",
         res,
       });
     })
     .catch((err) => {
       responses.error({
-        status: 401,
+        status: 400,
         data: err,
-        message: "Something bad getting all Rutina",
+        message: "Something bad getting all Exercise",
         res,
       });
     });
 };
 
-const getRutinayId = (req, res) => {
+const getExerciseById = (req, res) => {
   const { id } = req.params;
-  rutinaControllers
-    .findRutinaById(id)
+  exerciseControllers
+    .findExerciseById(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -52,12 +52,11 @@ const getRutinayId = (req, res) => {
     });
 };
 
-const postNewRutina = (req, res) => {
+const postNewExercise = (req, res) => {
   const userObj = req.body;
-  const { id } = req.params;
 
-  rutinaControllers
-    .createNewRutina(userObj, id)
+  exerciseControllers
+    .createNewExercise(userObj)
     .then((data) => {
       responses.success({
         status: 201,
@@ -70,7 +69,7 @@ const postNewRutina = (req, res) => {
       responses.error({
         status: 400,
         data: err,
-        message: "Error ocurred trying to create a new Routine",
+        message: "Error ocurred trying to create a new user",
         res,
         fields: {
           name: "string",
@@ -82,12 +81,12 @@ const postNewRutina = (req, res) => {
     });
 };
 
-const patchRutina = (req, res) => {
+const patchExercise = (req, res) => {
   const { id } = req.params;
   const userObj = req.body;
 
-  rutinaControllers
-    .updateRutina(id, userObj)
+  exerciseControllers
+    .updateExercise(id, userObj)
     .then((data) => {
       if (data) {
         responses.success({
@@ -122,11 +121,11 @@ const patchRutina = (req, res) => {
     });
 };
 
-const deleteRutina = (req, res) => {
+const deleteExercise = (req, res) => {
   const { id } = req.params;
 
-  rutinaControllers
-    .deleteRutina(id)
+  exerciseControllers
+    .deleteExercise(id)
     .then((data) => {
       if (data) {
         responses.success({
@@ -155,9 +154,9 @@ const deleteRutina = (req, res) => {
 };
 
 module.exports = {
-  getAllRutina,
-  postNewRutina,
-  patchRutina,
-  deleteRutina,
-  getRutinayId,
+  getAllExercise,
+  postNewExercise,
+  patchExercise,
+  deleteExercise,
+  getExerciseById,
 };
