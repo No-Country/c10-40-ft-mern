@@ -10,7 +10,7 @@ const handler: Handler = async (
   context: HandlerContext
 ) => {
   try {
-    const response = await server.get('/cuerpo')
+    const response = await server.get('/routine')
 
     const routine = await response.data
 
