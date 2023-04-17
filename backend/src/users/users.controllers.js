@@ -38,6 +38,27 @@ const findUserById = async (id) => {
     attributes: {
       exclude: ["password", "createdAt", "updatedAt"],
     },
+    include: [
+      {
+        model: Routine,
+        attributes: { exclude: ["user_routine"] },
+        through: { attributes: [] },
+        include: [
+          {
+            model: Day,
+            attributes: { exclude: ["day_routine"] },
+            through: { attributes: [] },
+            include: [
+              {
+                model: Exercise,
+                attributes: { exclude: ["exercise_day"] },
+                through: { attributes: [] },
+              },
+            ],
+          },
+        ],
+      },
+    ],
   });
   return data;
 };

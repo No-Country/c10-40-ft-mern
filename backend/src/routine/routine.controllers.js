@@ -6,8 +6,12 @@ const findAllRoutines = async () => {
   const data = await Routine.findAll({
     include: {
       model: Day,
+      attributes: { exclude: ["day_routine"] },
+      through: { attributes: [] },
       include: {
         model: Exercise,
+        attributes: { exclude: ["exercise_day"] },
+        through: { attributes: [] },
       },
     },
   });
