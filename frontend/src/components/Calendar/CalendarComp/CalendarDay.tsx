@@ -40,63 +40,63 @@ const CalendarDay = ({
           {day.format('DD') === '04' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
           {day.format('DD') === '07' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
           {day.format('DD') === '10' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
           {day.format('DD') === '13' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
           {day.format('DD') === '18' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
           {day.format('DD') === '21' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
           {day.format('DD') === '24' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
           {day.format('DD') === '28' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
           {day.format('DD') === '30' && (
             <Link
               to="/dashboard/routine"
-              className="text-sm my-auto p-2 rounded-md border-white border text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              className="text-sm my-auto p-2 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
               Rutina de Hoy
             </Link>
           )}
