@@ -172,7 +172,7 @@ const Register = (): JSX.Element => {
                 <Field
                   type="checkbox"
                   name="terms"
-                  className={`rounded-md font-semibold ease-in duration-200 flex items-center mb-4 w-3 h-3${
+                  className={`rounded-md font-semibold ease-in duration-200 flex items-center mb-4 w-3 h-3 ${
                     errors.terms && touched.terms
                       ? 'border border-red-500'
                       : 'border border-gray-300'
