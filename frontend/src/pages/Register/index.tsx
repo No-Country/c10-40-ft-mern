@@ -5,9 +5,9 @@ import { Formik, Field, Form } from 'formik'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { registerUser } from 'utils'
-import { Tooltip } from 'components'
+import { Tooltip, MyModal } from 'components'
 import { useUser } from 'hooks/useUser'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 /* TODO: add minimum length for password.
  * password: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
@@ -23,19 +23,22 @@ const SignUpSchema = Yup.object().shape({
     .matches(/[a-zA-Z\s:]/, 'Numbers and special characters forbbiden'),
   email: Yup.string().email('Invalid Email').required('Required'),
   password: Yup.string().required('Required'),
-  repassword: Yup.string().oneOf([Yup.ref('password')], 'Passwords must match')
+  repassword: Yup.string().oneOf([Yup.ref('password')], 'Passwords must match'),
+  terms: Yup.boolean().oneOf([true], 'Debe aceptar los terminos y condiciones')
 })
 
 const INITIAL_STATE: INewUser = {
   firstName: '',
   email: '',
   password: '',
-  repassword: ''
+  repassword: '',
+  terms: false
 }
 
 const Register = (): JSX.Element => {
   const navigate = useNavigate()
   const userQuery = useUser()
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
     if (!userQuery.isLoading && userQuery.data) {
@@ -164,11 +167,41 @@ const Register = (): JSX.Element => {
                   </span>
                 ) : null}
               </div>
-
+              {/* Terms  */}
+              <div className="relative">
+                <Field
+                  type="checkbox"
+                  name="terms"
+                  className={`rounded-md font-semibold ease-in duration-200 flex items-center mb-4 w-3 h-3${
+                    errors.terms && touched.terms
+                      ? 'border border-red-500'
+                      : 'border border-gray-300'
+                  }`}
+                  placeholder=" "
+                />
+                <label
+                  htmlFor="terms"
+                  className="flex absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-3 z-10  bg-white px-0 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                  Acepto los{' '}
+                  <p
+                    onClick={() => {
+                      setModal(true)
+                    }}
+                    className="pl-1 text-blue-600 hover:underline">
+                    términos y condiciones
+                  </p>
+                </label>
+                {errors.terms && touched.terms ? (
+                  <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
+                    <Tooltip message={errors.terms} />
+                  </span>
+                ) : null}
+              </div>
               <button
                 type="submit"
+                name="terms"
                 disabled={isLoading}
-                className="uppercase bg-gray-300 hover:bg-gray-500 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
+                className="uppercase bg-gray-300 hover:bg-gray-400 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
                 Registrarme
               </button>
               {error ? <p className="text-red-500">Hubo un error</p> : null}
@@ -176,6 +209,7 @@ const Register = (): JSX.Element => {
           )}
         </Formik>
       </div>
+      {modal && <MyModal setModal={setModal} />}
     </div>
   )
 }
