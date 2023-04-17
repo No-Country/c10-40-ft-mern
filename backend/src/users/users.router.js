@@ -11,11 +11,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   userServices.getMyUser
 );
-router.post(
-  "/me/:routineId",
-  passport.authenticate("jwt", { session: false }),
-  userServices.addRoutine
-);
+
 router.patch(
   "/me",
   passport.authenticate("jwt", { session: false }),
@@ -30,6 +26,18 @@ router.delete(
   "/me",
   passport.authenticate("jwt", { session: false }),
   userServices.deleteMyUser
+);
+// Rutas de Rutina
+router.post(
+  "/me/:routineId",
+  passport.authenticate("jwt", { session: false }),
+  userServices.addRoutine
+);
+
+router.delete(
+  "/me/:routineId",
+  passport.authenticate("jwt", { session: false }),
+  userServices.deleteRoutine
 );
 
 //? /api/v1/users/me

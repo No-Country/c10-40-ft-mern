@@ -23,6 +23,10 @@
       "description": "Operaciones para usuario logueado"
     },
     {
+      "name": "Rutina de Usuario",
+      "description": "Operaciones sobre las rutinas de cada usuario"
+    },
+    {
       "name": "Misc",
       "description": "Operaciones Misceláneas."
     }
@@ -267,7 +271,7 @@
       "post": {
         "summary": "Añadir una rutina según el ID,  al usuario autenticado.",
         "tags": [
-          "User Autenticado"
+          "Rutina de Usuario"
         ],
         "security": [
           {
@@ -291,6 +295,36 @@
           },
           "400": {
             "description": "Hubo un error al intentar añadir la rutina al usuario"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina una rutina según el ID, al usuario autenticado",
+        "tags": [
+          "Rutina de Usuario"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "routineId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID de la rutina a eliminar."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Éxito! Rutina eliminada al usuario"
+          },
+          "400": {
+            "description": "Hubo un error al intentar eliminar la rutina al usuario"
           }
         }
       }
