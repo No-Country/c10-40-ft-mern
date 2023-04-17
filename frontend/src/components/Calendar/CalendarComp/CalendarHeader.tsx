@@ -28,35 +28,36 @@ const CalendarHeader = ({
   }
 
   return (
-    <header className="px-4 py-2 flex justify-around items-center">
-      <img
-            className="h-14 pl-10"
-            src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
-            alt=""
-          />
-      <p className="mr-10 text-xl text-gray-500 font-bold">
-        {formatDate.toUpperCase()}
-      </p>
-      <div className="flex justify-center items-center gap-4">
+    <header className="px-4 py-2 flex flex-col items-center">
+      <div className="flex w-full items-center justify-center md:justify-start">
+        <img
+          className="h-14 "
+          src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
+          alt=""
+        />
+      </div>
+      <div className="flex-1 flex justify-center">
+        <p className="text-2xl text-gray-800 font-bold">
+          {formatDate.toUpperCase()}
+        </p>
+      </div>
+
+      <div className="flex justify-center items-center gap-4 mt-5">
         <button
-          className="border rounded-3xl py-2 px-4 mr-5 bg-[#fb8500]"
+          className="bg-transparent hover:bg-green-600 text-green-600 hover:text-white py-2 px-4 border border-green-600 hover:border-transparent rounded ease-in duration-200 w-auto text-center"
+          onClick={handlePrevMonth}>
+          <BsChevronLeft />
+        </button>
+        <button
+          className=" bg-green-600 text-white hover:text-green-600 hover:bg-transparent py-2 px-10 border hover:border-green-600 hover:scale-90 rounded ease-in duration-200 w-auto text-center"
           onClick={handleCurrentMonth}>
           {' '}
           Hoy{' '}
         </button>
         <button
-          className="bg-[#fb8500] rounded-full px-1 py-0.5"
-          onClick={handlePrevMonth}>
-          <span className="cursor-pointer text-black mx-2">
-            <BsChevronLeft />
-          </span>
-        </button>
-        <button
-          className="bg-[#fb8500] rounded-full px-1 py-0.5"
+          className="bg-transparent hover:bg-green-600 text-green-600 hover:text-white py-2 px-4 border border-green-600  hover:border-transparent rounded ease-in duration-200 w-auto text-center"
           onClick={handleNextMonth}>
-          <span className="cursor-pointer text-black mx-2">
-            <BsChevronRight />
-          </span>
+          <BsChevronRight />
         </button>
       </div>
     </header>
