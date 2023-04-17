@@ -1,9 +1,7 @@
 import { Calendar } from 'components'
 
 const Schedule = (): JSX.Element => {
-  return (
-      <Calendar />
-  )
+  return <Calendar />
 }
 
 export default Schedule

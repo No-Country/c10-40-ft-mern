@@ -16,7 +16,8 @@ import {
   Routine,
   CreateRutine,
   NotFound,
-  Profile
+  Profile,
+  Password
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -31,18 +32,19 @@ function App(): JSX.Element {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/olvide-password" element={<Password />} />
           <Route path="/register" element={<Register />} />
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/contact" element={<Contact />} />
         </Route>
-        <Route path='/dashboard' element={<DashLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="/dashboard/stats" element={<Stats />} />
-            <Route path="/dashboard/summary" element={<Summary />} />
-            <Route path="/dashboard/schedule" element={<Schedule />} />
-            <Route path="/dashboard/routine" element={<Routine />} />
-            <Route path="/dashboard/createrutine" element={<CreateRutine />} />
-            <Route path="/dashboard/profile" element={<Profile />} />
+        <Route path="/dashboard" element={<DashLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="/dashboard/stats" element={<Stats />} />
+          <Route path="/dashboard/summary" element={<Summary />} />
+          <Route path="/dashboard/schedule" element={<Schedule />} />
+          <Route path="/dashboard/routine" element={<Routine />} />
+          <Route path="/dashboard/createrutine" element={<CreateRutine />} />
+          <Route path="/dashboard/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

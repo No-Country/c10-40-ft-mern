@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 import type { INewUser } from 'app/types'
 import { Formik, Field, Form } from 'formik'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { registerUser } from 'utils'
 import { Tooltip, MyModal } from 'components'
 import { useUser } from 'hooks/useUser'
@@ -204,7 +204,16 @@ const Register = (): JSX.Element => {
                 className="uppercase bg-gray-300 hover:bg-gray-400 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
                 Registrarme
               </button>
+
               {error ? <p className="text-red-500">Hubo un error</p> : null}
+              <div className="flex items-center justify-center my-4 gap-2">
+                <span>¿Ya tenés cuenta?</span>
+                <Link
+                  to="/login"
+                  className=" border-b-2 border-black hover:text-green-600 hover:border-green-600 hover:scale-105 ease-in duration-300">
+                  Ingresa
+                </Link>
+              </div>
             </Form>
           )}
         </Formik>
