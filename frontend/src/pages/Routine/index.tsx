@@ -1,10 +1,11 @@
+/* eslint-disable array-callback-return */
 import { ExerciseCard, Loader } from 'components'
 import { useRoutine } from 'hooks/useRoutine'
 // import { type IBodyPart } from 'app/types'
 
 const Routine = (): JSX.Element => {
   const { data, isLoading, error } = useRoutine()
-
+  console.log(data)
   return (
     <>
       {isLoading && (
@@ -16,10 +17,12 @@ const Routine = (): JSX.Element => {
           <Loader type={'routine'} />
         </>
       )}
-      {data?.[0].rutinas.map((rut: any) => (
-        // eslint-disable-next-line react/jsx-key
-        <ExerciseCard isLoading={isLoading} exercise={rut} />
-      ))}
+
+      {data?.[2].days.map((dia3: any) => {
+        return dia3?.exercises.map((ex: any) => (
+          <ExerciseCard key={ex.id} isLoading={isLoading} exercises={ex} />
+        ))
+      })}
     </>
   )
 }
