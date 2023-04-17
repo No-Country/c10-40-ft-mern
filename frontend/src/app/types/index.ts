@@ -35,23 +35,29 @@ export interface IForgotPassword {
   email: string
 }
 
-export interface IBodyPart {
+export interface IRoutine {
+  id: number
   name: string
-  rutinas: IRoutine[]
+  daysNumber: number
+  isCompleted: boolean
+  imagen?: string
+  days: IDay[]
+  createdAt: Date
+  updatedAt: Date
 }
 
-export interface IRoutine {
+export interface IDay {
+  id: number
+  day: string
+  exercises: IExercise[]
+}
+
+export interface IExercise {
+  id: number
   name: string
   series: number
+  bodyPart: string
   repetitions: string
   description: string
-  cuerpoId: number
-  imagen: string
-}
-
-export interface IContact {
-  name: string
-  email: string
-  subject: string
-  message: string
+  isCompleted: boolean
 }
