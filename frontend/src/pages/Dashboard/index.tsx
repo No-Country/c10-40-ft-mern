@@ -16,7 +16,9 @@ const Dashboard = (): JSX.Element => {
     navigate('/login')
   }
 
-  if (!data && !userIsLoading && !data.profileCompleted) {
+  if (!data && !userIsLoading) {
+    navigate('/completeprofile')
+  } else if (data && !data?.profileCompleted) {
     navigate('/completeprofile')
   }
 

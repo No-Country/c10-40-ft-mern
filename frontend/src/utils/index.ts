@@ -1,4 +1,10 @@
-import type { IContact, ILoginUser, INewUser, IUserProfile } from 'app/types'
+import type {
+  IContact,
+  IForgotPassword,
+  ILoginUser,
+  INewUser,
+  IUserProfile
+} from 'app/types'
 import axios from 'axios'
 import { checkSession } from './checkSession'
 
@@ -31,6 +37,19 @@ export const loginUser = async (user: ILoginUser): Promise<any> => {
   })
 
   return loggedUser
+}
+
+export const forgotPw = async (user: IForgotPassword): Promise<any> => {
+  const { email } = user
+  console.log('hi', email)
+  if (email === '') {
+    throw new Error(`${email} missing`)
+  }
+  const forgotPassword = await server.put('/forgotPw', user).catch((error) => {
+    console.log(error)
+  })
+
+  return forgotPassword
 }
 
 export const sendEmail = async (data: IContact): Promise<any> => {

@@ -31,6 +31,10 @@ export interface INewUser extends ILoginUser {
   terms: boolean
 }
 
+export interface IForgotPassword {
+  email: string
+}
+
 export interface IBodyPart {
   name: string
   rutinas: IRoutine[]

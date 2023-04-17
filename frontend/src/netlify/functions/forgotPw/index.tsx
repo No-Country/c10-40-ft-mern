@@ -13,17 +13,14 @@ const handler: Handler = async (
     return { statusCode: 400 }
   }
 
-  const { email, password } = JSON.parse(event.body)
+  const { email } = JSON.parse(event.body)
 
-  if (!password || !email) {
+  if (!email) {
     throw new Error('prop missing')
   }
-
-  console.log(process.env.API_BASE_URL)
   try {
-    const res = await server.post('/auth/login', {
-      email,
-      password
+    const res = await server.put('/forgot-password', {
+      email
     })
     const token = await res.data
 

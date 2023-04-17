@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../utils/database");
-const Cuerpo = require("./cuerpo");
 
-const Rutina = db.define("rutina", {
+const Routine = db.define("routine", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -14,25 +13,14 @@ const Rutina = db.define("rutina", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  series: {
+  daysNumber: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  repetitions: {
-    type: DataTypes.STRING,
+  isCompleted: {
+    type: DataTypes.BOOLEAN,
     allowNull: false,
-  },
-  description: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  CuerpoId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      key: "id",
-      model: Cuerpo,
-    },
+    defaultValue: false,
   },
   imagen: {
     type: DataTypes.STRING,
@@ -41,4 +29,4 @@ const Rutina = db.define("rutina", {
   },
 });
 
-module.exports = Rutina;
+module.exports = Routine;
