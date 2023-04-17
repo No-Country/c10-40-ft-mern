@@ -9,10 +9,46 @@
       "email": "example@example.com"
     }
   },
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Operaciones relacionadas con Login y Registro"
+    },
+    {
+      "name": "User",
+      "description": "Operaciones relacionadas con los usuarios"
+    },
+    {
+      "name": "User Autenticado",
+      "description": "Operaciones para usuario logueado"
+    },
+    {
+      "name": "Misc",
+      "description": "Operaciones Misceláneas."
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "description": "Poner un token valido para los endpoints que lo requieran. IMPORTANTE! antes del token poner la palabra bearer. Por ejemplo bearer ey9u29ue92u492u9u49u294u294u9"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
   "paths": {
     "/api/v1/auth/login": {
       "post": {
         "summary": "Iniciar sesión",
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -44,6 +80,9 @@
     "/api/v1/auth/google": {
       "get": {
         "summary": "Iniciar sesión con Google",
+        "tags": [
+          "Auth"
+        ],
         "responses": {
           "302": {
             "description": "Redireccionamiento a Google para iniciar sesión"
@@ -54,6 +93,9 @@
     "/api/v1/auth/oauth2/redirect/google": {
       "get": {
         "summary": "Redireccionamiento después de iniciar sesión con Google",
+        "tags": [
+          "Auth"
+        ],
         "responses": {
           "200": {
             "description": "Usuario autenticado correctamente"
@@ -64,6 +106,9 @@
     "/api/v1/users": {
       "get": {
         "summary": "Obtener todos los usuarios",
+        "tags": [
+          "User"
+        ],
         "responses": {
           "200": {
             "description": "Lista de usuarios"
@@ -72,6 +117,9 @@
       },
       "post": {
         "summary": "Crear un nuevo usuario",
+        "tags": [
+          "User"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -105,10 +153,13 @@
     },
     "/api/v1/users/me": {
       "get": {
-        "summary": "Obtener información del usuario autenticado",
+        "summary": "El usuario autenticado recibe sus datos, incluyendo sus rutinas",
+        "tags": [
+          "User Autenticado"
+        ],
         "security": [
           {
-            "BearerAuth": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -122,9 +173,12 @@
       },
       "patch": {
         "summary": "Actualizar información del usuario autenticado",
+        "tags": [
+          "User Autenticado"
+        ],
         "security": [
           {
-            "BearerAuth": []
+            "bearerAuth": []
           }
         ],
         "requestBody": {
@@ -164,9 +218,12 @@
     "/api/v1/users/me/completeprofile": {
       "patch": {
         "summary": "Actualizar información del perfil del usuario autenticado",
+        "tags": [
+          "User Autenticado"
+        ],
         "security": [
           {
-            "BearerAuth": []
+            "bearerAuth": []
           }
         ],
         "requestBody": {
@@ -206,9 +263,44 @@
         }
       }
     },
+    "/api/v1/users/me/{routineId}": {
+      "post": {
+        "summary": "Añadir una rutina según el ID,  al usuario autenticado.",
+        "tags": [
+          "User Autenticado"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "routineId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID de la rutina a añadir."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Éxito! Rutina añadida al usuario."
+          },
+          "400": {
+            "description": "Hubo un error al intentar añadir la rutina al usuario"
+          }
+        }
+      }
+    },
     "/api/v1/users/{id}": {
       "get": {
-        "summary": "Obtener los datos del usuario por ID",
+        "summary": "Obtener los datos del usuario por ID, incluyendo sus Rutinas",
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -238,6 +330,12 @@
                     },
                     "firstname": {
                       "type": "string"
+                    },
+                    "routines": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
                     }
                   }
                 }
@@ -251,6 +349,9 @@
       },
       "patch": {
         "summary": "Modificar un usuario por ID",
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -326,6 +427,9 @@
       },
       "delete": {
         "summary": "Elimina un usuario por ID",
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -343,6 +447,46 @@
           },
           "400": {
             "description": "Error al eliminar el usuario o no existe"
+          }
+        }
+      }
+    },
+    "/api/v1/contact": {
+      "post": {
+        "summary": "Envía datos del formulario por email",
+        "tags": [
+          "Misc"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email envíado correctamente"
+          },
+          "400": {
+            "description": "Error al intenta enviar el email"
           }
         }
       }
