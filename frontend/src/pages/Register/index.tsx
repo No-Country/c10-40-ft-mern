@@ -5,7 +5,7 @@ import { Formik, Field, Form } from 'formik'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { registerUser } from 'utils'
-import { Tooltip } from 'components'
+import { Tooltip, MyModal } from 'components'
 import { useUser } from 'hooks/useUser'
 import { useEffect, useState } from 'react'
 
@@ -24,7 +24,7 @@ const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Required'),
   password: Yup.string().required('Required'),
   repassword: Yup.string().oneOf([Yup.ref('password')], 'Passwords must match'),
-  terms: Yup.boolean().oneOf([true], 'You must accept the terms and conditions')
+  terms: Yup.boolean().oneOf([true], 'Debe aceptar los terminos y condiciones')
 })
 
 const INITIAL_STATE: INewUser = {
@@ -38,6 +38,7 @@ const INITIAL_STATE: INewUser = {
 const Register = (): JSX.Element => {
   const navigate = useNavigate()
   const userQuery = useUser()
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
     if (!userQuery.isLoading && userQuery.data) {
@@ -176,11 +177,15 @@ const Register = (): JSX.Element => {
                 />
                 <label
                   htmlFor="terms"
-                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-3 z-10  bg-white px-0 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                  className="flex absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-3 z-10  bg-white px-0 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                   Acepto los{' '}
-                  <a href="asdad" className="text-blue-600 hover:underline">
+                  <p
+                    onClick={() => {
+                      setModal(true)
+                    }}
+                    className="pl-1 text-blue-600 hover:underline">
                     términos y condiciones
-                  </a>
+                  </p>
                 </label>
                 {errors.terms && touched.terms ? (
                   <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
@@ -200,6 +205,7 @@ const Register = (): JSX.Element => {
           )}
         </Formik>
       </div>
+      {modal && <MyModal setModal={setModal} />}
     </div>
   )
 }
