@@ -28,14 +28,25 @@ router.delete(
   userServices.deleteMyUser
 );
 // Rutas de Rutina
+
+router.get(
+  "/me/routines",
+  passport.authenticate("jwt", { session: false }),
+  userServices.getMyRoutines
+);
+router.get(
+  "/me/routines/:routineId",
+  passport.authenticate("jwt", { session: false }),
+  userServices.getRoutineByUser
+);
 router.post(
-  "/me/:routineId",
+  "/me/routines/:routineId",
   passport.authenticate("jwt", { session: false }),
   userServices.addRoutine
 );
 
 router.delete(
-  "/me/:routineId",
+  "/me/routines/:routineId",
   passport.authenticate("jwt", { session: false }),
   userServices.deleteRoutine
 );
