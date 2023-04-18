@@ -1,6 +1,5 @@
 //* DataTypes de sequelize, esto genera el tipo de dato
 const { DataTypes } = require("sequelize");
-const { v4: uuidv4 } = require("uuid");
 const db = require("../utils/database");
 
 //Este es el modelo

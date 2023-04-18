@@ -53,44 +53,28 @@ const postLogin = (req, res) => {
 
 //*Asignacion del token JWT
 const postSocial = async (req, res) => {
-    const User = await req.user;
+    const user = await req.user;
     userControllers
-        .findUserByEmail(User.email)
+        .findUserByEmail(user.email)
         .then((data) => {
-            if (data) {
-                const token = jwt.sign(
-                    {
-                        id: data.id,
-                        email: data.email,
-                        firstName: data.firstName,
-                    },
-                    config.secretOrKey,
-                    {
-                        expiresIn: "1d",
-                    }
-                );
-
-                response.success({
-                    res,
-                    status: 200,
-                    message: "Correct Credentials!",
-                    data: token,
-                });
-            } else {
-                response.error({
-                    res,
-                    status: 401,
-                    message: "Invalid Credentials",
-                });
+            if (!data) {
+                return res.status(401).json({ message: "Invalid Credentials" });
             }
+            const token = jwt.sign(
+                {
+                    id: data.id,
+                    email: data.email,
+                    firstName: data.firstName,
+                },
+                config.secretOrKey,
+                { expiresIn: "1d" }
+            );
+            // res.json({ token });
+            res.redirect(`${config.client}/google?token=${token}`);
         })
         .catch((err) => {
-            response.error({
-                res,
-                status: 400,
-                data: err,
-                message: "Something Bad in social auth.services",
-            });
+            console.error(err);
+            res.status(400).json({ message: "Something went wrong" });
         });
 };
 

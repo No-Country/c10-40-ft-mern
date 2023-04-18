@@ -1,14 +1,16 @@
 import Loader from 'components/Loader'
 import { useState } from 'react'
-import { IRoutine } from 'app/types'
+import { type IExercise } from 'app/types'
 
 interface ExerciseProps {
-  exercise: IRoutine
+  exercises: IExercise
   isLoading: boolean
 }
-const ExerciseCard: React.FC<ExerciseProps> = ({ exercise, isLoading }) => {
-    
+const ExerciseCard: React.FC<ExerciseProps> = ({ exercises, isLoading }) => {
   const [isChecked, setIsChecked] = useState(false)
+  // eslint-disable-next-line react/prop-types
+  const { series, bodyPart, repetitions, description } = exercises
+
   return (
     <>
       {isLoading ? (
@@ -16,26 +18,24 @@ const ExerciseCard: React.FC<ExerciseProps> = ({ exercise, isLoading }) => {
       ) : (
         <div className="flex flex-col justify-around p-6 border sm:w-1/3 lg:w-1/5 m-5 bg-[#1c212c] rounded-lg h-2/3">
           <div className="flex justify-center">
-            <img
-              className="rounded-sm w-auto max-h-48"
-              src={exercise?.imagen}
-              alt={exercise?.name}
-              title={exercise?.name}
-            />
+            <img className="rounded-sm w-auto max-h-48" />
           </div>
           <div className="flex flex-col gap-5 pt-6">
             <p className="text-white h-10">
-              Musculo trabajado: <span className="font-semibold">{exercise?.name}</span>{' '}
+              Musculo trabajado:{' '}
+              <span className="font-semibold">{bodyPart}</span>{' '}
             </p>
             <p className="text-white">
-              Series: <span className="font-semibold">{exercise?.series}</span>
+              Series: <span className="font-semibold">{series}</span>
             </p>
             <p className="text-white">
-              Repeticiones: <span className="font-semibold">{exercise?.repetitions}</span>
+              Repeticiones: <span className="font-semibold">{repetitions}</span>
             </p>
-            <p className="text-green-500 mx-auto font-bold">¿Cómo realizarlo?</p>
+            <p className="text-green-500 mx-auto font-bold">
+              ¿Cómo realizarlo?
+            </p>
 
-            <p className="font-semibold text-white">{exercise?.description}</p>
+            <p className="font-semibold text-white">{description}</p>
             <div
               className={`${
                 isChecked
