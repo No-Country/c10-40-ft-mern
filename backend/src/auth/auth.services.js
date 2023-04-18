@@ -138,11 +138,11 @@ const createNewPassword = async (req, res) => {
   const { password } = req.body;
   const token = req.query.token;
 
-  if (!!(token && password)) {
+  if (!token || !password) {
     response.error({
       res,
       status: 401,
-      message: "Todos los campos deben ser llenados",
+      message: "Todos los campos deben ser completados",
     });
   }
   try {
