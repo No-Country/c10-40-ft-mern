@@ -17,7 +17,8 @@ import {
   CreateRutine,
   NotFound,
   Profile,
-  Password
+  Password,
+  NewPassword
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -33,6 +34,7 @@ function App(): JSX.Element {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/olvide-password" element={<Password />} />
+          <Route path="/reset-password" element={<NewPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/contact" element={<Contact />} />

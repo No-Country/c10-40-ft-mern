@@ -111,7 +111,7 @@ const forgotPassword = async (req, res) => {
                         expiresIn: "1d",
                     }
                 );
-                const newPasswordUrlMail = `${config.client}/reset-password/?token=${token}`;
+                const newPasswordUrlMail = `${config.client}/reset-password?token=${token}`;
                 const newPasswordUrlFront = `${config.host}/api/v1/auth/new-password/?token=${token}`;
                 /*
           AQUI SE ENVIA EL EMAIL, SI TODO SALE BIEN SE ENVIA EL MENSAJE, SI NO, SE ARROJA EL ERROR 400
@@ -153,7 +153,8 @@ const forgotPassword = async (req, res) => {
 const createNewPassword = async (req, res) => {
     const { newPassword } = req.body;
     const token = req.query.token;
-    if (!(token && newPassword)) {
+    
+    if (!!(token && password)) {
         response.error({
             res,
             status: 401,
@@ -163,7 +164,7 @@ const createNewPassword = async (req, res) => {
     try {
         const jwtPayload = jwt.verify(token, config.secretOrKey);
         await userControllers
-            .updateUser(jwtPayload.id, { password: hashPassword(newPassword) })
+            .updateUser(jwtPayload.id, { newPassword: hashPassword(password) })
             .then((data) => {
                 if (data) {
                     response.success({

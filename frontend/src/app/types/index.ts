@@ -34,6 +34,11 @@ export interface IForgotPassword {
   email: string
 }
 
+export interface INewPassword {
+  password: string
+  repassword: string
+}
+
 export interface IBodyPart {
   name: string
   rutinas: IRoutine[]
