@@ -69,7 +69,8 @@ const postSocial = async (req, res) => {
                 config.secretOrKey,
                 { expiresIn: "1d" }
             );
-            res.json({ token });
+            // res.json({ token });
+            res.redirect(`${config.client}/google?token=${token}`);
         })
         .catch((err) => {
             console.error(err);
@@ -94,7 +95,7 @@ const forgotPassword = async (req, res) => {
                         expiresIn: "1d",
                     }
                 );
-                const newPasswordUrlMail = `${config.client}/reset-password/?token=${token}`;
+                const newPasswordUrlMail = `${config.client}/reset-password?token=${token}`;
                 const newPasswordUrlFront = `${config.host}/api/v1/auth/new-password/?token=${token}`;
                 /*
           AQUI SE ENVIA EL EMAIL, SI TODO SALE BIEN SE ENVIA EL MENSAJE, SI NO, SE ARROJA EL ERROR 400
