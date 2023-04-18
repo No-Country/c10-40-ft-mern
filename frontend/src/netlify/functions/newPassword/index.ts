@@ -15,19 +15,16 @@ const handler: Handler = async (
   const { password, tok }: { password: string; tok: string } = JSON.parse(
     event.body
   )
+  console.log(password, tok)
 
   if (!tok || !password) {
     throw new Error('prop missing')
   }
 
   try {
-    const res = await server.put(
-      `/auth/new-password?token=${encodeURIComponent(tok)}`,
-      {
-        newPassword: password
-      }
-    )
-
+    const res = await server.put(`/auth/new-password?token=${tok}`, {
+      newPassword: password
+    })
     const token = await res.data
 
     return {

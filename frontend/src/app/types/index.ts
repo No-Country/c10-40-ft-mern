@@ -44,6 +44,7 @@ export interface IForgotPassword {
 export interface INewPassword {
   password: string
   repassword: string
+  token: string
 }
 
 export interface IRoutine {

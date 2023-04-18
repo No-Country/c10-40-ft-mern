@@ -3,9 +3,11 @@ import { TOKEN_PW } from 'app/constants'
 import { type IForgotPassword } from 'app/types'
 import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
+import { useState } from 'react'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { ImSpinner8 } from 'react-icons/im'
 import { Link, useNavigate } from 'react-router-dom'
+import { Toaster, toast } from 'sonner'
 import { forgotPw } from 'utils'
 import * as Yup from 'yup'
 
@@ -16,12 +18,16 @@ const SignInSchema = Yup.object().shape({
 const INITIAL_STATE: IForgotPassword = { email: '' }
 const Password = (): JSX.Element => {
   const navigate = useNavigate()
+  const [tokenSend, setTokenSend] = useState(false)
   const { mutateAsync, isLoading, error } = useMutation({
     mutationFn: forgotPw,
     onSuccess: ({ data }) => {
       localStorage.setItem(TOKEN_PW, data)
-      //   navigate('/dashboard')
-      console.log('email', data)
+      setTokenSend(true)
+      toast('Se han enviado instrucciones a su email!')
+      setTimeout(() => {
+        navigate('/')
+      }, 3000)
     }
   })
 
@@ -103,6 +109,7 @@ const Password = (): JSX.Element => {
           </Link>
         </div>
       </div>
+      <Toaster closeButton />
     </div>
   )
 }

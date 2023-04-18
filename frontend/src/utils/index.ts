@@ -55,15 +55,19 @@ export const forgotPw = async (user: IForgotPassword): Promise<any> => {
 export const resetPassword = async (user: INewPassword): Promise<any> => {
   const { password } = user
   const tok = localStorage.getItem('PwToken')
+  localStorage.removeItem('PwToken')
   if (password === '') {
     throw new Error(`${password} missing`)
   }
-  const resetPassword = await server
+  const newPw = await server
     .put('/newPassword', { password, tok })
     .catch((error) => {
       console.log(error)
+      throw new Error(
+        'No se pudo cambiar la contraseña. Por favor, inténtelo de nuevo más tarde.'
+      )
     })
-  return resetPassword
+  return newPw
 }
 
 export const sendEmail = async (data: IContact): Promise<any> => {
