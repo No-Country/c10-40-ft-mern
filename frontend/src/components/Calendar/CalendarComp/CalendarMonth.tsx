@@ -9,7 +9,7 @@ interface Props {
 
 const CalendarMonth = ({ date, month }: Props): JSX.Element => {
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-7">
+    <div className="flex-1 grid grid-cols-7 grid-rows-7  max-w-screen-xl mx-auto my-12">
       {month.map((row: any[], i: React.Key) => (
         <React.Fragment key={i}>
           {row.map((day, idx) => (

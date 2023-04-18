@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 
 const ProfileCard = (): JSX.Element => {
   const { data, isLoading } = useUser()
+  console.log(data)
   // TODO: profile picture
   return (
     <div className=" max-w-screen-lg w-full h-full lg:mx-auto flex-1 ">

@@ -137,7 +137,8 @@ const forgotPassword = async (req, res) => {
 const createNewPassword = async (req, res) => {
     const { newPassword } = req.body;
     const token = req.query.token;
-    if (!(token && newPassword)) {
+    
+    if (!!(token && password)) {
         response.error({
             res,
             status: 401,
@@ -147,7 +148,7 @@ const createNewPassword = async (req, res) => {
     try {
         const jwtPayload = jwt.verify(token, config.secretOrKey);
         await userControllers
-            .updateUser(jwtPayload.id, { password: hashPassword(newPassword) })
+            .updateUser(jwtPayload.id, { newPassword: hashPassword(password) })
             .then((data) => {
                 if (data) {
                     response.success({

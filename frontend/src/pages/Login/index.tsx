@@ -20,7 +20,6 @@ const INITIAL_STATE: ILoginUser = { email: '', password: '' }
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate()
-
   const userQuery = useUser()
   useEffect(() => {
     if (!userQuery.isLoading && userQuery.data) {
@@ -32,7 +31,7 @@ const Login = (): JSX.Element => {
     mutationFn: loginUser,
     onSuccess: ({ data }) => {
       localStorage.setItem(JWT_TOKEN, data)
-      navigate('/dashboard')
+      navigate('/dashboard', { state: { someData: data } })
     }
   })
 

@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
+import { TOKEN_PW } from 'app/constants'
 import { type IForgotPassword } from 'app/types'
 import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
@@ -17,9 +18,10 @@ const Password = (): JSX.Element => {
   const navigate = useNavigate()
   const { mutateAsync, isLoading, error } = useMutation({
     mutationFn: forgotPw,
-    onSuccess: (email) => {
+    onSuccess: ({ data }) => {
+      localStorage.setItem(TOKEN_PW, data)
       //   navigate('/dashboard')
-      console.log('email', email)
+      console.log('email', data)
     }
   })
 
