@@ -4,11 +4,11 @@ import { type ILoginUser } from 'app/types'
 import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
 import { useUser } from 'hooks/useUser'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BsGoogle, BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { ImSpinner8 } from 'react-icons/im'
 import { Link, useNavigate } from 'react-router-dom'
-import { loginUser } from 'utils'
+import { loginUser, googleCallback } from 'utils'
 import * as Yup from 'yup'
 
 const SignInSchema = Yup.object().shape({
@@ -34,6 +34,18 @@ const Login = (): JSX.Element => {
       navigate('/dashboard', { state: { someData: data } })
     }
   })
+
+  const handleUrl = (): void => {
+    googleCallback()
+      .then(({ data }: { data: string }) => {
+        if (data) {
+          window.location.href = `${data}/auth/google`
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   return (
     <div className="flex items-center justify-center h-screen w-full my-8">
@@ -125,9 +137,11 @@ const Login = (): JSX.Element => {
           ¿Olvidaste tu contraseña?
         </Link>
         <p className="mt-4">Ingresa con: </p>
-        <div className="my-4 border border-gray-600 p-4 rounded-lg hover:text-white hover:bg-gray-600 ease-in duration-200 cursor-pointer">
+        <button
+          onClick={handleUrl}
+          className="my-4 border border-gray-600 p-4 rounded-lg hover:text-white hover:bg-gray-600 ease-in duration-200 cursor-pointer">
           <BsGoogle />
-        </div>
+        </button>
         <div className=" flex items-center gap-2">
           <span>¿No tenés cuenta?</span>
           <Link

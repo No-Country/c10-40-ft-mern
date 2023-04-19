@@ -24,7 +24,8 @@ import {
   NotFound,
   Profile,
   Password,
-  NewPassword
+  NewPassword,
+  Google
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -44,6 +45,7 @@ function App(): JSX.Element {
           <Route path="/register" element={<Register />} />
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/google" element={<Google />} />
         </Route>
         <Route path="/dashboard" element={<DashLayout />}>
           <Route index element={<Dashboard />} />
