@@ -7,7 +7,21 @@ const Exercise = require("../models/exercise.models");
 
 const findAllUser = async () => {
   const data = await Users.findAll({
-    attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+    attributes: [
+      "id",
+      "first_name",
+      "email",
+      "role",
+      "gender",
+      "age",
+      "height",
+      "weight",
+      "profile_completed",
+      "google_id",
+      ["photoUrl", "photo_url"],
+    ],
+    exclude: ["password", "createdAt", "updatedAt"],
+
     include: [
       {
         model: Routine,
@@ -35,9 +49,21 @@ const findUserById = async (id) => {
     where: {
       id,
     },
-    attributes: {
-      exclude: ["password", "createdAt", "updatedAt"],
-    },
+    attributes: [
+      "id",
+      "first_name",
+      "email",
+      "role",
+      "gender",
+      "age",
+      "height",
+      "weight",
+      "profile_completed",
+      "google_id",
+      ["photoUrl", "photo_url"],
+    ],
+    exclude: ["password", "createdAt", "updatedAt"],
+
     include: [
       {
         model: Routine,
