@@ -2,8 +2,8 @@ import { AiFillGithub } from 'react-icons/ai'
 
 const Footer = (): JSX.Element => {
   return (
-    <footer className="w-full border-t border-primary-400/30 text-primary-100 px-8 py-5 text-lg font-Barlow">
-      <div className="flex items-center justify-between">
+    <footer className="w-full border-t h-[5vh] border-primary-400/30 text-primary-100 px-8 text-lg font-Barlow">
+      <div className="flex h-full items-center justify-between">
         <p>
           &#169; {new Date().getFullYear()}
           <span>
@@ -21,9 +21,8 @@ const Footer = (): JSX.Element => {
         <a
           href="https://github.com/No-Country/c10-40-ft-mern"
           target="_blank"
-          className="text-3xl"
           rel="noreferrer">
-          <AiFillGithub />
+          <AiFillGithub size={30} />
         </a>
       </div>
     </footer>

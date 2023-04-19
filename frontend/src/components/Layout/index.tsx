@@ -6,7 +6,7 @@ const MainLayout = (): JSX.Element => {
   return (
     <>
       <NavbarResponsive />
-      <main className="w-full h-full flex flex-col items-center justify-center 2xl:min-h-screen">
+      <main className="w-full min-h-[88vh] flex flex-col items-center justify-center">
         <Outlet />
       </main>
       <Footer />

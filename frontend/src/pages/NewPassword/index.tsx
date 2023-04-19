@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 import type { INewPassword } from 'app/types'
 import { Formik, Field, Form } from 'formik'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { resetPassword } from 'utils'
 import { Tooltip } from 'components'
 import { useState } from 'react'
@@ -23,7 +23,8 @@ const SignUpSchema = Yup.object().shape({
 
 const INITIAL_STATE: INewPassword = {
   password: '',
-  repassword: ''
+  repassword: '',
+  token: ''
 }
 
 const NewPassword = (): JSX.Element => {
@@ -36,7 +37,7 @@ const NewPassword = (): JSX.Element => {
   const [isLoad, setisLoad] = useState(false)
   const [pwChanged, setPwChanged] = useState(false)
   const [errorPw, setErrorPw] = useState<string | null>(null)
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: resetPassword,
     onSuccess: () => {
       setisLoad(false)
@@ -51,17 +52,15 @@ const NewPassword = (): JSX.Element => {
     },
     onError: (error: Error) => {
       setisLoad(false)
-      toast.error(
-        'Ocurrio un error al intentar cambiar su Contraseña, intente nuevamente'
-      )
       setErrorPw(
         error.message || 'Ocurrio un error al intentar cambiar su Contraseña'
       )
+      toast.error(errorPw)
     }
   })
 
   return (
-    <div className="flex items-center justify-center h-screen w-full">
+    <div className="flex items-center justify-center h-[91vh] w-full">
       <div className="flex flex-col items-center bg-white rounded-xl mx-5 w-[80%] md:max-w-[50%] lg:max-w-[40%]">
         <div className="w-full pl-5 pt-5">
           <button
@@ -159,7 +158,6 @@ const NewPassword = (): JSX.Element => {
                   Ingresa
                 </Link>
               </div>
-              {pwChanged ? 'Cargando...' : 'Contraseña'}
             </Form>
           )}
         </Formik>

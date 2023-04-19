@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { FaHome } from 'react-icons/fa'
 const D = (): JSX.Element => {
   return (
-    <div className="flex flex-col p-5 h-[89vh] items-center justify-center max-w-md m-auto">
+    <div className="flex flex-col p-5 h-[91vh] items-center justify-center max-w-md m-auto">
       <img
         src="https://res.cloudinary.com/dnqmez68n/image/upload/v1680707354/404_pjo2fv.png"
         alt="gim-404"
