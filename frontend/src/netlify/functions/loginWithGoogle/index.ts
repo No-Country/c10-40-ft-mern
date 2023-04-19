@@ -1,27 +1,19 @@
 import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions'
 
+const apiUrl = process.env.API_BASE_URL
+const url =
+  process.env.NODE_ENV === 'production'
+    ? process.env.URL
+    : process.env.DEPLOY_URL
+
 const handler: Handler = async (
   event: HandlerEvent,
   _context: HandlerContext
 ) => {
-  const apiUrl = process.env.API_BASE_URL
   const referer = event.headers.referer
-  const clientUrl = process.env.DEPLOY_URL
-  const url = process.env.URL
-
-  console.log(url)
-  console.log(clientUrl)
-
   if (!apiUrl || !url) return { statusCode: 400 }
 
   if (referer === `${url}/login`) {
-    return {
-      statusCode: 200,
-      body: JSON.stringify(apiUrl)
-    }
-  }
-
-  if (clientUrl && referer === `${clientUrl}/login`) {
     return {
       statusCode: 200,
       body: JSON.stringify(apiUrl)
