@@ -4,6 +4,7 @@ import { type ILoginUser } from 'app/types'
 import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
 import { useUser } from 'hooks/useUser'
+import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { BsGoogle, BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { ImSpinner8 } from 'react-icons/im'
@@ -30,8 +31,8 @@ const Login = (): JSX.Element => {
   const { mutateAsync, isLoading, error } = useMutation({
     mutationFn: loginUser,
     onSuccess: ({ data }) => {
-      localStorage.setItem(JWT_TOKEN, data)
-      navigate('/dashboard', { state: { someData: data } })
+      Cookies.set(JWT_TOKEN, data)
+      navigate('/dashboard')
     }
   })
 
