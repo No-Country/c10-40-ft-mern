@@ -235,7 +235,14 @@ const patchMyProfile = (req, res) => {
   }
 
   usersControllers
-    .updateUser(id, { height, weight, age, gender, profileCompleted: true })
+    .updateUser(id, {
+      height,
+      weight,
+      age,
+      gender,
+
+      profileCompleted: true,
+    })
     .then(() => {
       responses.success({
         res,

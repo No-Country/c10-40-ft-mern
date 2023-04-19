@@ -33,7 +33,6 @@ const CalendarDay = ({
             {day.format('ddd').toUpperCase()}
           </div>
         )}
-
         <div
           className={`text-sm p-2 flex flex-col h-full text-center ${getCurrentDayClass()}`}>
           <p>{day.format('DD')}</p>

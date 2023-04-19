@@ -16,7 +16,23 @@ const findDayByName = async (day) => {
   return data;
 };
 
+const patchDayName = async (day, id) => {
+  const data = await Day.update(
+    {
+      day,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+
+  return data;
+};
+
 module.exports = {
   findAllDay,
   findDayByName,
+  patchDayName,
 };

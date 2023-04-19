@@ -5,7 +5,6 @@ import { useRoutine } from 'hooks/useRoutine'
 
 const Routine = (): JSX.Element => {
   const { data, isLoading, error } = useRoutine()
-  console.log(data)
   return (
     <>
       {isLoading && (
@@ -17,7 +16,6 @@ const Routine = (): JSX.Element => {
           <Loader type={'routine'} />
         </>
       )}
-
       {data?.[2].days.map((dia3: any) => {
         return dia3?.exercises.map((ex: any) => (
           <ExerciseCard key={ex.id} isLoading={isLoading} exercises={ex} />
