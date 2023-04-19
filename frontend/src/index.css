@@ -1,15 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Biryani:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .input {
+    @apply block px-4 py-3 lg:py-4 w-full text-opacity-80 text-sm lg:text-base bg-transparent rounded-lg appearance-none focus:outline-none focus:ring-0;
+  }
+
+  .label {
+    @apply absolute text-sm md:text-base duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] px-2 peer-focus:px-2 bg-[#121418] peer-focus:bg-[#121418] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 left-1;
+  }
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Work Sans, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #d3d3d3;
+  background-color: #121418;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,7 +37,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
 }

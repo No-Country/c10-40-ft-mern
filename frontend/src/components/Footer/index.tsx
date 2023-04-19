@@ -1,9 +1,30 @@
+import { AiFillGithub } from 'react-icons/ai'
+
 const Footer = (): JSX.Element => {
   return (
-    <footer className="flex items-center justify-center w-full bg-white bottom-0 h-[3vh]">
-      <p className="font-mono text-lg">
-        &#169; {new Date().getFullYear()}.<span> Workout Tracker</span>
-      </p>
+    <footer className="w-full border-t h-[5vh] border-primary-400/30 text-primary-100 px-8 text-lg font-Barlow">
+      <div className="flex h-full items-center justify-between">
+        <p>
+          &#169; {new Date().getFullYear()}
+          <span>
+            {' '}
+            Exercify for{' '}
+            <a
+              className="text-primary-400/80 hover:text-primary-400 ease-in duration-300"
+              href="https://www.nocountry.tech/"
+              target="_blank"
+              rel="noreferrer">
+              No Country
+            </a>
+          </span>
+        </p>
+        <a
+          href="https://github.com/No-Country/c10-40-ft-mern"
+          target="_blank"
+          rel="noreferrer">
+          <AiFillGithub size={30} />
+        </a>
+      </div>
     </footer>
   )
 }

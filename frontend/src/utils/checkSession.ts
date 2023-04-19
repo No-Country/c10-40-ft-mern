@@ -1,7 +1,8 @@
 import { JWT_TOKEN } from 'app/constants'
+import Cookies from 'js-cookie'
 
 export async function checkSession(): Promise<string> {
-  const userToken = localStorage.getItem(JWT_TOKEN)
+  const userToken = Cookies.get(JWT_TOKEN)
 
   if (userToken) {
     return userToken

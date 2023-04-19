@@ -19,12 +19,12 @@ const handler: Handler = async (
     throw new Error('prop missing')
   }
 
-  console.log(process.env.API_BASE_URL)
   try {
     const res = await server.post('/auth/login', {
       email,
       password
     })
+
     const token = await res.data
 
     return {

@@ -40,6 +40,12 @@ export const loginUser = async (user: ILoginUser): Promise<any> => {
   return loggedUser
 }
 
+export const googleCallback = async (): Promise<any> => {
+  const url = await server.get('/loginWithGoogle')
+
+  return url
+}
+
 export const forgotPw = async (user: IForgotPassword): Promise<any> => {
   const { email } = user
   if (email === '') {

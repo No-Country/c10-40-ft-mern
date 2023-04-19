@@ -4,12 +4,14 @@ import { type ILoginUser } from 'app/types'
 import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
 import { useUser } from 'hooks/useUser'
+import Cookies from 'js-cookie'
 import { useEffect } from 'react'
-import { BsGoogle, BsFillArrowLeftCircleFill } from 'react-icons/bs'
+import { BsGoogle } from 'react-icons/bs'
 import { ImSpinner8 } from 'react-icons/im'
 import { Link, useNavigate } from 'react-router-dom'
-import { loginUser } from 'utils'
+import { loginUser, googleCallback } from 'utils'
 import * as Yup from 'yup'
+import { Toaster, toast } from 'sonner'
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Required'),
@@ -30,28 +32,32 @@ const Login = (): JSX.Element => {
   const { mutateAsync, isLoading, error } = useMutation({
     mutationFn: loginUser,
     onSuccess: ({ data }) => {
-      localStorage.setItem(JWT_TOKEN, data)
-      navigate('/dashboard', { state: { someData: data } })
+      Cookies.set(JWT_TOKEN, data)
+      navigate('/dashboard')
+    },
+    onError: () => {
+      toast.error('Tu contraseña es incorrecta')
     }
   })
 
+  const handleUrl = (): void => {
+    googleCallback()
+      .then(({ data }: { data: string }) => {
+        if (data) {
+          window.location.href = `${data}/auth/google`
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
-    <div className="flex items-center justify-center h-[91vh] w-full">
-      <div className="flex flex-col items-center py-6 bg-white rounded-xl mx-5 w-[80%] md:max-w-[50%] lg:max-w-[40%]">
-        <div className="w-full pl-5 pt-5">
-          <button
-            onClick={() => {
-              navigate(-1)
-            }}>
-            <BsFillArrowLeftCircleFill size={30} />
-          </button>
+    <div className="flex items-center justify-center w-full font-WS px-6 py-10 2xl:py-16">
+      <div className="flex flex-col gap-2 border-2 border-primary-100 text-primary-50 items-center px-6 py-8 lg:px-8 lg:py-16 rounded-xl w-full md:min-w-[50%] 2xl:min-w-[35%] md:w-max">
+        <div className="uppercase font-Barlow font-bold text-2xl md:text-3xl lg:text-4xl">
+          Ingresá a tu cuenta
         </div>
-        <img
-          className="h-14 invert"
-          src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
-          alt="exercify-logo"
-        />
-        <div className="my-5">Ingresá a tu cuenta</div>
         <Formik
           initialValues={INITIAL_STATE}
           validationSchema={SignInSchema}
@@ -60,25 +66,29 @@ const Login = (): JSX.Element => {
             actions.resetForm({ values: INITIAL_STATE })
           }}>
           {({ errors, touched }) => (
-            <Form className="flex flex-col gap-4 text-center w-full p-8">
+            <Form className="flex flex-col gap-5 text-center w-full py-6 lg:py-10 lg:px-10">
               <div className="relative">
                 <Field
                   type="email"
                   name="email"
-                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                  className={`input focus:border-primary-100 peer ${
                     errors.email && touched.email
-                      ? 'border border-red-500'
-                      : 'border border-gray-300'
+                      ? 'border-2 border-secondary-400'
+                      : 'border-2 border-primary-100 text-primary-100'
                   }`}
                   placeholder=" "
                 />
                 <label
                   htmlFor="email"
-                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
-                  Ingrese su mail
+                  className={`label peer-focus:text-primary-100 ${
+                    errors.email && touched.email
+                      ? 'text-secondary-400'
+                      : 'text-primary-100/70'
+                  }`}>
+                  Ingrese su email
                 </label>
                 {errors.email && touched.email ? (
-                  <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
+                  <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
                     <Tooltip message={errors.email} />
                   </span>
                 ) : null}
@@ -87,20 +97,24 @@ const Login = (): JSX.Element => {
                 <Field
                   type="password"
                   name="password"
-                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                  className={`input focus:border-primary-100 peer ${
                     errors.password && touched.password
-                      ? 'border border-red-500'
-                      : 'border border-gray-300'
+                      ? 'border-2 border-secondary-400'
+                      : 'border-2 border-primary-100 text-primary-100'
                   }`}
                   placeholder=" "
                 />
                 <label
                   htmlFor="password"
-                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                  className={`label peer-focus:text-primary-100 ${
+                    errors.password && touched.password
+                      ? 'text-secondary-400'
+                      : 'text-primary-100/70'
+                  }`}>
                   Ingrese su contraseña
                 </label>
                 {errors.password && touched.password ? (
-                  <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
+                  <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
                     <Tooltip message={errors.password} />
                   </span>
                 ) : null}
@@ -108,34 +122,36 @@ const Login = (): JSX.Element => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex items-center justify-center uppercase bg-gray-300 hover:bg-gray-500 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
+                className="flex items-center justify-center uppercase font-Barlow font-semibold py-2.5 lg:py-3 text-lg lg:text-xl bg-primary-400/60 hover:bg-primary-400 hover:text-primary-bg ease-in-out duration-300 text-primary-bg rounded-md">
                 {isLoading ? (
                   <ImSpinner8 className="animate-spin" />
                 ) : (
                   'Ingresar'
                 )}
               </button>
-              {error ? <span>Error in the petition</span> : null}
+              <Link
+                to={'/olvide-password'}
+                className="text-sm lg:text-base text-primary-400/80 hover:text-primary-400 ease-in duration-300">
+                ¿Olvidaste tu contraseña?
+              </Link>
             </Form>
           )}
         </Formik>
-        <Link
-          to={'/olvide-password'}
-          className=" border-b-2 border-black hover:text-green-600 hover:border-green-600 hover:scale-105 ease-in duration-300">
-          ¿Olvidaste tu contraseña?
-        </Link>
-        <p className="mt-4">Ingresa con: </p>
-        <div className="my-4 border border-gray-600 p-4 rounded-lg hover:text-white hover:bg-gray-600 ease-in duration-200 cursor-pointer">
+        <button
+          onClick={handleUrl}
+          className="flex items-center gap-2 border border-primary-400/60 text-sm lg:text-base justify-center w-full lg:w-max py-2 md:py-3 lg:px-8 lg:py-4 rounded-lg hover:text-primary-100 hover:bg-primary-400/60 ease-in duration-200 cursor-pointer">
           <BsGoogle />
-        </div>
-        <div className=" flex items-center gap-2">
+          <span>Continuar con Google</span>
+        </button>
+        <div className="flex items-center justify-center text-sm lg:text-base pt-5 lg:pt-4 gap-2">
           <span>¿No tenés cuenta?</span>
           <Link
             to="/register"
-            className=" border-b-2 border-black hover:text-green-600 hover:border-green-600 hover:scale-105 ease-in duration-300">
+            className="text-primary-400/80 hover:text-primary-400 ease-in duration-300">
             Registrate
           </Link>
         </div>
+        <Toaster richColors />
       </div>
     </div>
   )
