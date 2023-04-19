@@ -18,7 +18,6 @@ const findAllUser = async () => {
       "weight",
       "profile_completed",
       "google_id",
-      ["photoUrl", "photo_url"],
     ],
 
     include: [
@@ -59,7 +58,6 @@ const findUserById = async (id) => {
       "weight",
       "profile_completed",
       "google_id",
-      ["photoUrl", "photo_url"],
     ],
 
     include: [
