@@ -13,7 +13,7 @@ const NavbarResponsive = (): JSX.Element => {
     isMenuOpen ? '' : 'hidden'
   }`
   return (
-    <nav className="w-full flex items-center justify-between flex-wrap p-6">
+    <nav className="w-full flex items-center justify-between flex-wrap p-6 font-Barlow">
       <div className="flex items-center flex-shrink-0 text-white">
         <Link to="/" className="font-semibold text-xl tracking-tight uppercase">
           <img
@@ -37,7 +37,7 @@ const NavbarResponsive = (): JSX.Element => {
         </button>
       </div>
       <div className={menuClasses}>
-        <div className="flex justify-center items-center gap-10 text-base md:text-center lg:flex-grow text-primary-100">
+        <div className="flex justify-center items-center gap-10 text-base lg:text-xl md:text-center lg:flex-grow text-primary-100">
           <Link
             to="#"
             className="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:text-primary-400 hover:border-primary-400 ease-in duration-300">
