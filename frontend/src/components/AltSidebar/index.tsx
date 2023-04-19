@@ -1,6 +1,6 @@
 import { JWT_TOKEN } from 'app/constants'
 import Cookies from 'js-cookie'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AiFillCloseCircle, AiOutlineMenu } from 'react-icons/ai'
 import {
   ImCalendar,
@@ -52,7 +52,7 @@ const AltSideBar = (): JSX.Element => {
       <div
         className={
           menu
-            ? 'fixed top-0 left-0 w-[300px] h-screen bg-[#1c212c] z-10 duration-300 pt-6'
+            ? 'fixed top-0 left-0 w-full sm:w-72 h-screen bg-[#1c212c] z-10 duration-300 pt-6'
             : 'fixed top-0 left-[-200%] w-[300px] h-screen bg-[#1c212c] z-10 duration-300'
         }>
         <AiFillCloseCircle
@@ -84,14 +84,14 @@ const AltSideBar = (): JSX.Element => {
                 <div
                   className={`${
                     location.pathname === '/dashboard'
-                      ? 'bg-green-600 translate-y-0  transition-all'
+                      ? 'bg-primary-400 translate-y-0  transition-all'
                       : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
               </div>
               <Link
                 to="/dashboard"
                 onClick={() => {
-                  setMenu(!menu)
+                  setMenu(false)
                 }}
                 className={`${
                   location.pathname === '/dashboard' ? 'bg-white/10' : ''
@@ -115,14 +115,14 @@ const AltSideBar = (): JSX.Element => {
                 <div
                   className={`${
                     location.pathname === '/dashboard/summary'
-                      ? 'bg-green-600 translate-y-0  transition-all'
+                      ? 'bg-primary-400 translate-y-0  transition-all'
                       : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
               </div>
               <Link
                 to="/dashboard/summary"
                 onClick={() => {
-                  setMenu(!menu)
+                  setMenu(false)
                 }}
                 className={`${
                   location.pathname === '/dashboard/summary'
@@ -150,14 +150,14 @@ const AltSideBar = (): JSX.Element => {
                 <div
                   className={`${
                     location.pathname === '/dashboard/stats'
-                      ? 'bg-green-600 translate-y-0  transition-all'
+                      ? 'bg-primary-400 translate-y-0  transition-all'
                       : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
               </div>
               <Link
                 to="/dashboard/stats"
                 onClick={() => {
-                  setMenu(!menu)
+                  setMenu(false)
                 }}
                 className={`${
                   location.pathname === '/dashboard/stats' ? 'bg-white/10' : ''
@@ -181,14 +181,14 @@ const AltSideBar = (): JSX.Element => {
                 <div
                   className={`${
                     location.pathname === '/dashboard/schedule'
-                      ? 'bg-green-600 translate-y-0  transition-all'
+                      ? 'bg-primary-400 translate-y-0  transition-all'
                       : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
               </div>
               <Link
                 to="/dashboard/schedule"
                 onClick={() => {
-                  setMenu(!menu)
+                  setMenu(false)
                 }}
                 className={`${
                   location.pathname === '/dashboard/schedule'
@@ -219,14 +219,14 @@ const AltSideBar = (): JSX.Element => {
                 <div
                   className={`${
                     location.pathname === '/dashboard/profile'
-                      ? 'bg-green-600 translate-y-0  transition-all'
+                      ? 'bg-primary-400 translate-y-0  transition-all'
                       : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
               </div>
               <Link
                 to="/dashboard/profile"
                 onClick={() => {
-                  setMenu(!menu)
+                  setMenu(false)
                 }}
                 className={`${
                   location.pathname === '/dashboard/profile'
@@ -252,14 +252,14 @@ const AltSideBar = (): JSX.Element => {
                 <div
                   className={`${
                     location.pathname === '/dashboard/notifications'
-                      ? 'bg-green-600 translate-y-0  transition-all'
+                      ? 'bg-primary-400 translate-y-0  transition-all'
                       : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
               </div>
               <Link
                 to="/dashboard/notifications"
                 onClick={() => {
-                  setMenu(!menu)
+                  setMenu(false)
                 }}
                 className={`${
                   location.pathname === '/dashboard/notifications'
@@ -285,14 +285,14 @@ const AltSideBar = (): JSX.Element => {
                 <div
                   className={`${
                     location.pathname === '/dashboard/config'
-                      ? 'bg-green-600 translate-y-0  transition-all'
+                      ? 'bg-primary-400 translate-y-0  transition-all'
                       : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
               </div>
               <Link
                 to="/dashboard/config"
                 onClick={() => {
-                  setMenu(!menu)
+                  setMenu(false)
                 }}
                 className={`${
                   location.pathname === '/dashboard/config' ? 'bg-white/10' : ''
@@ -313,7 +313,7 @@ const AltSideBar = (): JSX.Element => {
                 className={
                   'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
                 }>
-                <div className="absolute top-0 left-0 w-full h-full translate-y-full group-hover:translate-y-0  bg-red-600 transition-all duration-300"></div>
+                <div className="absolute top-0 left-0 w-full h-full translate-y-full group-hover:translate-y-0  bg-red-400/70 transition-all duration-300"></div>
               </div>
               <button
                 onClick={() => {
@@ -322,7 +322,7 @@ const AltSideBar = (): JSX.Element => {
                 }}
                 className={`${
                   location.pathname === '/dashboard/logout' ? 'bg-white/10' : ''
-                } text-white group-hover:bg-red-600/50 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
+                } text-white group-hover:bg-red-400/70 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
                 <svg
                   className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
                   viewBox="0 0 24 24">
@@ -335,10 +335,10 @@ const AltSideBar = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="mt-5">
+          <div className="mt-5 hover:scale-110 ease-in duration-200">
             <Link
               to="/dashboard/createrutine"
-              className="bg-[#0dff00] py-2 px-4 rounded-md font-semibold hover:scale-105 ease-in duration-200">
+              className="bg-primary-400 py-2 px-6  rounded-md font-semibold ease-in duration-200">
               Crear Rutina
             </Link>
           </div>
@@ -347,22 +347,41 @@ const AltSideBar = (): JSX.Element => {
             className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]"
             role="alert">
             <div className="flex items-center mb-3">
-              <span className="bg-orange-300 text-black text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+              <span className="bg-orange-100 text-orange-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
                 Pro
               </span>
+              <button
+                type="button"
+                className="ml-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 inline-flex h-6 w-6"
+                data-dismiss-target="#dropdown-cta"
+                aria-label="Close">
+                <span className="sr-only">Close</span>
+                <svg
+                  aria-hidden="true"
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    fillRule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"></path>
+                </svg>
+              </button>
             </div>
-            <p className="mb-3 text-sm text-green-500">
+            <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
               Si estás buscando llevar tu rutina de ejercicios al siguiente
               nivel y obtener resultados significativos en tu salud y estado
               físico, te recomiendo que te suscribas a Pro en{' '}
               <span className="text-white">Exerci</span>Fy
             </p>
-            <p className="text-sm text-green-600 underline font-medium uppercase text-center">
+            <p className="text-sm text-primary-400 underline font-medium uppercase text-center">
               Hacete PRO y ponete como un toro
             </p>
           </div>
         </aside>
       </div>
+
       {/* Side Menu en Large screen */}
       <aside className="md:w-72 h-full bg-[#1c212c] hidden lg:flex flex-col items-center mr-3 pt-5 pb-2 gap-5 ">
         {/* ACA EMPIEZA EL MENÚ! */}
@@ -384,14 +403,14 @@ const AltSideBar = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/dashboard'
-                    ? 'bg-red-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/dashboard"
               onClick={() => {
-                setMenu(!menu)
+                setMenu(false)
               }}
               className={`${
                 location.pathname === '/dashboard' ? 'bg-white/10' : ''
@@ -415,11 +434,14 @@ const AltSideBar = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/dashboard/summary'
-                    ? 'bg-red-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
+              onClick={() => {
+                setMenu(false)
+              }}
               to="/dashboard/summary"
               className={`${
                 location.pathname === '/dashboard/summary' ? 'bg-white/10' : ''
@@ -445,9 +467,9 @@ const AltSideBar = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/dashboard/stats'
-                    ? 'bg-red-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/dashboard/stats"
@@ -473,9 +495,9 @@ const AltSideBar = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/dashboard/schedule'
-                    ? 'bg-red-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/dashboard/schedule"
@@ -506,9 +528,9 @@ const AltSideBar = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/dashboard/profile'
-                    ? 'bg-red-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/dashboard/profile"
@@ -534,9 +556,9 @@ const AltSideBar = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/dashboard/notifications'
-                    ? 'bg-red-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/dashboard/notifications"
@@ -564,9 +586,9 @@ const AltSideBar = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/dashboard/config'
-                    ? 'bg-red-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-red-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/dashboard/config"
@@ -589,16 +611,16 @@ const AltSideBar = (): JSX.Element => {
               className={
                 'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
               }>
-              <div className="absolute top-0 left-0 w-full h-full translate-y-full group-hover:translate-y-0  bg-red-600 transition-all duration-300"></div>
+              <div className="absolute top-0 left-0 w-full h-full translate-y-full group-hover:translate-y-0  bg-red-400/70 transition-all duration-300"></div>
             </div>
             <button
               onClick={() => {
-                localStorage.removeItem(JWT_TOKEN)
-                window.location.reload()
+                Cookies.remove(JWT_TOKEN)
+                navigate('/login')
               }}
               className={`${
                 location.pathname === '/dashboard/logout' ? 'bg-white/10' : ''
-              } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
+              } text-white group-hover:bg-red-400/70 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
               <svg
                 className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
                 viewBox="0 0 24 24">
@@ -611,10 +633,10 @@ const AltSideBar = (): JSX.Element => {
           </div>
         </div>
 
-        <div className="mt-5">
+        <div className="mt-5 hover:scale-110 ease-in duration-200">
           <Link
             to="/dashboard/createrutine"
-            className="bg-[#0dff00] py-2 px-4 rounded-md font-semibold hover:scale-105 ease-in duration-200">
+            className="bg-primary-400 py-2 px-6  rounded-md font-semibold ease-in duration-200">
             Crear Rutina
           </Link>
         </div>
@@ -645,13 +667,13 @@ const AltSideBar = (): JSX.Element => {
               </svg>
             </button>
           </div>
-          <p className="mb-3 text-sm text-green-500">
+          <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
             Si estás buscando llevar tu rutina de ejercicios al siguiente nivel
             y obtener resultados significativos en tu salud y estado físico, te
             recomiendo que te suscribas a Pro en{' '}
             <span className="text-white">Exerci</span>Fy
           </p>
-          <p className="text-sm text-green-600 underline font-medium uppercase text-center">
+          <p className="text-sm text-primary-400 underline font-medium uppercase text-center">
             Hacete PRO y ponete como un toro
           </p>
         </div>

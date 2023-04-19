@@ -100,14 +100,17 @@ const NavbarResponsive = (): JSX.Element => {
           src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
           alt=""
         />
+
         <div className="flex flex-col font-Barlow uppercase font-medium text-2xl gap-6">
           <div className="w-full flex items-center justify-center group select-none">
+
             <Link
               to="/"
               onClick={() => {
                 setMenu(!menu)
               }}
               className={`${
+
                 location.pathname === '/'
                   ? 'text-primary-400'
                   : 'text-primary-100'
@@ -123,7 +126,9 @@ const NavbarResponsive = (): JSX.Element => {
               </span>
             </Link>
           </div>
+
           <div className="w-full flex items-center justify-center group select-none">
+
             <Link
               to="/about"
               onClick={() => {
@@ -145,7 +150,9 @@ const NavbarResponsive = (): JSX.Element => {
               </span>
             </Link>
           </div>
+
           <div className="w-full flex items-center justify-center group select-none">
+
             <Link
               to="/contact"
               onClick={() => {
@@ -160,6 +167,7 @@ const NavbarResponsive = (): JSX.Element => {
               <span
                 className={`${
                   location.pathname === '/contact'
+<
                     ? 'border-b-2 border-primary-400'
                     : 'border-b-2 border-transparent '
                 } flex items-center gap-2 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
