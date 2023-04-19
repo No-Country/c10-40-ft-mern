@@ -3,12 +3,12 @@ import * as Yup from 'yup'
 import type { INewPassword } from 'app/types'
 import { Formik, Field, Form } from 'formik'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { resetPassword } from 'utils'
 import { Tooltip } from 'components'
 import { useState } from 'react'
 import { ImSpinner8 } from 'react-icons/im'
-import { Toaster, toast } from 'sonner'
+import { sendNotification } from 'utils/sendNotification'
 
 /* TODO: add minimum length for password.
  * password: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
@@ -41,8 +41,9 @@ const NewPassword = (): JSX.Element => {
     onSuccess: () => {
       setisLoad(false)
       setErrorPw(null)
-      toast.success(
-        'Contraseña cambiada satisfactoriamente, espere un momento!'
+      sendNotification(
+        'Contraseña cambiada satisfactoriamente, espere un momento!',
+        'success'
       )
       setPwChanged(true)
       setTimeout(() => {
@@ -51,8 +52,9 @@ const NewPassword = (): JSX.Element => {
     },
     onError: (error: Error) => {
       setisLoad(false)
-      toast.error(
-        'Ocurrio un error al intentar cambiar su Contraseña, intente nuevamente'
+      sendNotification(
+        'Ocurrio un error al intentar cambiar su Contraseña, intente nuevamente',
+        'error'
       )
       setErrorPw(
         error.message || 'Ocurrio un error al intentar cambiar su Contraseña'
@@ -163,7 +165,6 @@ const NewPassword = (): JSX.Element => {
             </Form>
           )}
         </Formik>
-        <Toaster richColors />
       </div>
     </div>
   )

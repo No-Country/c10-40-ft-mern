@@ -11,7 +11,7 @@ import { ImSpinner8 } from 'react-icons/im'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginUser, googleCallback } from 'utils'
 import * as Yup from 'yup'
-import { Toaster, toast } from 'sonner'
+import { sendNotification } from 'utils/sendNotification'
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Required'),
@@ -36,7 +36,7 @@ const Login = (): JSX.Element => {
       navigate('/dashboard')
     },
     onError: () => {
-      toast.error('Tu contraseña es incorrecta')
+      sendNotification('Tu contraseña es incorrecta', 'error')
     }
   })
 
@@ -55,9 +55,9 @@ const Login = (): JSX.Element => {
   return (
     <div className="flex items-center justify-center w-full font-WS px-6 py-10 2xl:py-16">
       <div className="flex flex-col gap-2 border-2 border-primary-100 text-primary-50 items-center px-6 py-8 lg:px-8 lg:py-16 rounded-xl w-full md:min-w-[50%] 2xl:min-w-[35%] md:w-max">
-        <div className="uppercase font-Barlow font-bold text-2xl md:text-3xl lg:text-4xl">
+        <h1 className="uppercase font-Barlow font-bold text-2xl md:text-3xl lg:text-4xl">
           Ingresá a tu cuenta
-        </div>
+        </h1>
         <Formik
           initialValues={INITIAL_STATE}
           validationSchema={SignInSchema}
@@ -151,7 +151,6 @@ const Login = (): JSX.Element => {
             Registrate
           </Link>
         </div>
-        <Toaster richColors />
       </div>
     </div>
   )
