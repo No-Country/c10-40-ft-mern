@@ -9,18 +9,22 @@ interface ExerciseProps {
 const ExerciseCard: React.FC<ExerciseProps> = ({ exercises, isLoading }) => {
   const [isChecked, setIsChecked] = useState(false)
   // eslint-disable-next-line react/prop-types
-  const { series, bodyPart, repetitions, description } = exercises
+  const { series, bodyPart, repetitions, description, name } = exercises
 
   return (
     <>
       {isLoading ? (
         <Loader type={'routine'} />
       ) : (
-        <div className="flex flex-col justify-around p-6 border sm:w-1/3 lg:w-1/5 m-5 bg-[#1c212c] rounded-lg h-2/3">
+        <div className="flex flex-col justify-around p-6 border m-5 bg-[#1c212c] rounded-lg min-w-[288px] max-w-[320px]">
           <div className="flex justify-center">
             <img className="rounded-sm w-auto max-h-48" />
           </div>
           <div className="flex flex-col gap-5 pt-6">
+            <p className="text-white h-10">
+              Nombre del Ejercicio:{' '}
+              <span className="font-semibold">{name}</span>{' '}
+            </p>
             <p className="text-white h-10">
               Musculo trabajado:{' '}
               <span className="font-semibold">{bodyPart}</span>{' '}
