@@ -20,7 +20,6 @@ const findAllUser = async () => {
       "google_id",
       ["photoUrl", "photo_url"],
     ],
-    exclude: ["password", "createdAt", "updatedAt"],
 
     include: [
       {
@@ -62,7 +61,6 @@ const findUserById = async (id) => {
       "google_id",
       ["photoUrl", "photo_url"],
     ],
-    exclude: ["password", "createdAt", "updatedAt"],
 
     include: [
       {
