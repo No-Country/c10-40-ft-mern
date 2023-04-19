@@ -60,7 +60,7 @@ const NewPassword = (): JSX.Element => {
       setErrorPw(
         error.message || 'Ocurrio un error al intentar cambiar su Contraseña'
       )
-      toast.error(errorPw)
+      sendNotification(errorPw ?? '', 'error')
     }
   })
 
