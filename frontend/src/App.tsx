@@ -28,6 +28,7 @@ import {
   Google
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
+import { Toaster } from 'sonner'
 
 const queryClient = new QueryClient()
 
@@ -63,6 +64,7 @@ function App(): JSX.Element {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster richColors />
       {/* </MainLayout> */}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
