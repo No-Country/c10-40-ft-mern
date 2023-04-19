@@ -9,11 +9,12 @@ const handler: Handler = async (
   const clientUrl = process.env.DEPLOY_URL
   const url = process.env.URL
 
-  console.log(clientUrl, url)
+  console.log(url)
+  console.log(clientUrl)
 
-  if (!apiUrl) return { statusCode: 400 }
+  if (!apiUrl || !url) return { statusCode: 400 }
 
-  if (url && referer === `${url}/login`) {
+  if (referer === `${url}/login`) {
     return {
       statusCode: 200,
       body: JSON.stringify(apiUrl)
