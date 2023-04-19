@@ -9,7 +9,7 @@ const Dashboard = (): JSX.Element => {
   const { isAuthenticated, isLoading } = useAuth()
   const { data, isLoading: userIsLoading } = useUser()
 
-  if (isLoading) {
+  if (isLoading || userIsLoading) {
     return <Loader type="dash" />
   }
 
@@ -17,7 +17,7 @@ const Dashboard = (): JSX.Element => {
     navigate('/login')
   }
 
-  if (data && !data.profileCompleted && !userIsLoading) {
+  if (!data?.profile_completed) {
     navigate('/completeprofile')
   }
 
