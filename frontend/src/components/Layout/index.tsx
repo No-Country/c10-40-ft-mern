@@ -4,12 +4,13 @@ import { Outlet } from 'react-router-dom'
 
 const MainLayout = (): JSX.Element => {
   return (
-    <div>
+    <>
       <NavbarResponsive />
-      {/* <main>{children}</main> */}
-      <Outlet />
+      <main className="w-full h-full flex flex-col items-center justify-center 2xl:min-h-screen">
+        <Outlet />
+      </main>
       <Footer />
-    </div>
+    </>
   )
 }
 

@@ -13,8 +13,8 @@ const NavbarResponsive = (): JSX.Element => {
     isMenuOpen ? '' : 'hidden'
   }`
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-gray-700 p-6">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
+    <nav className="w-full flex items-center justify-between flex-wrap p-6">
+      <div className="flex items-center flex-shrink-0 text-white">
         <Link to="/" className="font-semibold text-xl tracking-tight uppercase">
           <img
             className="h-14 pl-10"
@@ -37,48 +37,45 @@ const NavbarResponsive = (): JSX.Element => {
         </button>
       </div>
       <div className={menuClasses}>
-        <div className="text-sm md:text-center lg:text-end lg:flex-grow text-white">
+        <div className="flex justify-center items-center gap-10 text-base md:text-center lg:flex-grow text-primary-100">
           <Link
             to="#"
-            className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
+            className="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:text-primary-400 hover:border-primary-400 ease-in duration-300">
             ¿Cómo funciona?
           </Link>
           <Link
             to="/about"
-            className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
-            Nosotros
+            className="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:text-primary-400 hover:border-primary-400 ease-in duration-300">
+            Sobre Nosotros
           </Link>
-          {data ? (
-            ''
-          ) : (
-            <Link
-              to="/register"
-              className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
-              Comenzá
-            </Link>
-          )}
-
           <Link
             to="/contact"
-            className="block mt-4 lg:inline-block lg:mt-0 p-2 border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
+            className="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:text-primary-400 hover:border-primary-400 ease-in duration-300">
             Contacto
           </Link>
         </div>
-        <div className="md:text-center lg:text-end ">
-          {!isLoading && data ? (
-            <Link
-              to={'/dashboard'}
-              className="block mt-4 lg:inline-block lg:mt-0 p-2 text-white border-b-2 border-transparent hover:text-green-500 hover:border-green-500 mr-4 ease-in duration-300">
-              {data.firstName.toUpperCase()}
-            </Link>
-          ) : (
+      </div>
+      <div className="font-Barlow md:text-center lg:text-end">
+        {!isLoading && data ? (
+          <Link
+            to={'/dashboard'}
+            className="block mt-4 lg:inline-block lg:mt-0 p-2 text-white border-b-2 border-transparent hover:text-primary-400 hover:border-primary-400 mr-4 ease-in duration-300">
+            {data.firstName.toUpperCase()}
+          </Link>
+        ) : (
+          <div className="flex items-center gap-1">
             <Link
               to="/login"
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white hover:scale-110 hover:bg-green-400 hover:text-black ease-in duration-200 mt-4 mr-4 lg:mt-0">
-              LOGIN
+              className="inline-block text-lg py-2 leading-none text-primary-100 hover:text-primary-400 ease-in duration-200 mt-4 mr-4 lg:mt-0">
+              Ingresar
             </Link>
-          )}
-        </div>
+            <Link
+              to="/register"
+              className="inline-block text-lg px-4 py-2 leading-none font-semibold uppercase bg-primary-400/60 hover:bg-primary-400 hover:text-primary-bg ease-in-out duration-300 text-primary-bg rounded-md mt-4 mr-4 lg:mt-0">
+              Registrate
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   )
