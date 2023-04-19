@@ -20,7 +20,7 @@ const CalendarDay = ({
   }
   function getCurrentDayClass(): string {
     return day.format('DD-MM-YY') === dayjs().format('DD-MM-YY')
-      ? 'bg-green-500/70 text-black w-full h-full font-bold'
+      ? 'bg-green-500/70 text-black mx-auto'
       : ''
   }
 
@@ -33,9 +33,80 @@ const CalendarDay = ({
             {day.format('ddd').toUpperCase()}
           </div>
         )}
+<<<<<<< HEAD
         <p className={`text-sm p-1 my-1 text-center ${getCurrentDayClass()}`}>
           {day.format('DD')}
         </p>
+=======
+
+        <div
+          className={`text-sm p-2 flex flex-col h-full text-center ${getCurrentDayClass()}`}>
+          <p>{day.format('DD')}</p>
+          {day.format('DD') === '04' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+          {day.format('DD') === '07' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+          {day.format('DD') === '10' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+          {day.format('DD') === '13' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+          {day.format('DD') === '18' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+          {day.format('DD') === '21' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+          {day.format('DD') === '24' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+          {day.format('DD') === '28' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+          {day.format('DD') === '30' && (
+            <Link
+              to="/dashboard/routine"
+              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
+              Rutina de Hoy
+            </Link>
+          )}
+        </div>
+>>>>>>> main
       </header>
     </div>
   )

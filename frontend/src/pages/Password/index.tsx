@@ -1,10 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
+import { TOKEN_PW } from 'app/constants'
 import { type IForgotPassword } from 'app/types'
 import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
+import { useState } from 'react'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { ImSpinner8 } from 'react-icons/im'
 import { Link, useNavigate } from 'react-router-dom'
+import { Toaster, toast } from 'sonner'
 import { forgotPw } from 'utils'
 import * as Yup from 'yup'
 
@@ -15,16 +18,21 @@ const SignInSchema = Yup.object().shape({
 const INITIAL_STATE: IForgotPassword = { email: '' }
 const Password = (): JSX.Element => {
   const navigate = useNavigate()
+  const [tokenSend, setTokenSend] = useState(false)
   const { mutateAsync, isLoading, error } = useMutation({
     mutationFn: forgotPw,
-    onSuccess: (email) => {
-      //   navigate('/dashboard')
-      console.log('email', email)
+    onSuccess: ({ data }) => {
+      localStorage.setItem(TOKEN_PW, data)
+      setTokenSend(true)
+      toast('Se han enviado instrucciones a su email!')
+      setTimeout(() => {
+        navigate('/')
+      }, 3000)
     }
   })
 
   return (
-    <div className="flex items-center justify-center h-screen w-full my-8">
+    <div className="flex items-center justify-center h-[91vh] w-full my-8">
       <div className="flex flex-col items-center py-6 bg-white rounded-xl mx-5 w-[80%] md:max-w-[50%] lg:max-w-[40%]">
         <div className="w-full pl-5 pt-5">
           <button
@@ -101,6 +109,7 @@ const Password = (): JSX.Element => {
           </Link>
         </div>
       </div>
+      <Toaster closeButton />
     </div>
   )
 }

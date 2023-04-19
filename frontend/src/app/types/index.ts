@@ -7,6 +7,7 @@ export interface IUser {
   age: number | null
   height: number | null
   weight: number | null
+  imagen: string
   profileCompleted?: boolean
   googleId?: string
 }
@@ -39,6 +40,12 @@ export interface IContact {
 
 export interface IForgotPassword {
   email: string
+}
+
+export interface INewPassword {
+  password: string
+  repassword: string
+  token: string
 }
 
 export interface IRoutine {

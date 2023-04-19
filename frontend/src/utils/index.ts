@@ -2,6 +2,7 @@ import type {
   IContact,
   IForgotPassword,
   ILoginUser,
+  INewPassword,
   INewUser,
   IUserProfile
 } from 'app/types'
@@ -39,17 +40,40 @@ export const loginUser = async (user: ILoginUser): Promise<any> => {
   return loggedUser
 }
 
+export const googleCallback = async (): Promise<any> => {
+  const url = await server.get('/loginWithGoogle')
+
+  return url
+}
+
 export const forgotPw = async (user: IForgotPassword): Promise<any> => {
   const { email } = user
-  console.log('hi', email)
   if (email === '') {
     throw new Error(`${email} missing`)
   }
   const forgotPassword = await server.put('/forgotPw', user).catch((error) => {
     console.log(error)
   })
-
+  console.log(forgotPassword)
   return forgotPassword
+}
+
+export const resetPassword = async (user: INewPassword): Promise<any> => {
+  const { password } = user
+  const tok = localStorage.getItem('PwToken')
+  localStorage.removeItem('PwToken')
+  if (password === '') {
+    throw new Error(`${password} missing`)
+  }
+  const newPw = await server
+    .put('/newPassword', { password, tok })
+    .catch((error) => {
+      console.log(error)
+      throw new Error(
+        'No se pudo cambiar la contraseña. Por favor, inténtelo de nuevo más tarde.'
+      )
+    })
+  return newPw
 }
 
 export const sendEmail = async (data: IContact): Promise<any> => {

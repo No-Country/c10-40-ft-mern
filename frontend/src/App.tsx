@@ -23,9 +23,12 @@ import {
   CreateRutine,
   NotFound,
   Profile,
-  Password
+  Password,
+  NewPassword,
+  Google
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
+import { Toaster } from 'sonner'
 
 const queryClient = new QueryClient()
 
@@ -39,9 +42,11 @@ function App(): JSX.Element {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/olvide-password" element={<Password />} />
+          <Route path="/reset-password" element={<NewPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/google" element={<Google />} />
         </Route>
         <Route path="/dashboard" element={<DashLayout />}>
           <Route index element={<Dashboard />} />
@@ -59,6 +64,7 @@ function App(): JSX.Element {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster richColors />
       {/* </MainLayout> */}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
