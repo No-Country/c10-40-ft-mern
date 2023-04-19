@@ -7,10 +7,13 @@ const handler: Handler = async (
   const apiUrl = process.env.API_BASE_URL
   const referer = event.headers.referer
   const clientUrl = process.env.DEPLOY_URL
+  const url = process.env.URL
 
-  if (!apiUrl || !clientUrl) return { statusCode: 400 }
+  console.log(clientUrl, url)
 
-  if (referer === `${clientUrl}/login` && apiUrl) {
+  if (!apiUrl || !url) return { statusCode: 400 }
+
+  if (referer === `${url}/login` && apiUrl) {
     return {
       statusCode: 200,
       body: JSON.stringify(apiUrl)
