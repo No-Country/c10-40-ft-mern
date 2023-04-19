@@ -11,18 +11,25 @@ const handler: Handler = async (
 
   console.log(clientUrl, url)
 
-  if (!apiUrl || !url) return { statusCode: 400 }
+  if (!apiUrl) return { statusCode: 400 }
 
-  if (referer === `${url}/login` && apiUrl) {
+  if (url && referer === `${url}/login`) {
     return {
       statusCode: 200,
       body: JSON.stringify(apiUrl)
     }
-  } else {
+  }
+
+  if (clientUrl && referer === `${clientUrl}/login`) {
     return {
-      statusCode: 401,
-      body: JSON.stringify({ message: 'Not authorized' })
+      statusCode: 200,
+      body: JSON.stringify(apiUrl)
     }
+  }
+
+  return {
+    statusCode: 401,
+    body: JSON.stringify({ message: 'Not authorized' })
   }
 }
 
