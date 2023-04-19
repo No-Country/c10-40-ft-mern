@@ -223,9 +223,9 @@ const patchMyUser = (req, res) => {
 
 const patchMyProfile = (req, res) => {
   const { id } = req.user;
-  const { weight, height, age, gender } = req.body;
+  const { weight, height, age, gender, photo_url } = req.body;
 
-  if (!weight || !height || !age || !gender) {
+  if (!weight || !height || !age || !gender || photo_url) {
     responses.error({
       res,
       status: 400,
@@ -235,7 +235,14 @@ const patchMyProfile = (req, res) => {
   }
 
   usersControllers
-    .updateUser(id, { height, weight, age, gender, profileCompleted: true })
+    .updateUser(id, {
+      height,
+      weight,
+      age,
+      gender,
+      photo_url,
+      profileCompleted: true,
+    })
     .then(() => {
       responses.success({
         res,
