@@ -52,10 +52,6 @@ const User = db.define("pruebarda", {
     type: DataTypes.STRING,
     defaultValue: null,
   },
-  photoUrl: {
-    type: DataTypes.STRING,
-    defaultValue: null,
-  },
 });
 
 module.exports = User;

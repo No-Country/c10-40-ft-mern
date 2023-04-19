@@ -223,9 +223,9 @@ const patchMyUser = (req, res) => {
 
 const patchMyProfile = (req, res) => {
   const { id } = req.user;
-  const { weight, height, age, gender, photo_url } = req.body;
+  const { weight, height, age, gender } = req.body;
 
-  if (!weight || !height || !age || !gender || photo_url) {
+  if (!weight || !height || !age || !gender) {
     responses.error({
       res,
       status: 400,
@@ -240,7 +240,7 @@ const patchMyProfile = (req, res) => {
       weight,
       age,
       gender,
-      photo_url,
+
       profileCompleted: true,
     })
     .then(() => {

@@ -22,11 +22,11 @@ const users = [
 
 // Sample data for Day model
 const days = [
-  { day: "monday" },
-  { day: "tuesday" },
-  { day: "wednesday" },
-  { day: "thursday" },
-  { day: "friday" },
+  { day: "Lunes" },
+  { day: "Martes" },
+  { day: "Miercoles" },
+  { day: "Jueves" },
+  { day: "Viernes" },
 ];
 
 // Sample data for Ejercicio model
