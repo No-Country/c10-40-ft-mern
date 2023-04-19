@@ -1,4 +1,5 @@
 import { JWT_TOKEN } from 'app/constants'
+import Cookies from 'js-cookie'
 import { useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import {
@@ -10,9 +11,10 @@ import {
   ImStatsBars,
   ImUnlocked
 } from 'react-icons/im'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const AltSideBar = (): JSX.Element => {
+  const navigate = useNavigate()
   const [menu, setMenu] = useState(false)
 
   return (
@@ -282,8 +284,8 @@ const AltSideBar = (): JSX.Element => {
               </div>
               <button
                 onClick={() => {
-                  localStorage.removeItem(JWT_TOKEN)
-                  window.location.reload()
+                  Cookies.remove(JWT_TOKEN)
+                  navigate('/login')
                 }}
                 className={`${
                   location.pathname === '/dashboard/logout' ? 'bg-white/10' : ''
