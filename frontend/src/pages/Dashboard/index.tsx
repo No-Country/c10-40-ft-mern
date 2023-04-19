@@ -1,6 +1,7 @@
 import { Dash, Loader } from 'components'
 import { useAuth } from 'hooks/useAuth'
 import { useUser } from 'hooks/useUser'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Dashboard = (): JSX.Element => {
@@ -8,6 +9,12 @@ const Dashboard = (): JSX.Element => {
 
   const { isAuthenticated, isLoading } = useAuth()
   const { data, isLoading: userIsLoading } = useUser()
+
+  useEffect(() => {
+    if (!userIsLoading && data && !data.profile_completed) {
+      navigate('/completeprofile')
+    }
+  }, [data, userIsLoading, navigate])
 
   if (isLoading || userIsLoading) {
     return <Loader type="dash" />
@@ -17,9 +24,9 @@ const Dashboard = (): JSX.Element => {
     navigate('/login')
   }
 
-  if (!data?.profile_completed) {
-    navigate('/completeprofile')
-  }
+  // if (!userIsLoading && !data?.profile_completed) {
+  //   navigate('/completeprofile')
+  // }
 
   return <Dash />
 }
