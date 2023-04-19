@@ -60,7 +60,7 @@ const NewPassword = (): JSX.Element => {
   })
 
   return (
-    <div className="flex items-center justify-center h-screen w-full">
+    <div className="flex items-center justify-center h-[91vh] w-full">
       <div className="flex flex-col items-center bg-white rounded-xl mx-5 w-[80%] md:max-w-[50%] lg:max-w-[40%]">
         <div className="w-full pl-5 pt-5">
           <button

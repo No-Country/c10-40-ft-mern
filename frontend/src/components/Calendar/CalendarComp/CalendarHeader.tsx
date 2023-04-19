@@ -29,13 +29,6 @@ const CalendarHeader = ({
 
   return (
     <header className="px-16 py-2 flex flex-col items-center bg-[#1c212c]">
-      <div className="flex w-full items-center justify-center md:justify-start">
-        <img
-          className="h-14 "
-          src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
-          alt=""
-        />
-      </div>
       <div className="flex-1 flex justify-center">
         <p className="text-2xl text-white font-bold">
           {formatDate.toUpperCase()}

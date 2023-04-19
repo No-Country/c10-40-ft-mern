@@ -7,6 +7,7 @@ export interface IUser {
   age: number | null
   height: number | null
   weight: number | null
+  imagen: string
   profileCompleted?: boolean
   googleId?: string
 }

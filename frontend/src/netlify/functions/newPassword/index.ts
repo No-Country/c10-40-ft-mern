@@ -12,24 +12,24 @@ const handler: Handler = async (
   if (!event.body) {
     return { statusCode: 400 }
   }
-  const { password, tok }: { password: string; tok: string } = JSON.parse(
+  const { password, token }: { password: string; token: string } = JSON.parse(
     event.body
   )
-  console.log(password, tok)
+  console.log(password, token)
 
-  if (!tok || !password) {
+  if (!token || !password) {
     throw new Error('prop missing')
   }
 
   try {
-    const res = await server.put(`/auth/new-password?token=${tok}`, {
-      newPassword: password
+    const res = await server.put(`/auth/new-password/?token=${token}`, {
+      password
     })
-    const token = await res.data
+    const response = await res.data
 
     return {
       statusCode: 200,
-      body: JSON.stringify(token.data)
+      body: JSON.stringify(response.data)
     }
   } catch (error) {
     return {

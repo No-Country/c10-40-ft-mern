@@ -3,7 +3,7 @@ import { FaHome } from 'react-icons/fa'
 
 const C = (): JSX.Element => {
   return (
-    <div className="flex flex-col p-5 h-[89vh] items-center justify-center max-w-md m-auto">
+    <div className="flex flex-col p-5 h-[91vh] items-center justify-center max-w-md m-auto">
       <p className="bg-gradient-to-br from-[#fb8500] to-black/80 text-transparent bg-clip-text font-bold text-5xl text-center">
         404 Page not Found
       </p>
