@@ -38,6 +38,7 @@ const Contact = (): JSX.Element => {
       )
     }
   })
+  
   return (
     <div className="flex items-center justify-center w-full font-WS px-6 py-10 2xl:py-16">
       <div className="flex flex-col gap-2 border-2 border-primary-100 text-primary-50 items-center px-6 py-8 lg:px-8 lg:py-16 rounded-xl w-full md:min-w-[50%] 2xl:min-w-[35%] md:w-max">

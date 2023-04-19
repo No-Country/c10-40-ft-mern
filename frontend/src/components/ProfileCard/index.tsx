@@ -6,7 +6,13 @@ import { useLocation } from 'react-router-dom'
 
 const ProfileCard = (): JSX.Element => {
   const { data, isLoading } = useUser()
-  console.log(data)
+  let imgSrc
+  if (data?.gender === 'Masculino') {
+    imgSrc =
+      'https://cdn3.iconfinder.com/data/icons/my-business-icons/200/BusinessIcon-03-512.png'
+  } else if (data?.gender === 'Femenino') {
+    imgSrc = 'https://www.mediawind.be/images/tete_4.png'
+  }
   // TODO: profile picture
   return (
     <div className=" max-w-screen-lg w-full h-full lg:mx-auto flex-1 ">
@@ -15,11 +21,11 @@ const ProfileCard = (): JSX.Element => {
         {isLoading ? (
           <Loader type={'card'} />
         ) : (
-          <div className="w-full md:w-1/2 bg-white rounded-lg h-full md:h-1/2 flex flex-col justify-center items-center gap-5">
+          <div className="w-full md:w-1/2 bg-white mt-12 rounded-lg h-full md:h-1/2 flex flex-col justify-center items-center gap-5">
             <img
-              src="https://th.bing.com/th/id/R.cd11bbffa7058e1e537714db756fd292?rik=S4NZoZfqS3il%2bQ&pid=ImgRaw&r=0"
+              src={data?.imagen ?? imgSrc}
               alt="profile"
-              className="w-auto max-h-40 p-4"
+              className="w-auto max-h-56 p-4"
             />
             <div className="flex flex-col  gap-4">
               <p>
@@ -36,7 +42,7 @@ const ProfileCard = (): JSX.Element => {
         {isLoading ? (
           <Loader type={'text'} />
         ) : (
-          <div className="w-full md:w-1/2 flex flex-col gap-5 h-full md:justify-center">
+          <div className="w-full md:w-1/2 flex flex-col gap-5 h-full md:justify-center ">
             <div className="bg-white rounded-lg md:h-1/3 my-10">
               <div className="flex flex-col justify-center h-full text-sm p-5">
                 <div className="flex justify-between items-center border-b-2">

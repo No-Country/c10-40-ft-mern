@@ -15,7 +15,7 @@ const Dash = (): JSX.Element => {
     }
   }, [data, userQuery.isLoading, navigate])
   return (
-    <div className="max-w-[1024px] lg:w-[1024px] my-10 mx-10  flex flex-col justify-around md:grid md:grid-cols-2 md:grid-rows-3 gap-5 md:mx-5 xl:mx-auto">
+    <div className="max-w-[1024px] lg:w-[1024px] my-20 mx-10 h-full lg:h-auto flex flex-col justify-around md:grid md:grid-cols-2 md:grid-rows-3 gap-5 md:mx-auto xl:mx-auto">
       <Link
         to={'/dashboard/schedule'}
         className="flex justify-center h-2/5 md:h-full items-center cursor-pointer hover:scale-95 ease-in duration-200 rounded-md bg-[linear-gradient(to_right_top,rgba(0,0,0,0.4),rgba(0,0,0,0.3)),url('https://res.cloudinary.com/dnqmez68n/image/upload/v1681153869/calendario_nejz0y.jpg')] md:bg-center bg-cover">
