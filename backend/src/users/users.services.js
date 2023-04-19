@@ -155,6 +155,7 @@ const deleteUser = (req, res) => {
 
 const getMyUser = (req, res) => {
   const { id } = req.user;
+
   usersControllers
     .findUserById(id)
     .then((data) => {
@@ -252,6 +253,61 @@ const patchMyProfile = (req, res) => {
     });
 };
 
+const getMyRoutines = (req, res) => {
+  const { id } = req.user;
+
+  usersControllers
+    .findAllRoutinesByUser(id)
+    .then((data) => {
+      responses.success({
+        res,
+        status: 200,
+        message: "All Routines for this user",
+        data,
+      });
+    })
+    .catch((err) => {
+      responses.error({
+        res,
+        status: 400,
+        message: "Something bad getting the current user",
+        data: err,
+      });
+    });
+};
+
+const getRoutineByUser = (req, res) => {
+  const { id } = req.user;
+  const { routineId } = req.params;
+
+  usersControllers
+    .findRoutineByUser(id, routineId)
+    .then((data) => {
+      if (data) {
+        responses.success({
+          res,
+          status: 200,
+          message: "This is your current routine",
+          data,
+        });
+      } else {
+        responses.error({
+          res,
+          status: 404,
+          message: "The routine with that id was not found",
+        });
+      }
+    })
+    .catch((err) => {
+      responses.error({
+        res,
+        status: 400,
+        message: "Something bad getting the current routine",
+        data: err,
+      });
+    });
+};
+
 const addRoutine = (req, res) => {
   const { id } = req.user;
   const { routineId } = req.params;
@@ -264,7 +320,6 @@ const addRoutine = (req, res) => {
     });
     return;
   }
-
   usersControllers
     .addUserRoutine(id, routineId)
     .then(() => {
@@ -272,6 +327,37 @@ const addRoutine = (req, res) => {
         res,
         status: 200,
         message: "Your routine has been added succesfully!",
+      });
+    })
+    .catch((err) => {
+      responses.error({
+        res,
+        status: 400,
+        message: "Something bad happen",
+        data: err,
+      });
+    });
+};
+
+const deleteRoutine = (req, res) => {
+  const { id } = req.user;
+  const { routineId } = req.params;
+
+  if (!routineId) {
+    responses.error({
+      res,
+      status: 400,
+      message: "All fields are required",
+    });
+    return;
+  }
+  usersControllers
+    .removeUserRoutine(id, routineId)
+    .then(() => {
+      responses.success({
+        res,
+        status: 200,
+        message: "Your routine has been deleted succesfully!",
       });
     })
     .catch((err) => {
@@ -295,4 +381,7 @@ module.exports = {
   patchMyUser,
   patchMyProfile,
   addRoutine,
+  deleteRoutine,
+  getMyRoutines,
+  getRoutineByUser,
 };

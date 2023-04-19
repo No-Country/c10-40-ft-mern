@@ -2,6 +2,7 @@ import type {
   IContact,
   IForgotPassword,
   ILoginUser,
+  INewPassword,
   INewUser,
   IUserProfile
 } from 'app/types'
@@ -41,15 +42,28 @@ export const loginUser = async (user: ILoginUser): Promise<any> => {
 
 export const forgotPw = async (user: IForgotPassword): Promise<any> => {
   const { email } = user
-  console.log('hi', email)
   if (email === '') {
     throw new Error(`${email} missing`)
   }
   const forgotPassword = await server.put('/forgotPw', user).catch((error) => {
     console.log(error)
   })
-
+  console.log(forgotPassword)
   return forgotPassword
+}
+
+export const resetPassword = async (user: INewPassword): Promise<any> => {
+  const { password } = user
+  const tok = localStorage.getItem('PwToken')
+  if (password === '') {
+    throw new Error(`${password} missing`)
+  }
+  const resetPassword = await server
+    .put('/newPassword', { password, tok })
+    .catch((error) => {
+      console.log(error)
+    })
+  return resetPassword
 }
 
 export const sendEmail = async (data: IContact): Promise<any> => {

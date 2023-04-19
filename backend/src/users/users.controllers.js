@@ -118,6 +118,85 @@ const addUserRoutine = async (userId, routineId) => {
   return data;
 };
 
+const removeUserRoutine = async (userId, routineId) => {
+  const routine = await Routine.findOne({ where: { id: routineId } });
+  const user = await Users.findOne({ where: { id: userId } });
+
+  const data = await user.removeRoutine(routine);
+
+  return data;
+};
+
+const findAllRoutinesByUser = async (userId) => {
+  const user = await Users.findOne({
+    where: {
+      id: userId,
+    },
+    include: [
+      {
+        model: Routine,
+        attributes: { exclude: ["user_routine"] },
+        through: { attributes: [] },
+        include: [
+          {
+            model: Day,
+            attributes: { exclude: ["day_routine"] },
+            through: { attributes: [] },
+            include: [
+              {
+                model: Exercise,
+                attributes: { exclude: ["exercise_day"] },
+                through: { attributes: [] },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  });
+
+  return user.routines;
+};
+
+const findRoutineByUser = async (userId, routineId) => {
+  const userData = await Users.findOne({
+    where: {
+      id: userId,
+    },
+    include: [
+      {
+        model: Routine,
+        attributes: { exclude: ["user_routine"] },
+        through: { attributes: [] },
+        include: [
+          {
+            model: Day,
+            attributes: { exclude: ["day_routine"] },
+            through: { attributes: [] },
+            include: [
+              {
+                model: Exercise,
+                attributes: { exclude: ["exercise_day"] },
+                through: { attributes: [] },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  });
+  console.log(`routineId DE PARAMETRO ES: ${routineId}`);
+  const routine = userData.routines.find(
+    (routine) => routine.id === Number(routineId)
+  );
+
+  if (!routine) {
+    throw new Error("Routine not found");
+  }
+
+  return routine;
+};
+
 module.exports = {
   findAllUser,
   findUserById,
@@ -126,4 +205,7 @@ module.exports = {
   updateUser,
   deleteUser,
   addUserRoutine,
+  removeUserRoutine,
+  findAllRoutinesByUser,
+  findRoutineByUser,
 };

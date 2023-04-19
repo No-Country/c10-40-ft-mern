@@ -1,5 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import {
+  ExerciseCard,
+  RoutineDays2,
+  RoutineDays3,
+  RoutineDays5
+} from 'components'
 import DashLayout from 'components/DashLayout'
 import MainLayout from 'components/Layout'
 import {
@@ -17,7 +23,8 @@ import {
   CreateRutine,
   NotFound,
   Profile,
-  Password
+  Password,
+  NewPassword
 } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -33,6 +40,7 @@ function App(): JSX.Element {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/olvide-password" element={<Password />} />
+          <Route path="/reset-password" element={<NewPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/contact" element={<Contact />} />
@@ -45,6 +53,10 @@ function App(): JSX.Element {
           <Route path="/dashboard/routine" element={<Routine />} />
           <Route path="/dashboard/createrutine" element={<CreateRutine />} />
           <Route path="/dashboard/profile" element={<Profile />} />
+          <Route path="/dashboard/routinedays2" element={<RoutineDays2 />} />
+          <Route path="/dashboard/routinedays3" element={<RoutineDays3 />} />
+          <Route path="/dashboard/routinedays5" element={<RoutineDays5 />} />
+          {/* <Route path="/dashboard/exercisecard" element={<ExerciseCard />} /> */}
         </Route>
 
         <Route path="*" element={<NotFound />} />
