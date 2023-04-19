@@ -1,16 +1,16 @@
 import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions'
 
+const apiUrl = process.env.API_BASE_URL
+
 const handler: Handler = async (
   event: HandlerEvent,
   _context: HandlerContext
 ) => {
-  const apiUrl = process.env.API_BASE_URL
   const referer = event.headers.referer
-  const clientUrl = process.env.DEPLOY_URL
+  const regex = /\b(?:exercify|netlify|localhost)\b/
 
-  if (!apiUrl || !clientUrl) return { statusCode: 400 }
-
-  if (referer === `${clientUrl}/login` && apiUrl) {
+  if (!apiUrl) return { statusCode: 400 }
+  if (referer && regex.test(referer)) {
     return {
       statusCode: 200,
       body: JSON.stringify(apiUrl)
