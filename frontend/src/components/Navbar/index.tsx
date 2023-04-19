@@ -17,6 +17,7 @@ const NavbarResponsive = (): JSX.Element => {
 
   return (
     <nav className="w-full h-[7vh] flex items-center justify-between p-6">
+
       <div className="flex items-center flex-shrink-0 text-white">
         <Link to="/" className="font-semibold text-xl tracking-tight uppercase">
           <img
