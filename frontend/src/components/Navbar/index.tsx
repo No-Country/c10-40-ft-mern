@@ -111,9 +111,9 @@ const NavbarResponsive = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/about'
-                    ? 'bg-green-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/about"
@@ -124,7 +124,7 @@ const NavbarResponsive = (): JSX.Element => {
                 location.pathname === '/about' ? 'bg-white/10' : ''
               } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex justify-center md:justify-start items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
               <svg
-                className="group-hover:animate-bounce h-5 w-5 group-hover:fill-green-600 dark:fill-gray-600  transition-colors duration-200"
+                className="group-hover:animate-bounce h-5 w-5 group-hover:fill-primary-400 dark:fill-gray-600  transition-colors duration-200"
                 viewBox="0 0 24 24">
                 <BsBook size={24} />
               </svg>
@@ -143,9 +143,9 @@ const NavbarResponsive = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/about'
-                    ? 'bg-green-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/about"
@@ -173,9 +173,9 @@ const NavbarResponsive = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/register'
-                    ? 'bg-green-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/register"
@@ -203,9 +203,9 @@ const NavbarResponsive = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/contact'
-                    ? 'bg-green-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             <Link
               to="/contact"
@@ -233,9 +233,9 @@ const NavbarResponsive = (): JSX.Element => {
               <div
                 className={`${
                   location.pathname === '/login'
-                    ? 'bg-green-600 translate-y-0  transition-all'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
                     : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-green-600 transition-all duration-300`}></div>
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
             </div>
             {!isLoading && data ? (
               <Link
