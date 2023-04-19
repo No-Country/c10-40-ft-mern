@@ -1,32 +1,25 @@
 import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions'
 
 const apiUrl = process.env.API_BASE_URL
-const deployUrl = process.env.DEPLOY_URL
-const url =
-  process.env.NODE_ENV === 'development'
-    ? process.env.DEPLOY_PRIME_URL
-    : process.env.URL
 
 const handler: Handler = async (
   event: HandlerEvent,
   _context: HandlerContext
 ) => {
   const referer = event.headers.referer
-  if (!apiUrl || !url) return { statusCode: 400 }
+  const regex = /\b(?:exercify|netlify|localhost)\b/
 
-  if (
-    referer === `${url}/login` ||
-    (deployUrl && referer === `${deployUrl}/login`)
-  ) {
+  if (!apiUrl) return { statusCode: 400 }
+  if (referer && regex.test(referer)) {
     return {
       statusCode: 200,
       body: JSON.stringify(apiUrl)
     }
-  }
-
-  return {
-    statusCode: 401,
-    body: JSON.stringify({ message: 'Not authorized' })
+  } else {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ message: 'Not authorized' })
+    }
   }
 }
 
