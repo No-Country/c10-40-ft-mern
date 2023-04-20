@@ -55,6 +55,16 @@ const getUserById = (req, res) => {
 
 const postNewUser = (req, res) => {
   const userObj = req.body;
+  const existingUser = usersControllers.findUserByEmail(userObj.email);
+
+  if (existingUser) {
+    responses.error({
+      status: 400,
+      message: `User with email: ${userObj.email} already exists`,
+      res,
+    });
+  }
+
   usersControllers
     .createNewUser(userObj)
     .then((data) => {
