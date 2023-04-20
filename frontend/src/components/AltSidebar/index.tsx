@@ -1,6 +1,6 @@
 import { JWT_TOKEN } from 'app/constants'
 import Cookies from 'js-cookie'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {
   AiFillCloseCircle,
   AiOutlineMenu,
@@ -112,72 +112,7 @@ const AltSideBar = (): JSX.Element => {
               </Link>
               <div />
             </div>
-            {/* resumen */}
-            <div className="w-full flex items-center gap-x-1.5 group select-none">
-              <div
-                className={
-                  'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
-                }>
-                <div
-                  className={`${
-                    location.pathname === '/dashboard/summary'
-                      ? 'bg-primary-400 translate-y-0  transition-all'
-                      : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
-              </div>
-              <Link
-                to="/dashboard/summary"
-                onClick={() => {
-                  setMenu(false)
-                }}
-                className={`${
-                  location.pathname === '/dashboard/summary'
-                    ? 'bg-white/10'
-                    : ''
-                } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
-                <svg
-                  className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
-                  viewBox="0 0 24 24">
-                  <ImHourGlass size={20} />
-                </svg>
 
-                <span className="font-QuicksandMedium">
-                  Resumen semanal de ejercicios
-                </span>
-              </Link>
-              <div />
-            </div>
-            {/* stats */}
-            <div className="w-full flex items-center gap-x-1.5 group select-none">
-              <div
-                className={
-                  'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
-                }>
-                <div
-                  className={`${
-                    location.pathname === '/dashboard/stats'
-                      ? 'bg-primary-400 translate-y-0  transition-all'
-                      : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
-              </div>
-              <Link
-                to="/dashboard/stats"
-                onClick={() => {
-                  setMenu(false)
-                }}
-                className={`${
-                  location.pathname === '/dashboard/stats' ? 'bg-white/10' : ''
-                } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
-                <svg
-                  className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
-                  viewBox="0 0 24 24">
-                  <ImStatsBars size={20} />
-                </svg>
-
-                <span className="font-QuicksandMedium">Estadisticas</span>
-              </Link>
-              <div />
-            </div>
             {/* schedule */}
             <div className="w-full flex items-center gap-x-1.5 group select-none">
               <div
@@ -249,70 +184,7 @@ const AltSideBar = (): JSX.Element => {
               </Link>
               <div />
             </div>
-            {/* notifications */}
-            <div className="w-full flex items-center gap-x-1.5 group select-none">
-              <div
-                className={
-                  'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
-                }>
-                <div
-                  className={`${
-                    location.pathname === '/dashboard/notifications'
-                      ? 'bg-primary-400 translate-y-0  transition-all'
-                      : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
-              </div>
-              <Link
-                to="/dashboard/notifications"
-                onClick={() => {
-                  setMenu(false)
-                }}
-                className={`${
-                  location.pathname === '/dashboard/notifications'
-                    ? 'bg-white/10'
-                    : ''
-                } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
-                <svg
-                  className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
-                  viewBox="0 0 24 24">
-                  <ImNotification size={20} />
-                </svg>
 
-                <span className="font-QuicksandMedium">Notificaciones</span>
-              </Link>
-              <div />
-            </div>
-            {/* configuration */}
-            <div className="w-full flex items-center gap-x-1.5 group select-none">
-              <div
-                className={
-                  'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
-                }>
-                <div
-                  className={`${
-                    location.pathname === '/dashboard/config'
-                      ? 'bg-primary-400 translate-y-0  transition-all'
-                      : 'translate-y-full group-hover:translate-y-0'
-                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
-              </div>
-              <Link
-                to="/dashboard/config"
-                onClick={() => {
-                  setMenu(false)
-                }}
-                className={`${
-                  location.pathname === '/dashboard/config' ? 'bg-white/10' : ''
-                } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
-                <svg
-                  className="group-hover:animate-bounce h-5 w-5 group-hover:fill-green-600 dark:fill-green-600  transition-colors duration-200"
-                  viewBox="0 0 24 24">
-                  <ImProfile size={20} />
-                </svg>
-
-                <span className="font-QuicksandMedium">Configuracion</span>
-              </Link>
-              <div />
-            </div>
             {/* logout */}
             <div className="w-full flex items-center gap-x-1.5 group select-none">
               <div
@@ -343,6 +215,9 @@ const AltSideBar = (): JSX.Element => {
 
           <div className="mt-5 hover:scale-110 ease-in duration-200">
             <Link
+              onClick={() => {
+                setMenu(false)
+              }}
               to="/dashboard/createrutine"
               className="bg-primary-400 py-2 px-6  rounded-md font-semibold ease-in duration-200">
               Crear Rutina

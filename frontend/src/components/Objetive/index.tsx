@@ -1,6 +1,6 @@
 const Objetives = (): JSX.Element => {
   return (
-    <div className="py-10 flex flex-col items-center justify-center gap-12 px-5 bg-primary-400/60">
+    <div className="py-10 flex flex-col items-center justify-center px-5 lg:gap-12 bg-primary-400/60">
       <p className="text-slate-950 text-2xl font-bold border-b border-black pb-2 hover:scale-110 duration-200 ease-in cursor-default">
         {' '}
         Nuestro objetivo
