@@ -139,15 +139,11 @@ const ProfileCard = (): JSX.Element => {
       </div>
       <div className="hidden h-1/4 mx-auto md:flex md:flex-col w-full">
         <p className="mx-auto text-primary-400 font-Barlow font-bold text-xl md:text-2xl  my-6 pb-2 duration-200 ease-in cursor-default">
-          Aprovecha ahora
+          Recorda
         </p>
         <div className="h-full w-3/4 mx-auto cursor-pointer hover:scale-95 ease-in duration-200 text-white rounded-xl bg-[linear-gradient(to_right_top,rgba(0,0,0,0.4),rgba(0,0,0,0.3)),url('https://res.cloudinary.com/dnqmez68n/image/upload/v1682018542/fotos%20banner/banner1_ur1k7f.jpg')] bg-center bg-cover">
           <div className="flex flex-col justify-around mx-5 h-full">
             <p className="font-bold text-3xl text-primary-500 ">{motivacion}</p>
-            {/* <p className="mx-auto text-2xl text-primary-500 font-semibold">
-              Ahorra hasta un <span className="font-bold text-white">50%</span>{' '}
-              con nuestro plan <span className="font-bold text-white">PRO</span>
-            </p> */}
           </div>
         </div>
       </div>

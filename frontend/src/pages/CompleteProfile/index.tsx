@@ -16,20 +16,23 @@ const CompleteProfile = (): JSX.Element => {
     age: Yup.number()
       .min(10, 'You must have 10 years')
       .max(100, 'Too old, not recommended')
+      .nullable()
       .required('Age required'),
     weight: Yup.number()
       .min(30, 'Weight must be more than 30kg')
+      .nullable()
       .required('Weight required'),
     height: Yup.number()
+      .nullable()
       .min(70, 'Greater than 70cm')
       .required('Height required')
   })
 
   const INITIAL_STATE: IUserProfile = {
     gender: '',
-    age: 0,
-    weight: 0,
-    height: 0
+    age: null,
+    weight: null,
+    height: null
   }
 
   const navigate = useNavigate()
@@ -66,15 +69,29 @@ const CompleteProfile = (): JSX.Element => {
                 <Field
                   as="select"
                   name="gender"
-                  className={`input focus:border-primary-100 peer ${
+                  className={`input focus:border-white peer ${
                     errors.gender && touched.gender
                       ? 'border-2 border-secondary-400'
                       : 'border-2 border-primary-100 text-primary-100'
                   }`}>
-                  <option value="">Seleccione su género</option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Femenino">Femenino</option>
-                  <option value="Otro">Otro</option>
+                  <option
+                    className="bg-white font-WS text-black disabled"
+                    value="">
+                    Seleccione su género
+                  </option>
+                  <option
+                    className="bg-white font-WS text-black"
+                    value="Masculino">
+                    Masculino
+                  </option>
+                  <option
+                    className="bg-white font-WS text-black"
+                    value="Femenino">
+                    Femenino
+                  </option>
+                  <option className="bg-white font-WS text-black" value="Otro">
+                    Otro
+                  </option>
                 </Field>
                 {errors.gender && touched.gender ? (
                   <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
@@ -104,7 +121,7 @@ const CompleteProfile = (): JSX.Element => {
                 </label>
                 {errors.age && touched.age ? (
                   <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
-                    <Tooltip message={errors.age} />
+                    <Tooltip message="Edad Requerida" />
                   </span>
                 ) : null}
               </div>
@@ -130,7 +147,7 @@ const CompleteProfile = (): JSX.Element => {
                 </label>
                 {errors.weight && errors.weight ? (
                   <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
-                    <Tooltip message={errors.weight} />
+                    <Tooltip message="Peso Requerido" />
                   </span>
                 ) : null}
               </div>
@@ -156,7 +173,7 @@ const CompleteProfile = (): JSX.Element => {
                 </label>
                 {errors.height && errors.height ? (
                   <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
-                    <Tooltip message={errors.height} />
+                    <Tooltip message="Altura Requerida" />
                   </span>
                 ) : null}
               </div>

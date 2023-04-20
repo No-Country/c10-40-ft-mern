@@ -6,16 +6,8 @@ import {
   AiOutlineMenu,
   AiOutlineCloseCircle
 } from 'react-icons/ai'
-import {
-  ImCalendar,
-  ImHome3,
-  ImHourGlass,
-  ImNotification,
-  ImProfile,
-  ImStatsBars,
-  ImUnlocked
-} from 'react-icons/im'
-import { Link, useNavigate } from 'react-router-dom'
+import { ImCalendar, ImHome3, ImProfile, ImUnlocked } from 'react-icons/im'
+import { Link, useNavigate, redirect } from 'react-router-dom'
 
 const AltSideBar = (): JSX.Element => {
   const navigate = useNavigate()
@@ -73,6 +65,9 @@ const AltSideBar = (): JSX.Element => {
           className="h-14 mx-auto my-3"
           src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
           alt=""
+          onClick={() => {
+            navigate('/')
+          }}
         />
 
         <aside className="md:w-72 bg-[#1c212c] flex flex-col items-center pt-5 pb-2 gap-5">
@@ -227,7 +222,7 @@ const AltSideBar = (): JSX.Element => {
             <div className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]">
               <div className="flex items-center mb-3 justify-between">
                 <span className="bg-orange-100 text-orange-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
-                  Pro
+                  + Info
                 </span>
                 <button
                   onClick={() => {
@@ -241,13 +236,17 @@ const AltSideBar = (): JSX.Element => {
               </div>
               <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
                 Si estás buscando llevar tu rutina de ejercicios al siguiente
-                nivel y obtener resultados significativos en tu salud y estado
-                físico, te recomiendo que te suscribas a Pro en{' '}
-                <span className="text-white">Exerci</span>Fy
+                nivel, queres estar enterado de las ultimas noticias del mundo
+                fitness, desde <span className="text-white">Exerci</span>Fy te
+                recomendamos gymcompany
               </p>
-              <p className="text-sm text-primary-400 underline font-medium uppercase text-center cursor-pointer">
-                Hacete PRO y ponete como un toro
-              </p>
+              <a
+                href="https://www.gymcompany.es/blog/"
+                target="_blank"
+                className="text-sm text-primary-400 underline underline-offset-4 font-medium uppercase text-center cursor-pointer"
+                rel="noreferrer">
+                Clickea aca para las ultimas noticias de entrenamiento
+              </a>
             </div>
           )}
         </aside>
@@ -261,6 +260,9 @@ const AltSideBar = (): JSX.Element => {
             className="h-14 mx-auto my-3"
             src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
             alt=""
+            onClick={() => {
+              navigate('/')
+            }}
           />
           <div className="font-QuicksandMedium pl-4 text-gray-400/60 text-[11px] uppercase">
             Menu
@@ -395,7 +397,7 @@ const AltSideBar = (): JSX.Element => {
           <div className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]">
             <div className="flex items-center mb-3 justify-between">
               <span className="bg-orange-100 text-orange-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
-                Pro
+                + Info
               </span>
               <button
                 onClick={() => {
@@ -409,13 +411,17 @@ const AltSideBar = (): JSX.Element => {
             </div>
             <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
               Si estás buscando llevar tu rutina de ejercicios al siguiente
-              nivel y obtener resultados significativos en tu salud y estado
-              físico, te recomiendo que te suscribas a Pro en{' '}
-              <span className="text-white">Exerci</span>Fy
+              nivel, queres estar enterado de las ultimas noticias del mundo
+              fitness, desde <span className="text-white">Exerci</span>Fy te
+              recomendamos gymcompany
             </p>
-            <p className="text-sm text-primary-400 underline font-medium uppercase text-center cursor-pointer">
-              Hacete PRO y ponete como un toro
-            </p>
+            <a
+              href="https://www.gymcompany.es/blog/"
+              target="_blank"
+              className="text-sm text-primary-400 underline underline-offset-4 font-medium uppercase text-center cursor-pointer"
+              rel="noreferrer">
+              Clickea aca para las ultimas noticias de entrenamiento
+            </a>
           </div>
         )}
       </aside>
