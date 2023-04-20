@@ -1,4 +1,4 @@
-import { Carousel, Objetive } from 'components'
+import { Carousel, Charac, Compromise, Objetive } from 'components'
 import { Link } from 'react-router-dom'
 
 const Home = (): JSX.Element => {
@@ -24,11 +24,14 @@ const Home = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <div>
-        <Objetive />
-      </div>
+      <Objetive />
+
+      <Charac />
+
+      <Compromise />
+
       <div className="w-full flex flex-col items-center justify-center my-10">
-        <p className="text-primary-400 text-2xl font-bold border-b border-primary-400 pb-2">
+        <p className="text-primary-400 text-2xl font-bold border-b border-primary-400 pb-2 hover:scale-110 duration-200 ease-in cursor-default">
           Nuestros clientes nos recomiendan
         </p>
         <Carousel />
