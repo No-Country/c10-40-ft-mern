@@ -31,6 +31,10 @@ const Exercise = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     isCompleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

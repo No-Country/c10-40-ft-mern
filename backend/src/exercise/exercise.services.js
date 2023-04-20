@@ -76,6 +76,8 @@ const postNewExercise = (req, res) => {
           series: "int",
           repetitions: "string",
           description: "string",
+          bodyPart: "string",
+          imageUrl: "string",
         },
       });
     });

@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const db = require("../utils/database");
 
 const Day = db.define(
-  "day",
+  "days",
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     day: {
