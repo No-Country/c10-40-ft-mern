@@ -34,7 +34,6 @@ async function createRoutine(name, days, weekDays) {
       day: weekDays,
     },
   });
-
   await routine.addDays(daysCreated);
 
   daysCreated.forEach(async (day) => {

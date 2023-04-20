@@ -22,6 +22,7 @@ const createNewExercise = async (userObj) => {
     repetitions: userObj.repetitions,
     description: userObj.description,
     bodyPart: userObj.bodyPart,
+    imageUrl: userObj.imageUrl,
   });
 
   return data;

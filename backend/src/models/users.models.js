@@ -3,8 +3,7 @@ const { DataTypes } = require("sequelize");
 const db = require("../utils/database");
 
 //Este es el modelo
-const User = db.define("pruebarda", {
-  //NO CAMBIAR EL NOMBRE MIENTRAS ESTEMOS EN DEVELOPER. CAMBIARLO CUANDO ESTE EN PRODUCCION
+const User = db.define("users", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -49,6 +48,10 @@ const User = db.define("pruebarda", {
     defaultValue: false,
   },
   googleId: {
+    type: DataTypes.STRING,
+    defaultValue: null,
+  },
+  imageUrl: {
     type: DataTypes.STRING,
     defaultValue: null,
   },

@@ -7,37 +7,25 @@ const Exercise = require("../models/exercise.models");
 
 const findAllUser = async () => {
   const data = await Users.findAll({
-    attributes: [
-      "id",
-      "first_name",
-      "email",
-      "role",
-      "gender",
-      "age",
-      "height",
-      "weight",
-      "profile_completed",
-      "google_id",
-    ],
-
-    include: [
-      {
-        model: Routine,
-        attributes: { exclude: ["user_routine"] },
-        include: [
-          {
-            model: Day,
-            attributes: { exclude: ["day_routine"] },
-            include: [
-              {
-                model: Exercise,
-                attributes: { exclude: ["exercise_day"] },
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+    // include: [
+    //   {
+    //     model: Routine,
+    //     attributes: { exclude: ["user_routine"] },
+    //     include: [
+    //       {
+    //         model: Day,
+    //         attributes: { exclude: ["day_routine"] },
+    //         include: [
+    //           {
+    //             model: Exercise,
+    //             attributes: { exclude: ["exercise_day"] },
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // ],
   });
   return data;
 };
@@ -47,19 +35,9 @@ const findUserById = async (id) => {
     where: {
       id,
     },
-    attributes: [
-      "id",
-      "first_name",
-      "email",
-      "role",
-      "gender",
-      "age",
-      "height",
-      "weight",
-      "profile_completed",
-      "google_id",
-    ],
-
+    attributes: {
+      exclude: ["password", "createdAt", "updatedAt"],
+    },
     include: [
       {
         model: Routine,
