@@ -1,6 +1,7 @@
 import { JWT_TOKEN } from 'app/constants'
 import Cookies from 'js-cookie'
 import { Link, useNavigate } from 'react-router-dom'
+
 const Dash = (): JSX.Element => {
   const navigate = useNavigate()
   return (

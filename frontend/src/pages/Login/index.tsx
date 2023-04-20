@@ -3,7 +3,6 @@ import { JWT_TOKEN } from 'app/constants'
 import { type ILoginUser } from 'app/types'
 import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
-import { useUser } from 'hooks/useUser'
 import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { BsGoogle } from 'react-icons/bs'
@@ -12,22 +11,25 @@ import { Link, useNavigate } from 'react-router-dom'
 import { loginUser, googleCallback } from 'utils'
 import * as Yup from 'yup'
 import { sendNotification } from 'utils/sendNotification'
+import { useAuth } from 'hooks/useAuth'
 
 const SignInSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid Email').required('Required'),
-  password: Yup.string().required('Required')
+  email: Yup.string().email('Email invalido').required('Requerido'),
+  password: Yup.string().required('Requerido')
 })
 
 const INITIAL_STATE: ILoginUser = { email: '', password: '' }
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate()
-  const userQuery = useUser()
+
+  const { isAuthenticated, isLoading: authIsLoading } = useAuth()
+
   useEffect(() => {
-    if (!userQuery.isLoading && userQuery.data) {
+    if (!authIsLoading && isAuthenticated) {
       navigate('/dashboard')
     }
-  }, [userQuery.data])
+  }, [authIsLoading, isAuthenticated])
 
   const { mutateAsync, isLoading, error } = useMutation({
     mutationFn: loginUser,
@@ -53,7 +55,7 @@ const Login = (): JSX.Element => {
   }
 
   return (
-    <div className="flex items-center justify-center w-full font-WS px-6 py-10 2xl:py-16">
+    <div className="flex items-center justify-center w-full font-WS px-6 py-8 2xl:py-16">
       <div className="flex flex-col gap-2 border-2 border-primary-100 text-primary-50 items-center px-6 py-8 lg:px-8 lg:py-16 rounded-xl w-full md:min-w-[50%] 2xl:min-w-[35%] md:w-max">
         <h1 className="uppercase font-Barlow font-bold text-2xl md:text-3xl lg:text-4xl">
           Ingresá a tu cuenta
