@@ -293,67 +293,7 @@ const AltSideBar = (): JSX.Element => {
             </Link>
             <div />
           </div>
-          {/* resumen */}
-          <div className="w-full flex items-center gap-x-1.5 group select-none">
-            <div
-              className={
-                'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
-              }>
-              <div
-                className={`${
-                  location.pathname === '/dashboard/summary'
-                    ? 'bg-primary-400 translate-y-0  transition-all'
-                    : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
-            </div>
-            <Link
-              onClick={() => {
-                setMenu(false)
-              }}
-              to="/dashboard/summary"
-              className={`${
-                location.pathname === '/dashboard/summary' ? 'bg-white/10' : ''
-              } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
-              <svg
-                className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
-                viewBox="0 0 24 24">
-                <ImHourGlass size={20} />
-              </svg>
 
-              <span className="font-QuicksandMedium">
-                Resumen semanal de ejercicios
-              </span>
-            </Link>
-            <div />
-          </div>
-          {/* stats */}
-          <div className="w-full flex items-center gap-x-1.5 group select-none">
-            <div
-              className={
-                'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
-              }>
-              <div
-                className={`${
-                  location.pathname === '/dashboard/stats'
-                    ? 'bg-primary-400 translate-y-0  transition-all'
-                    : 'translate-y-full group-hover:translate-y-0'
-                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
-            </div>
-            <Link
-              to="/dashboard/stats"
-              className={`${
-                location.pathname === '/dashboard/stats' ? 'bg-white/10' : ''
-              } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
-              <svg
-                className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
-                viewBox="0 0 24 24">
-                <ImStatsBars size={20} />
-              </svg>
-
-              <span className="font-QuicksandMedium">Estadisticas</span>
-            </Link>
-            <div />
-          </div>
           {/* schedule */}
           <div className="w-full flex items-center gap-x-1.5 group select-none">
             <div
@@ -451,43 +391,33 @@ const AltSideBar = (): JSX.Element => {
             Crear Rutina
           </Link>
         </div>
-        <div
-          id="dropdown-cta"
-          className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]"
-          role="alert">
-          <div className="flex items-center mb-3">
-            <span className="bg-orange-100 text-orange-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
-              Pro
-            </span>
-            <button
-              type="button"
-              className="ml-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 inline-flex h-6 w-6"
-              data-dismiss-target="#dropdown-cta"
-              aria-label="Close">
-              <span className="sr-only">Close</span>
-              <svg
-                aria-hidden="true"
-                className="w-4 h-4"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"></path>
-              </svg>
-            </button>
+        {ad && (
+          <div className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]">
+            <div className="flex items-center mb-3 justify-between">
+              <span className="bg-orange-100 text-orange-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                Pro
+              </span>
+              <button
+                onClick={() => {
+                  setAd(false)
+                }}>
+                <AiOutlineCloseCircle
+                  className="text-red-400 cursor-pointer"
+                  size={20}
+                />
+              </button>
+            </div>
+            <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
+              Si estás buscando llevar tu rutina de ejercicios al siguiente
+              nivel y obtener resultados significativos en tu salud y estado
+              físico, te recomiendo que te suscribas a Pro en{' '}
+              <span className="text-white">Exerci</span>Fy
+            </p>
+            <p className="text-sm text-primary-400 underline font-medium uppercase text-center cursor-pointer">
+              Hacete PRO y ponete como un toro
+            </p>
           </div>
-          <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
-            Si estás buscando llevar tu rutina de ejercicios al siguiente nivel
-            y obtener resultados significativos en tu salud y estado físico, te
-            recomiendo que te suscribas a Pro en{' '}
-            <span className="text-white">Exerci</span>Fy
-          </p>
-          <p className="text-sm text-primary-400 underline font-medium uppercase text-center">
-            Hacete PRO y ponete como un toro
-          </p>
-        </div>
+        )}
       </aside>
     </div>
   )
