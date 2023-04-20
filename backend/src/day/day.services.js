@@ -50,7 +50,39 @@ const getDayByName = (req, res) => {
     });
 };
 
+const patchDayName = (req, res) => {
+  const { day } = req.body;
+  const { id } = req.params;
+  DayControllers.patchDayName(day, id)
+    .then((data) => {
+      console.log(data);
+      if (data[0] === 1) {
+        responses.success({
+          status: 200,
+          data,
+          message: `Updated ${day}`,
+          res,
+        });
+      } else {
+        responses.error({
+          status: 404,
+          message: `${day}, not found`,
+          res,
+        });
+      }
+    })
+    .catch((err) => {
+      responses.error({
+        status: 400,
+        data: err,
+        message: "Something bad getting the day patch",
+        res,
+      });
+    });
+};
+
 module.exports = {
   getAllDays,
   getDayByName,
+  patchDayName,
 };
