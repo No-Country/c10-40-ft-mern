@@ -10,7 +10,6 @@ import { BsBook, BsPerson } from 'react-icons/bs'
 const NavbarResponsive = (): JSX.Element => {
   const { data, error, isLoading } = useUser()
   const [menu, setMenu] = useState(false)
-
   return (
     <nav className="w-full flex items-center justify-between px-8 py-5 md:px-10">
       <div className="flex items-center flex-shrink-0 text-white">
@@ -24,7 +23,7 @@ const NavbarResponsive = (): JSX.Element => {
       </div>
       <div className="hidden lg:flex justify-center items-center gap-8 text-base md:text-center lg:flex-grow text-primary-100">
         <Link
-          to="#"
+          to="/"
           className="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:text-primary-400 hover:border-primary-400 ease-in duration-300">
           ¿Cómo funciona?
         </Link>
