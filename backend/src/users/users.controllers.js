@@ -154,6 +154,12 @@ const findAllRoutinesByUser = async (userId) => {
       },
     ],
   });
+  //Ordenar las rutinas por días de la semana
+  user.routines.forEach((routine) => {
+    routine.days.sort((day1, day2) => {
+      return day1.id - day2.id;
+    });
+  });
 
   return user.routines;
 };

@@ -16,6 +16,11 @@ const findAllRoutines = async () => {
     },
   });
 
+  // Ordenar los días dentro de cada rutina
+  data.forEach((routine) => {
+    routine.days.sort((day1, day2) => day1.id - day2.id);
+  });
+
   return data;
 };
 
