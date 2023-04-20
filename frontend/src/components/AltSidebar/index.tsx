@@ -1,7 +1,11 @@
 import { JWT_TOKEN } from 'app/constants'
 import Cookies from 'js-cookie'
 import { useState, useEffect } from 'react'
-import { AiFillCloseCircle, AiOutlineMenu } from 'react-icons/ai'
+import {
+  AiFillCloseCircle,
+  AiOutlineMenu,
+  AiOutlineCloseCircle
+} from 'react-icons/ai'
 import {
   ImCalendar,
   ImHome3,
@@ -16,10 +20,11 @@ import { Link, useNavigate } from 'react-router-dom'
 const AltSideBar = (): JSX.Element => {
   const navigate = useNavigate()
   const [menu, setMenu] = useState(false)
+  const [ad, setAd] = useState(true)
 
   return (
     <div>
-      <div className="w-full h-16 flex items-center justify-between cursor-pointer lg:hidden bg-slate-800">
+      <div className="w-full h-16 flex items-center justify-between cursor-pointer lg:hidden">
         <div>
           <img
             onClick={() => {
@@ -30,10 +35,10 @@ const AltSideBar = (): JSX.Element => {
             alt=""
           />
         </div>
-        <div className="mx-5 border border-green-300 p-1 rounded-lg hover:scale-95 ease-in-out duration-300">
+        <div className="border border-primary-400 p-2 cursor-pointer rounded-lg hover:scale-95 ease-in-out duration-300 lg:hidden mr-5">
           <AiOutlineMenu
             size={26}
-            color="white"
+            className="text-primary-400"
             onClick={() => {
               setMenu(!menu)
             }}
@@ -61,6 +66,7 @@ const AltSideBar = (): JSX.Element => {
           className="absolute right-4 top-6 cursor-pointer"
           onClick={() => {
             setMenu(!menu)
+            setAd(true)
           }}
         />
         <img
@@ -342,43 +348,33 @@ const AltSideBar = (): JSX.Element => {
               Crear Rutina
             </Link>
           </div>
-          <div
-            id="dropdown-cta"
-            className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]"
-            role="alert">
-            <div className="flex items-center mb-3">
-              <span className="bg-orange-100 text-orange-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
-                Pro
-              </span>
-              <button
-                type="button"
-                className="ml-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 inline-flex h-6 w-6"
-                data-dismiss-target="#dropdown-cta"
-                aria-label="Close">
-                <span className="sr-only">Close</span>
-                <svg
-                  aria-hidden="true"
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"></path>
-                </svg>
-              </button>
+          {ad && (
+            <div className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]">
+              <div className="flex items-center mb-3 justify-between">
+                <span className="bg-orange-100 text-orange-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                  Pro
+                </span>
+                <button
+                  onClick={() => {
+                    setAd(false)
+                  }}>
+                  <AiOutlineCloseCircle
+                    className="text-red-400 cursor-pointer"
+                    size={20}
+                  />
+                </button>
+              </div>
+              <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
+                Si estás buscando llevar tu rutina de ejercicios al siguiente
+                nivel y obtener resultados significativos en tu salud y estado
+                físico, te recomiendo que te suscribas a Pro en{' '}
+                <span className="text-white">Exerci</span>Fy
+              </p>
+              <p className="text-sm text-primary-400 underline font-medium uppercase text-center cursor-pointer">
+                Hacete PRO y ponete como un toro
+              </p>
             </div>
-            <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
-              Si estás buscando llevar tu rutina de ejercicios al siguiente
-              nivel y obtener resultados significativos en tu salud y estado
-              físico, te recomiendo que te suscribas a Pro en{' '}
-              <span className="text-white">Exerci</span>Fy
-            </p>
-            <p className="text-sm text-primary-400 underline font-medium uppercase text-center">
-              Hacete PRO y ponete como un toro
-            </p>
-          </div>
+          )}
         </aside>
       </div>
 
