@@ -11,23 +11,20 @@ const Dashboard = (): JSX.Element => {
   const { data, isLoading: userIsLoading } = useUser()
 
   useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navigate('/login')
+    }
+  }, [isLoading, isAuthenticated])
+
+  useEffect(() => {
     if (!userIsLoading && data && !data.profile_completed) {
       navigate('/completeprofile')
     }
-  }, [data, userIsLoading, navigate])
+  }, [data, userIsLoading, navigate, isAuthenticated])
 
   if (isLoading || userIsLoading) {
     return <Loader type="dash" />
   }
-
-  if (!isAuthenticated) {
-    navigate('/login')
-  }
-
-  // if (!userIsLoading && !data?.profile_completed) {
-  //   navigate('/completeprofile')
-  // }
-
   return <Dash />
 }
 export default Dashboard

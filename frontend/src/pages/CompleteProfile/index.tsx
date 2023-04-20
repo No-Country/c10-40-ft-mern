@@ -3,12 +3,16 @@ import { type IUserProfile } from 'app/types'
 import * as Yup from 'yup'
 import { Tooltip } from 'components'
 import { Field, Form, Formik } from 'formik'
-import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { completeProfile } from 'utils'
+import { ImSpinner8 } from 'react-icons/im'
+import { sendNotification } from 'utils/sendNotification'
 
 const CompleteProfile = (): JSX.Element => {
   const CompleteSchema = Yup.object().shape({
+    gender: Yup.string()
+      .required('Required')
+      .oneOf(['Masculino', 'Femenino', 'Otro']),
     age: Yup.number()
       .min(10, 'You must have 10 years')
       .max(100, 'Too old, not recommended')
@@ -23,38 +27,32 @@ const CompleteProfile = (): JSX.Element => {
 
   const INITIAL_STATE: IUserProfile = {
     gender: '',
-    age: null,
-    weight: null,
-    height: null
+    age: 0,
+    weight: 0,
+    height: 0
   }
 
   const navigate = useNavigate()
   const { mutate, isLoading, error } = useMutation({
     mutationFn: async (user: IUserProfile) => await completeProfile(user),
-    onSuccess: (data) => {
-      navigate('/dashboard/profile', { state: { someData: data } })
+    onSuccess: () => {
+      sendNotification(
+        'Datos guardados con éxito! Te estamos redirigiendo...',
+        'success'
+      )
+      navigate('/dashboard')
+    },
+    onError: () => {
+      sendNotification('Hubo un error al guardar los datos', 'error')
+      console.log(error)
     }
   })
   return (
-    <div className="flex items-center justify-center h-[91vh] w-full">
-      <div className="flex flex-col items-center bg-white rounded-xl mx-5 w-[80%] md:max-w-[50%] lg:max-w-[40%]">
-        <div className="w-full pl-5 pt-5">
-          <button
-            onClick={() => {
-              navigate('/')
-            }}>
-            <BsFillArrowLeftCircleFill size={30} color="gray" />
-          </button>
-        </div>
-        <img
-          className="h-14 invert"
-          src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
-          alt="exercify-logo"
-        />
-        <div className="mt-7 font-bold text-gray-500 text-lg">
+    <div className="flex items-center justify-center w-full font-WS px-6 py-8 2xl:py-16">
+      <div className="flex flex-col gap-2 border-2 border-primary-100 text-primary-50 items-center px-6 py-8 lg:px-8 lg:py-16 rounded-xl w-full md:min-w-[50%] 2xl:min-w-[35%] md:w-max">
+        <h1 className="uppercase font-Barlow font-bold text-2xl md:text-3xl lg:text-4xl">
           Completá tu perfil
-        </div>
-
+        </h1>
         <Formik
           initialValues={INITIAL_STATE}
           validationSchema={CompleteSchema}
@@ -62,51 +60,50 @@ const CompleteProfile = (): JSX.Element => {
             mutate({ ...values })
             actions.resetForm({ values: INITIAL_STATE })
           }}>
-          {({ values, errors, touched }) => (
+          {({ errors, touched }) => (
             <Form className="flex flex-col text-center gap-4 w-full p-10">
               <div className="relative">
                 <Field
                   as="select"
                   name="gender"
-                  className={`block mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+                  className={`input focus:border-primary-100 peer ${
                     errors.gender && touched.gender
-                      ? 'border border-red-500'
-                      : ''
+                      ? 'border-2 border-secondary-400'
+                      : 'border-2 border-primary-100 text-primary-100'
                   }`}>
-                  <option value="">Seleccione su genero</option>
+                  <option value="">Seleccione su género</option>
                   <option value="Masculino">Masculino</option>
                   <option value="Femenino">Femenino</option>
                   <option value="Otro">Otro</option>
                 </Field>
                 {errors.gender && touched.gender ? (
-                  <div className="mt-1 text-sm text-red-600">
-                    {errors.gender}
-                  </div>
+                  <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
+                    <Tooltip message={errors.gender} />
+                  </span>
                 ) : null}
               </div>
               <div className="relative">
                 <Field
                   type="number"
                   name="age"
-                  value={values.age ?? ''}
-                  placeholder={
-                    values.age === null || values.age === undefined
-                      ? 'Ingrese su edad'
-                      : ''
-                  }
-                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                  placeholder="Edad"
+                  className={`input focus:border-primary-100 peer ${
                     errors.age && touched.age
-                      ? 'border border-red-500'
-                      : 'border border-gray-300'
+                      ? 'border-2 border-secondary-400'
+                      : 'border-2 border-primary-100 text-primary-100'
                   }`}
                 />
                 <label
                   htmlFor="age"
-                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                  className={`label peer-focus:text-primary-100 ${
+                    errors.age && touched.age
+                      ? 'text-secondary-400'
+                      : 'text-primary-100/70'
+                  }`}>
                   Ingrese su edad
                 </label>
                 {errors.age && touched.age ? (
-                  <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
+                  <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
                     <Tooltip message={errors.age} />
                   </span>
                 ) : null}
@@ -115,25 +112,24 @@ const CompleteProfile = (): JSX.Element => {
                 <Field
                   type="number"
                   name="weight"
-                  value={values.weight ?? ''}
-                  placeholder={
-                    values.weight === null || values.weight === undefined
-                      ? 'Ingrese su Peso en Kg'
-                      : ''
-                  }
-                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                  placeholder=" "
+                  className={`input focus:border-primary-100 peer ${
                     errors.weight && touched.weight
-                      ? 'border border-red-500'
-                      : 'border border-gray-300'
+                      ? 'border-2 border-secondary-400'
+                      : 'border-2 border-primary-100 text-primary-100'
                   }`}
                 />
                 <label
                   htmlFor="weight"
-                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                  className={`label peer-focus:text-primary-100 ${
+                    errors.weight && touched.weight
+                      ? 'text-secondary-400'
+                      : 'text-primary-100/70'
+                  }`}>
                   Ingrese su Peso en kg
                 </label>
-                {errors.weight && touched.weight ? (
-                  <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
+                {errors.weight && errors.weight ? (
+                  <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
                     <Tooltip message={errors.weight} />
                   </span>
                 ) : null}
@@ -142,25 +138,24 @@ const CompleteProfile = (): JSX.Element => {
                 <Field
                   type="number"
                   name="height"
-                  value={values.height ?? ''}
-                  placeholder={
-                    values.height === null || values.height === undefined
-                      ? 'Ingrese su altura en cm'
-                      : ''
-                  }
-                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer ${
+                  placeholder=" "
+                  className={`input focus:border-primary-100 peer ${
                     errors.height && touched.height
-                      ? 'border border-red-500'
-                      : 'border border-gray-300'
+                      ? 'border-2 border-secondary-400'
+                      : 'border-2 border-primary-100 text-primary-100'
                   }`}
                 />
                 <label
                   htmlFor="height"
-                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                  className={`label peer-focus:text-primary-100 ${
+                    errors.height && touched.height
+                      ? 'text-secondary-400'
+                      : 'text-primary-100/70'
+                  }`}>
                   Ingrese su altura en cm
                 </label>
-                {errors.height && touched.height ? (
-                  <span className="text-red-500 text-xl absolute right-4 top-2/4 -translate-y-2/4">
+                {errors.height && errors.height ? (
+                  <span className="text-secondary-400 absolute right-4 top-2/4 -translate-y-2/4">
                     <Tooltip message={errors.height} />
                   </span>
                 ) : null}
@@ -169,10 +164,13 @@ const CompleteProfile = (): JSX.Element => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="uppercase bg-gray-300 hover:bg-gray-500 hover:text-white ease-in-out duration-300 text-black rounded-md h-10 font-light">
-                Guardar
+                className="flex items-center justify-center uppercase font-Barlow font-semibold py-2.5 lg:py-3 text-lg lg:text-xl bg-primary-400/60 hover:bg-primary-400 hover:text-primary-bg ease-in-out duration-300 text-primary-bg rounded-md">
+                {isLoading ? (
+                  <ImSpinner8 className="animate-spin" />
+                ) : (
+                  'Guardar'
+                )}
               </button>
-              {error ? <p className="text-red-500">Hubo un error</p> : null}
             </Form>
           )}
         </Formik>
