@@ -8,6 +8,7 @@ const DashLayout = (): JSX.Element => {
   if (!isAuthenticated) {
     navigate('/login')
   }
+
   return (
     <div className="flex flex-col lg:flex-row justify-start h-screen">
       <AltSideBar />
