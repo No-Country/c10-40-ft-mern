@@ -225,7 +225,7 @@ const patchMyProfile = (req, res) => {
   const { id } = req.user;
   const { weight, height, age, gender, imageUrl } = req.body;
 
-  if (!weight || !height || !age || !gender || !imageUrl) {
+  if (!weight || !height || !age || !gender) {
     responses.error({
       res,
       status: 400,
