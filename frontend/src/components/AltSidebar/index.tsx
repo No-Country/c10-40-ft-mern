@@ -409,9 +409,6 @@ const AltSideBar = (): JSX.Element => {
             </div>
             <Link
               to="/dashboard"
-              onClick={() => {
-                setMenu(false)
-              }}
               className={`${
                 location.pathname === '/dashboard' ? 'bg-white/10' : ''
               } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
