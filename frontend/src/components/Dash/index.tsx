@@ -1,12 +1,10 @@
 import { JWT_TOKEN } from 'app/constants'
 
-import { useUser } from 'hooks/useUser'
 import Cookies from 'js-cookie'
-import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-
 const Dash = (): JSX.Element => {
+  const navigate = useNavigate()
   return (
     <div className="max-w-[1024px] lg:w-[1024px] my-20 mx-10 h-full lg:h-auto flex flex-col justify-around md:grid md:grid-cols-2 md:grid-rows-3 gap-5 md:mx-auto xl:mx-auto">
       <Link
