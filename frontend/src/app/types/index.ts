@@ -73,4 +73,5 @@ export interface IExercise {
   repetitions: string
   description: string
   isCompleted: boolean
+  imageUrl: string
 }
