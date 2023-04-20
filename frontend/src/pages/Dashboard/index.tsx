@@ -17,7 +17,7 @@ const Dashboard = (): JSX.Element => {
   }, [isLoading, isAuthenticated])
 
   useEffect(() => {
-    if (!userIsLoading && data && !data.profile_completed) {
+    if (!userIsLoading && data && !data.profileCompleted) {
       navigate('/completeprofile')
     }
   }, [data, userIsLoading, navigate, isAuthenticated])
