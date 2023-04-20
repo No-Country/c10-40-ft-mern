@@ -100,6 +100,7 @@ const NavbarResponsive = (): JSX.Element => {
           src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
           alt=""
         />
+
         <div className="flex flex-col font-Barlow uppercase font-medium text-2xl gap-6">
           <div className="w-full flex items-center justify-center group select-none">
             <Link
@@ -123,6 +124,7 @@ const NavbarResponsive = (): JSX.Element => {
               </span>
             </Link>
           </div>
+
           <div className="w-full flex items-center justify-center group select-none">
             <Link
               to="/about"
@@ -145,6 +147,7 @@ const NavbarResponsive = (): JSX.Element => {
               </span>
             </Link>
           </div>
+
           <div className="w-full flex items-center justify-center group select-none">
             <Link
               to="/contact"
