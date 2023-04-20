@@ -12,6 +12,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { loginUser, googleCallback } from 'utils'
 import * as Yup from 'yup'
 import { sendNotification } from 'utils/sendNotification'
+import { useAuth } from 'hooks/useAuth'
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Required'),
@@ -22,12 +23,14 @@ const INITIAL_STATE: ILoginUser = { email: '', password: '' }
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate()
-  const userQuery = useUser()
+
+  const { isAuthenticated, isLoading: authIsLoading } = useAuth()
+
   useEffect(() => {
-    if (!userQuery.isLoading && userQuery.data) {
+    if (!authIsLoading && isAuthenticated) {
       navigate('/dashboard')
     }
-  }, [userQuery.data])
+  }, [authIsLoading, isAuthenticated])
 
   const { mutateAsync, isLoading, error } = useMutation({
     mutationFn: loginUser,

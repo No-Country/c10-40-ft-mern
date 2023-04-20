@@ -390,9 +390,6 @@ const AltSideBar = (): JSX.Element => {
             </div>
             <Link
               to="/dashboard"
-              onClick={() => {
-                setMenu(!menu)
-              }}
               className={`${
                 location.pathname === '/dashboard' ? 'bg-white/10' : ''
               } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
@@ -593,8 +590,8 @@ const AltSideBar = (): JSX.Element => {
             </div>
             <button
               onClick={() => {
-                localStorage.removeItem(JWT_TOKEN)
-                window.location.reload()
+                Cookies.remove(JWT_TOKEN)
+                navigate('/login')
               }}
               className={`${
                 location.pathname === '/dashboard/logout' ? 'bg-white/10' : ''
