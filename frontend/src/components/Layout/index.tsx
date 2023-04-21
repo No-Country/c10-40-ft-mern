@@ -1,15 +1,32 @@
 import { Footer } from 'components'
 import NavbarResponsive from 'components/Navbar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const MainLayout = (): JSX.Element => {
+  const location = useLocation()
+
+  // const handleAnimation = (str: string): string => {
+  //   switch (str) {
+  //     case '/completeprofile':
+  //       return 'login-page'
+  //     default:
+  //       return 'page'
+  //   }
+  // }
+
   return (
-    <div>
+    <>
       <NavbarResponsive />
-      {/* <main>{children}</main> */}
-      <Outlet />
+      <TransitionGroup>
+        <CSSTransition key={location.key} timeout={300} classNames="page">
+          <main className="w-full min-h-[88vh] flex flex-col items-center justify-center">
+            <Outlet />
+          </main>
+        </CSSTransition>
+      </TransitionGroup>
       <Footer />
-    </div>
+    </>
   )
 }
 

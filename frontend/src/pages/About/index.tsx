@@ -1,214 +1,152 @@
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
-const About = (): JSX.Element => {
+import { useLocation } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
+
+const us = [
+  {
+    name: 'Maximiliano Arbelais',
+    image: 'https://avatars.githubusercontent.com/u/105481641?v=4',
+    role: 'Frontend Developer',
+    social: {
+      github: 'https://github.com/arbelais',
+      linkedin: 'https://www.linkedin.com/in/arbelaism/'
+    }
+  },
+  {
+    name: 'Mateo Salinas',
+    image: 'https://avatars.githubusercontent.com/u/99854895?v=4',
+    role: 'Frontend Developer',
+    social: {
+      github: 'https://github.com/matuumdq',
+      linkedin: 'https://www.linkedin.com/in/mateosalinas/'
+    }
+  },
+  {
+    name: 'Damián Barera',
+    image: 'https://avatars.githubusercontent.com/u/95669607?v=4',
+    role: 'Frontend Developer',
+    social: {
+      github: 'https://github.com/Damian-Barera',
+      linkedin: 'https://www.linkedin.com/in/damian-barera/'
+    }
+  },
+  {
+    name: 'Diego Yako',
+    image: 'https://avatars.githubusercontent.com/u/62260320?v=4',
+    role: 'Frontend Developer',
+    social: {
+      github: 'https://github.com/diegoyako',
+      linkedin: 'https://www.linkedin.com/in/diegoyako/'
+    }
+  },
+  {
+    name: 'Lucas Macias',
+    image:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/the-whale-la-ballena-estreno-brendan-fraser-1673880558.jpg?crop=0.565xw:0.906xh;0.234xw,0.0500xh&resize=1200:*',
+    role: 'Backend Developer',
+    social: {
+      github: 'https://github.com/l-macias',
+      linkedin: 'https://www.linkedin.com/in/l-macias/'
+    }
+  },
+  {
+    name: 'Yon Roa',
+    image: 'https://avatars.githubusercontent.com/u/91107387?v=4',
+    role: 'Backend Developer',
+    social: {
+      github: 'https://github.com/yonroa',
+      linkedin: 'https://www.linkedin.com/in/yompa/'
+    }
+  },
+  {
+    name: 'Leonardo Garcia',
+    image:
+      'https://res.cloudinary.com/du2ewwzsg/image/upload/v1681593817/WhatsApp_Image_2023-04-15_at_18.14.34_nwegv4.jpg',
+    role: 'Backend Developer',
+    social: {
+      github: 'https://github.com/Jose-Leonardo',
+      linkedin: 'https://www.linkedin.com/in/leonardo-garcia-a14b7924b/'
+    }
+  }
+]
+
+interface Props {
+  image: string
+  name: string
+  role: string
+  social: {
+    github: string
+    linkedin: string
+  }
+}
+
+const AboutCard = ({ image, name, role, social }: Props): JSX.Element => {
   return (
-    <>
-      <div className="h-auto w-full flex flex-col items-start justify-center">
-        <div className="h-10 mx-auto font-bold">¿Quiénes somos?</div>
+    <div className="w-full rounded-lg shadow bg-primary-100/10 border-2 border-primary-400/60 hover:border-primary-400 transition-colors px-4 flex flex-col justify-center gap-4 items-center py-8">
+      <img
+        className="w-32 h-32 object-cover rounded-full shadow-lg"
+        src={image}
+        alt=" "
+      />
+      <div className="flex flex-col items-center justify-center gap-6">
+        <div className="flex flex-col justify-center items-center gap-1">
+          <h5 className="text-xl font-medium text-primary-100">{name}</h5>
+          <span className="text-sm text-primary-100/70">{role}</span>
+        </div>
+        <div className="flex space-x-3">
+          <a
+            href={social.github}
+            className="inline-flex items-center px-4 py-2 text-xl font-medium text-center text-primary-100 rounded-lg focus:ring-4 focus:outline-none bg-[#161b22] border-gray-600  hover:bg-gray-700  hover:border-gray-700  focus:ring-gray-700"
+            target="_blank"
+            rel="noreferrer">
+            <AiFillGithub></AiFillGithub>
+          </a>
+          <a
+            href={social.linkedin}
+            className="inline-flex items-center px-4 py-2 text-xl font-medium text-center text-primary-100 rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+            target="_blank"
+            rel="noreferrer">
+            <AiFillLinkedin></AiFillLinkedin>
+          </a>
+        </div>
       </div>
-      <div className="mx-auto w-2/3 mb-8">
-        <p className="text-center">
-          ¡Bienvenidos a exercify! Estamos emocionados de ayudarlos a alcanzar
-          sus objetivos de fitness desde la comodidad de su hogar. En nuestra
-          aplicación, encontrarán ejercicios personalizados basados en sus
-          necesidades. Ya sea que quieran perder peso, tonificar sus músculos o
-          mejorar su resistencia, nuestra app tiene todo lo que necesitan.
-          ¡Gracias por elegirnos y esperamos ser parte de su viaje hacia un
-          estilo de vida saludable desde casa!
-        </p>
-      </div>
-      {/* Cards */}
-      <div className="mx-auto flex flex-wrap justify-center gap-5 items-center max-w-screen-lg">
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex flex-col items-center py-10 ">
-            <img
-              className="w-24 h-24 mb-3 rounded-full shadow-lg"
-              src="https://avatars.githubusercontent.com/u/99854895?v=4"
-              alt=" "
-            />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              Mateo Salinas
-            </h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Frontend Developer
-            </span>
-            <div className="flex mt-4 space-x-3 md:mt-6">
-              <a
-                href="https://github.com/matuumdq"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
-                <AiFillGithub></AiFillGithub>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/mateosalinas/"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <AiFillLinkedin></AiFillLinkedin>
-              </a>
-            </div>
-          </div>
+    </div>
+  )
+}
+
+const About = (): JSX.Element => {
+  const location = useLocation()
+  return (
+    <CSSTransition key={location.key} timeout={300} classNames="page">
+      <div className="flex flex-col items-center justify-center gap-6 container px-4 py-4 lg:max-w-screen-lg lg:p-8">
+        <div className="flex flex-col items-start gap-4">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-Barlow font-bold self-start">
+            ¿Quiénes somos?
+          </h1>
+          <p className="font-normal leading-6 text-justify">
+            ¡Bienvenidos a Exercify! Estamos emocionados de ayudarlos a alcanzar
+            sus objetivos de fitness desde la comodidad de su hogar. En nuestra
+            aplicación, encontrarán ejercicios personalizados basados en sus
+            necesidades. Ya sea que quieran perder peso, tonificar sus músculos
+            o mejorar su resistencia, nuestra app tiene todo lo que necesitan.{' '}
+            <br />
+            ¡Gracias por elegirnos y esperamos ser parte de su viaje hacia un
+            estilo de vida saludable desde casa!
+          </p>
         </div>
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex flex-col items-center py-10 ">
-            <img
-              className="w-24 h-24 mb-3 rounded-full shadow-lg"
-              src="https://avatars.githubusercontent.com/u/105481641?v=4"
-              alt=" "
-            />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              Maximiliano Arbelais
-            </h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Frontend Developer
-            </span>
-            <div className="flex mt-4 space-x-3 md:mt-6">
-              <a
-                href="https://github.com/arbelais"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
-                <AiFillGithub></AiFillGithub>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/arbelaism/"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <AiFillLinkedin></AiFillLinkedin>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex flex-col items-center py-10 ">
-            <img
-              className="w-24 h-24 mb-3 rounded-full shadow-lg"
-              src="https://avatars.githubusercontent.com/u/95669607?v=4"
-              alt=" "
-            />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              Damián Barera
-            </h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Frontend Developer
-            </span>
-            <div className="flex mt-4 space-x-3 md:mt-6">
-              <a
-                href="https://github.com/Damian-Barera"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
-                <AiFillGithub></AiFillGithub>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/damian-barera/"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <AiFillLinkedin></AiFillLinkedin>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex flex-col items-center py-10 ">
-            <img
-              className="w-24 h-24 mb-3 rounded-full shadow-lg"
-              src="https://avatars.githubusercontent.com/u/62260320?v=4"
-              alt=" "
-            />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              Diego Yako
-            </h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Frontend Developer
-            </span>
-            <div className="flex mt-4 space-x-3 md:mt-6">
-              <a
-                href="https://github.com/diegoyako"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
-                <AiFillGithub></AiFillGithub>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/diegoyako/"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <AiFillLinkedin></AiFillLinkedin>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex flex-col items-center py-10 ">
-            <img
-              className="w-24 h-24 mb-3 rounded-full shadow-lg"
-              src="https://media.licdn.com/dms/image/D4E03AQHjnuKw3LR3FQ/profile-displayphoto-shrink_400_400/0/1674691852739?e=1686787200&v=beta&t=ORhlQoE3_2P8848aOf5tvHk6kyyhBxailWZih_Isl-M"
-              alt=" "
-            />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              Lucas Macias
-            </h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Backend Developer
-            </span>
-            <div className="flex mt-4 space-x-3 md:mt-6">
-              <a
-                href="https://github.com/l-macias"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
-                <AiFillGithub></AiFillGithub>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/l-macias/"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <AiFillLinkedin></AiFillLinkedin>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex flex-col items-center py-10 ">
-            <img
-              className="w-24 h-24 mb-3 rounded-full shadow-lg"
-              src="https://avatars.githubusercontent.com/u/91107387?v=4"
-              alt=" "
-            />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              Yon Roa
-            </h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Backend Developer
-            </span>
-            <div className="flex mt-4 space-x-3 md:mt-6">
-              <a
-                href="https://github.com/yonroa"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
-                <AiFillGithub></AiFillGithub>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/yompa/"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <AiFillLinkedin></AiFillLinkedin>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex flex-col items-center py-10 ">
-            <img
-              className="w-24 h-24 mb-3 rounded-full shadow-lg"
-              src="https://pps.whatsapp.net/v/t61.24694-24/312284704_1535628426917773_1732038354111848506_n.jpg?ccb=11-4&oh=01_AdSpMwEElz28RztZLx_gF-En1u8ZIrWzp7j8H6YJAqByoQ&oe=64452297"
-              alt=" "
-            />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              Leonardo Garcia
-            </h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Backend Developer
-            </span>
-            <div className="flex mt-4 space-x-3 md:mt-6">
-              <a
-                href="https://github.com/Jose-Leonardo"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
-                <AiFillGithub></AiFillGithub>
-              </a>
-              <a
-                href="https://www.linkedin.com/"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <AiFillLinkedin></AiFillLinkedin>
-              </a>
-            </div>
+        <div className="flex flex-col gap-8 w-full">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-Barlow font-bold self-start">
+            Nuestro Equipo
+          </h2>
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-center">
+            {us.map((u) => (
+              <AboutCard key={u.name} {...u} />
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </CSSTransition>
   )
 }
 

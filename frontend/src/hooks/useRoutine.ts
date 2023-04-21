@@ -1,8 +1,8 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query'
-import { type IBodyPart} from 'app/types'
 import { server } from 'utils'
+import { type IRoutine } from 'app/types'
 
-async function getRoutine(): Promise<IBodyPart | boolean> {
+async function getRoutine(): Promise<IRoutine | boolean> {
   if (!getRoutine) {
     return false
   }
@@ -12,19 +12,19 @@ async function getRoutine(): Promise<IBodyPart | boolean> {
   })
 
   if (response.status === 404) {
-    throw new Error("no existe")
+    throw new Error('no existe')
   }
 
   if (response.status === 400) {
-    throw new Error("something bad")
+    throw new Error('something bad')
   }
 
   return response.data
 }
 
-export function useRoutine(): UseQueryResult<IBodyPart[]> {
+export function useRoutine(): UseQueryResult<IRoutine[]> {
   return useQuery({
-    queryKey: ['routine'],
+    queryKey: ['routines'],
     queryFn: async () => await getRoutine()
   })
 }

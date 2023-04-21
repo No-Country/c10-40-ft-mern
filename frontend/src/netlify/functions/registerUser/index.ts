@@ -4,7 +4,7 @@ import {
   type HandlerContext
 } from '@netlify/functions'
 import type { IUser } from 'app/types'
-import axios from 'axios'
+import axios, { isAxiosError } from 'axios'
 
 const server = axios.create({
   baseURL: process.env.API_BASE_URL
@@ -35,11 +35,30 @@ const handler: Handler = async (
 
     return {
       statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(user)
     }
   } catch (error) {
+    if (isAxiosError(error)) {
+      const { response } = error
+
+      if (response?.status === 400) {
+        return {
+          statusCode: 400,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(response.data.message)
+        }
+      }
+    }
     return {
       statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ message: 'Error in the request' })
     }
   }

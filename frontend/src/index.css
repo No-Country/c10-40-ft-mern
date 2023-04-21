@@ -1,19 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Biryani:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .input {
+    @apply block px-4 py-3 lg:py-4 w-full text-opacity-80 text-sm lg:text-base bg-transparent rounded-lg appearance-none focus:outline-none focus:ring-0;
+  }
+
+  .label {
+    @apply absolute text-sm md:text-base duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] px-2 peer-focus:px-2 bg-[#121418] peer-focus:bg-[#121418] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 left-1;
+  }
+
+  .button {
+    @apply uppercase font-Barlow font-semibold py-2.5 lg:py-3 text-lg lg:text-xl ease-in-out duration-300 rounded-md;
+  }
+
+  .heading {
+    @apply text-2xl md:text-3xl lg:text-4xl font-Barlow uppercase font-bold w-max border-b-2 pb-1 cursor-default;
+  }
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Work Sans, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #d3d3d3;
+  color: #ebfaf8;
+  background-color: #121418;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.page {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+}
+
+.page-enter {
+  opacity: 0;
+}
+
+.page-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.form-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.form-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+}
+
+.form-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.form-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+}
+
+.slide-enter {
+    opacity: 0;
+}
+  
+.slide-enter-active {
+    opacity: 1;
+    transition: opacity 1500ms;
+}
+  
+.slide-exit {
+    opacity: 1;
+}
+  
+.slide-exit-active {
+    opacity: 0;
+    transition: opacity 1500ms;
+}
+
+.contact-form {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+.contact-form-enter {
+    opacity: 0;
+}
+  
+.contact-form-enter-active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+  
+.contact-form-exit {
+    opacity: 1;
+}
+  
+.contact-form-exit-active {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.exercises-enter {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  
+  .exercises-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: all 500ms;
+  }
+  
+  .exercises-exit {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  
+  .exercises-exit-active {
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: all 500ms;
+  }
+.fade-in-effect {
+  opacity: 0;
+  filter: blur(5px);
+  transition: filter 800ms ease-in-out, opacity 1s ease-in-out;
+}
+
+.fade-in-effect.is-visible {
+  filter: blur(0px);
+  opacity: 1;
 }

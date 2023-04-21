@@ -7,7 +7,9 @@ import 'dayjs/locale/es'
 dayjs.locale('es')
 
 const Calendar = (): JSX.Element => {
-  const [currentMonth, setCurrentMonth] = useState(getMonth())
+  const calendarMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  const a = calendarMonths[2]
+  const [currentMonth, setCurrentMonth] = useState(getMonth(a))
   const [date, setDate] = useState(dayjs())
 
   return (
@@ -18,7 +20,7 @@ const Calendar = (): JSX.Element => {
           date={date}
           setDate={setDate}
         />
-        <div className="flex md:flex-1 m-5">
+        <div className="flex flex-1">
           <CalendarMonth date={date} month={currentMonth} />
         </div>
       </div>

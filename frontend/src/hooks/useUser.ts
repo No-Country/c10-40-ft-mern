@@ -1,10 +1,11 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query'
-import { JWT_TOKEN } from 'app/constants'
 import { type IUser } from 'app/types'
 import { server } from 'utils'
+import { checkSession } from 'utils/checkSession'
 
-const jwtToken = localStorage.getItem(JWT_TOKEN)
 async function getUser(): Promise<IUser | boolean> {
+  const jwtToken = await checkSession()
+
   if (!jwtToken) {
     return false
   }
