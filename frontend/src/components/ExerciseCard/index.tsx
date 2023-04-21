@@ -100,20 +100,22 @@ const ExerciseCard: React.FC<ExerciseProps> = ({
             <p className="max-w-[40ch] text-sm text-gray-500">{description}</p>
           </div>
 
-          <dl className="mt-6 flex gap-4 sm:gap-6">
+          <div className="mt-6 flex gap-4 sm:gap-6">
             <div className="flex flex-col items-center gap-3">
-              <dt className="text-sm font-medium text-gray-600">
+              <div className="text-sm font-medium text-gray-600">
                 Repeticiones:
-              </dt>
+              </div>
               <dd className="text-xs text-primary-500">{repetitions}</dd>
             </div>
 
             <div className="flex flex-col items-center gap-3">
-              <dt className="text-sm font-medium text-gray-600">Series:</dt>
-              <dd className="text-xs text-primary-500">{series}</dd>
+              <div className="text-sm font-medium text-gray-600">Series:</div>
+              <div className="text-xs text-primary-500">{series}</div>
             </div>
             <div className="flex flex-col items-center gap-1 justify-center">
-              <dt className="text-sm font-medium text-gray-600">Ejercicio:</dt>
+              <div className="text-sm font-medium text-gray-600">
+                Ejercicio:
+              </div>
               <div
                 className={`${
                   isChecked
@@ -139,7 +141,7 @@ const ExerciseCard: React.FC<ExerciseProps> = ({
                 </label>
               </div>
             </div>
-          </dl>
+          </div>
         </div>
       )}
     </>
