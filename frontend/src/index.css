@@ -62,7 +62,7 @@ input[type='number'] {
 
 .page-enter-active {
   opacity: 1;
-  transition: opacity 200ms;
+  transition: opacity 500ms;
 }
 
 .page-exit {
@@ -71,7 +71,7 @@ input[type='number'] {
 
 .page-exit-active {
   opacity: 0;
-  transition: opacity 200ms;
+  transition: opacity 500ms;
 }
 
 .form-enter {
@@ -96,6 +96,68 @@ input[type='number'] {
   transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
 }
 
+.slide-enter {
+    opacity: 0;
+}
+  
+.slide-enter-active {
+    opacity: 1;
+    transition: opacity 1500ms;
+}
+  
+.slide-exit {
+    opacity: 1;
+}
+  
+.slide-exit-active {
+    opacity: 0;
+    transition: opacity 1500ms;
+}
+
+.contact-form {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+.contact-form-enter {
+    opacity: 0;
+}
+  
+.contact-form-enter-active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+  
+.contact-form-exit {
+    opacity: 1;
+}
+  
+.contact-form-exit-active {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.exercises-enter {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  
+  .exercises-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: all 500ms;
+  }
+  
+  .exercises-exit {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  
+  .exercises-exit-active {
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: all 500ms;
+  }
 .fade-in-effect {
   opacity: 0;
   filter: blur(5px);
