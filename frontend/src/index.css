@@ -128,3 +128,25 @@ input[type='number'] {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
+
+.exercises-enter {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  
+  .exercises-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: all 500ms;
+  }
+  
+  .exercises-exit {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  
+  .exercises-exit-active {
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: all 500ms;
+  }
