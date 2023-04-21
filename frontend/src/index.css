@@ -54,7 +54,7 @@ input[type='number'] {
 
 .page-enter-active {
   opacity: 1;
-  transition: opacity 200ms;
+  transition: opacity 500ms;
 }
 
 .page-exit {
@@ -63,7 +63,7 @@ input[type='number'] {
 
 .page-exit-active {
   opacity: 0;
-  transition: opacity 200ms;
+  transition: opacity 500ms;
 }
 
 .form-enter {
@@ -86,4 +86,45 @@ input[type='number'] {
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+}
+
+.slide-enter {
+    opacity: 0;
+}
+  
+.slide-enter-active {
+    opacity: 1;
+    transition: opacity 1500ms;
+}
+  
+.slide-exit {
+    opacity: 1;
+}
+  
+.slide-exit-active {
+    opacity: 0;
+    transition: opacity 1500ms;
+}
+
+.contact-form {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+.contact-form-enter {
+    opacity: 0;
+}
+  
+.contact-form-enter-active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+  
+.contact-form-exit {
+    opacity: 1;
+}
+  
+.contact-form-exit-active {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }

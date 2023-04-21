@@ -7,6 +7,7 @@ import {
   AiOutlineCloseCircle
 } from 'react-icons/ai'
 import { ImCalendar, ImHome3, ImProfile, ImUnlocked } from 'react-icons/im'
+import { TfiClose } from 'react-icons/tfi'
 import { Link, useNavigate, redirect } from 'react-router-dom'
 
 const AltSideBar = (): JSX.Element => {
@@ -52,7 +53,7 @@ const AltSideBar = (): JSX.Element => {
             ? 'fixed top-0 left-0 w-full sm:w-72 h-screen bg-[#1c212c] z-10 duration-300 pt-6'
             : 'fixed top-0 left-[-200%] w-[300px] h-screen bg-[#1c212c] z-10 duration-300'
         }>
-        <AiFillCloseCircle
+        {/* <AiFillCloseCircle
           size={32}
           color="white"
           className="absolute right-4 top-6 cursor-pointer"
@@ -60,7 +61,16 @@ const AltSideBar = (): JSX.Element => {
             setMenu(!menu)
             setAd(true)
           }}
-        />
+        /> */}
+        <span className="group absolute flex items-center justify-center bg-transparent p-2.5 rounded-full right-2 top-2 cursor-pointer ease-in duration-200 hover:bg-primary-400 rotate-0 hover:rotate-90">
+          <TfiClose
+            size={18}
+            className="fill-primary-400 group-hover:fill-primary-bg"
+            onClick={() => {
+              setMenu(!menu)
+            }}
+          />
+        </span>
         <img
           className="h-14 mx-auto my-3"
           src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
@@ -214,7 +224,7 @@ const AltSideBar = (): JSX.Element => {
                 setMenu(false)
               }}
               to="/dashboard/createrutine"
-              className="bg-primary-400 py-2 px-6  rounded-md font-semibold ease-in duration-200">
+              className="bg-primary-400 py-2 px-6 rounded-md font-semibold ease-in duration-200">
               Crear Rutina
             </Link>
           </div>
@@ -225,13 +235,11 @@ const AltSideBar = (): JSX.Element => {
                   + Info
                 </span>
                 <button
+                  className="group flex items-center justify-center bg-transparent rounded-full cursor-pointer ease-in duration-200 text-primary-400 hover:text-red-400 rotate-0 hover:-rotate-180 hover:scale-110"
                   onClick={() => {
                     setAd(false)
                   }}>
-                  <AiOutlineCloseCircle
-                    className="text-red-400 cursor-pointer"
-                    size={20}
-                  />
+                  <AiOutlineCloseCircle className="cursor-pointer" size={20} />
                 </button>
               </div>
               <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">
@@ -400,13 +408,11 @@ const AltSideBar = (): JSX.Element => {
                 + Info
               </span>
               <button
+                className="group flex items-center justify-center bg-transparent rounded-full cursor-pointer ease-in duration-200 text-primary-400 hover:text-red-400 rotate-0 hover:-rotate-180 hover:scale-110"
                 onClick={() => {
                   setAd(false)
                 }}>
-                <AiOutlineCloseCircle
-                  className="text-red-400 cursor-pointer"
-                  size={20}
-                />
+                <AiOutlineCloseCircle className="cursor-pointer" size={20} />
               </button>
             </div>
             <p className="mb-3 text-sm text-primary-400 pb-4 border-b-2 ">

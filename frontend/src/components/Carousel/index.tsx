@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill
 } from 'react-icons/bs'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const Carousel = (): JSX.Element => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -74,31 +74,38 @@ const Carousel = (): JSX.Element => {
   return (
     <div className="relative mx-auto max-w-5xl px-4 py-8">
       {slides.map((slide, index) => (
-        <div className="w-full" key={index}>
-          <div
-            className={`slide transition-all duration-500 ease-in-out ${
-              index === currentSlide ? 'block' : 'hidden'
-            }`}>
-            <section className="rounded-lg bg-primary-300/70 py-8 px-12 w-full md:flex md:gap-6">
-              <img
-                alt="Man"
-                src={slide.imagen}
-                className="aspect-square mx-auto w-auto md:max-w-xs mb-5 md:mb-0 rounded-lg object-cover"
-              />
-              <blockquote className="sm:col-span-2 flex flex-col justify-around items-center">
-                <p className="text-xl font-medium text-black">
-                  {slide.testimonio}
-                </p>
-                <cite className="mt-8 inline-flex items-center not-italic">
-                  <span className="hidden h-px w-6 bg-primary-900 sm:inline-block"></span>
-                  <p className="text-sm uppercase text-primary-900 sm:ms-3">
-                    <strong>{slide.nombre}</strong>, {slide.trabajo}.
+        <CSSTransition
+          key={index}
+          timeout={500}
+          classNames="slide"
+          appear={true}
+          in={index === currentSlide}>
+          <div className="w-full">
+            <div
+              className={`slide transition-all duration-500 ease-in-out ${
+                index === currentSlide ? 'block' : 'hidden'
+              }`}>
+              <section className="rounded-lg bg-primary-300/70 py-8 px-12 w-full md:flex md:gap-6">
+                <img
+                  alt="Man"
+                  src={slide.imagen}
+                  className="aspect-square mx-auto w-auto md:max-w-xs mb-5 md:mb-0 rounded-lg object-cover"
+                />
+                <blockquote className="sm:col-span-2 flex flex-col justify-around items-center">
+                  <p className="text-xl font-medium text-black">
+                    {slide.testimonio}
                   </p>
-                </cite>
-              </blockquote>
-            </section>
+                  <cite className="mt-8 inline-flex items-center not-italic">
+                    <span className="hidden h-px w-6 bg-primary-900 sm:inline-block"></span>
+                    <p className="text-sm uppercase text-primary-900 sm:ms-3">
+                      <strong>{slide.nombre}</strong>, {slide.trabajo}.
+                    </p>
+                  </cite>
+                </blockquote>
+              </section>
+            </div>
           </div>
-        </div>
+        </CSSTransition>
       ))}
       {/* <div className="flex justify-center mt-2">
         <button

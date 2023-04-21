@@ -1,4 +1,6 @@
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
+import { useLocation } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
 
 const us = [
   {
@@ -113,35 +115,38 @@ const AboutCard = ({ image, name, role, social }: Props): JSX.Element => {
 }
 
 const About = (): JSX.Element => {
+  const location = useLocation()
   return (
-    <div className="flex flex-col items-center justify-center gap-6 container px-4 py-4 lg:max-w-screen-lg lg:p-8">
-      <div className="flex flex-col items-start gap-4">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-Barlow font-bold self-start">
-          ¿Quiénes somos?
-        </h1>
-        <p className="font-normal leading-6 text-justify">
-          ¡Bienvenidos a Exercify! Estamos emocionados de ayudarlos a alcanzar
-          sus objetivos de fitness desde la comodidad de su hogar. En nuestra
-          aplicación, encontrarán ejercicios personalizados basados en sus
-          necesidades. Ya sea que quieran perder peso, tonificar sus músculos o
-          mejorar su resistencia, nuestra app tiene todo lo que necesitan.{' '}
-          <br />
-          ¡Gracias por elegirnos y esperamos ser parte de su viaje hacia un
-          estilo de vida saludable desde casa!
-        </p>
-      </div>
-      <div className="flex flex-col gap-8 w-full">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-Barlow font-bold self-start">
-          Nuestro Equipo
-        </h2>
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-center">
-          {us.map((u) => (
-            <AboutCard key={u.name} {...u} />
-          ))}
+    <CSSTransition key={location.key} timeout={300} classNames="page">
+      <div className="flex flex-col items-center justify-center gap-6 container px-4 py-4 lg:max-w-screen-lg lg:p-8">
+        <div className="flex flex-col items-start gap-4">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-Barlow font-bold self-start">
+            ¿Quiénes somos?
+          </h1>
+          <p className="font-normal leading-6 text-justify">
+            ¡Bienvenidos a Exercify! Estamos emocionados de ayudarlos a alcanzar
+            sus objetivos de fitness desde la comodidad de su hogar. En nuestra
+            aplicación, encontrarán ejercicios personalizados basados en sus
+            necesidades. Ya sea que quieran perder peso, tonificar sus músculos
+            o mejorar su resistencia, nuestra app tiene todo lo que necesitan.{' '}
+            <br />
+            ¡Gracias por elegirnos y esperamos ser parte de su viaje hacia un
+            estilo de vida saludable desde casa!
+          </p>
+        </div>
+        <div className="flex flex-col gap-8 w-full">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-Barlow font-bold self-start">
+            Nuestro Equipo
+          </h2>
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-center">
+            {us.map((u) => (
+              <AboutCard key={u.name} {...u} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </CSSTransition>
   )
 }
 

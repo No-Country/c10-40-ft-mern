@@ -6,9 +6,11 @@ interface ExerciseProps {
   exercises: IExercise
   isLoading: boolean
 }
-const ExerciseCard: React.FC<ExerciseProps> = ({ exercises, isLoading }) => {
+const ExerciseCard: React.FC<ExerciseProps> = ({
+  exercises,
+  isLoading
+}: ExerciseProps) => {
   const [isChecked, setIsChecked] = useState(false)
-  // eslint-disable-next-line react/prop-types
   const { series, bodyPart, repetitions, description, name, imageUrl } =
     exercises
 

@@ -2,19 +2,20 @@ import { Loader } from 'components'
 import { useUser } from 'hooks/useUser'
 import { useEffect, useState } from 'react'
 
+const frases = [
+  'El éxito en el entrenamiento no se logra con un solo golpe, sino con la suma de pequeños esfuerzos que se hacen día tras día',
+  'No importa cuánto tiempo te tome, lo importante es que no dejes de avanzar y nunca te rindas',
+  'El dolor que sientes hoy será tu fuerza mañana',
+  'El éxito no es para aquellos que tienen buena suerte, sino para aquellos que trabajan duro y nunca se rinden',
+  'El entrenamiento no es un destino, es un viaje. Disfruta del camino',
+  'No te rindas, los comienzos son difíciles, pero los resultados valen la pena',
+  'El entrenamiento no es solo para el cuerpo, también es para la mente y el alma',
+  'Si no te desafías a ti mismo, nunca sabrás de lo que eres capaz',
+  'La clave del éxito en el entrenamiento es la consistencia',
+  'Mientras más te esfuerces, más grande será la recompensa'
+]
+
 const ProfileCard = (): JSX.Element => {
-  const frases = [
-    'El éxito en el entrenamiento no se logra con un solo golpe, sino con la suma de pequeños esfuerzos que se hacen día tras día',
-    'No importa cuánto tiempo te tome, lo importante es que no dejes de avanzar y nunca te rindas',
-    'El dolor que sientes hoy será tu fuerza mañana',
-    'El éxito no es para aquellos que tienen buena suerte, sino para aquellos que trabajan duro y nunca se rinden',
-    'El entrenamiento no es un destino, es un viaje. Disfruta del camino',
-    'No te rindas, los comienzos son difíciles, pero los resultados valen la pena',
-    'El entrenamiento no es solo para el cuerpo, también es para la mente y el alma',
-    'Si no te desafías a ti mismo, nunca sabrás de lo que eres capaz',
-    'La clave del éxito en el entrenamiento es la consistencia',
-    'Mientras más te esfuerces, más grande será la recompensa'
-  ]
   const { data, isLoading } = useUser()
   console.log(data?.profileCompleted)
   const [motivacion, setMotivacion] = useState(
