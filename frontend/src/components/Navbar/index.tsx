@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlineForm, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai'
 import { FiLogIn } from 'react-icons/fi'
 import { TfiClose } from 'react-icons/tfi'
@@ -9,10 +9,39 @@ import { useAuth } from 'hooks/useAuth'
 
 const NavbarResponsive = (): JSX.Element => {
   const { isAuthenticated, isLoading } = useAuth()
-
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const [show, setShow] = useState(true)
   const [menu, setMenu] = useState(false)
+
+  const controlNavbar = (): void => {
+    if (window) {
+      if (window.scrollY > lastScrollY) {
+        setShow(false)
+      } else {
+        setShow(true)
+      }
+      setLastScrollY(window.scrollY)
+    }
+  }
+
+  useEffect(() => {
+    if (window) {
+      window.addEventListener('scroll', controlNavbar)
+
+      return () => {
+        window.removeEventListener('scroll', controlNavbar)
+      }
+    }
+  }, [lastScrollY])
   return (
-    <nav className="w-full flex items-center justify-between px-8 py-5 md:px-10">
+    <nav
+      className={`w-full top-0 bg-primary-bg/90 backdrop-blur sticky flex z-20 items-center justify-between py-5 px-8 md:px-10 transition-all ${
+        lastScrollY !== 0
+          ? 'shadow-lg'
+          : show
+          ? 'translate-y-0'
+          : '-translate-y-full'
+      }`}>
       <div className="flex items-center flex-shrink-0 text-white">
         <Link to="/" className="font-semibold text-xl">
           <img
