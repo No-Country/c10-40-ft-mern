@@ -9,11 +9,11 @@ const RoutineDays2 = (): JSX.Element => {
       {isLoading ? (
         <Loader type={'routine'} />
       ) : (
-        <div className="flex flex-col">
+        <div className="flex flex-col mt-5">
           {data?.[2].days.map((dia3: any) => {
             return (
               <div className="flex flex-col" key={dia3.id}>
-                <h3 className="text-center font-bold">Día {dia3.day}</h3>
+                <h3 className="text-center font-bold py-5">Día {dia3.day}</h3>
                 <div className="flex justify-center">
                   {dia3?.exercises.map((ex: any) => {
                     return (
