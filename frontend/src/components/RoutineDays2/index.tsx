@@ -7,27 +7,26 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 const RoutineDays2 = (): JSX.Element => {
   const { data, isLoading } = useRoutine()
-
+  const [currentDay, setCurrentDay] = useState(-1)
   return (
     <>
       {isLoading ? (
         <Loader type={'routine'} />
       ) : (
         <div className="flex flex-col mt-5 max-w-screen-lg">
-          {data?.[2].days.map((dia3: any) => {
-            const [showRut, setShowRut] = useState(false)
+          {data?.[2].days.map((dia3: any, index: number) => {
             return (
               <div className="flex flex-col " key={dia3.id}>
                 <div className="flex items-center md:justify-center max-w-lg">
                   <p className="font-semibold text-2xl mx-5 py-5">
                     Día {dia3.day}
                   </p>
-                  {showRut ? (
+                  {currentDay === index ? (
                     <AiOutlineClose
                       className="text-primary-400 ml-5"
                       size={24}
                       onClick={() => {
-                        setShowRut(!showRut)
+                        setCurrentDay(-1)
                       }}
                     />
                   ) : (
@@ -35,12 +34,12 @@ const RoutineDays2 = (): JSX.Element => {
                       className="text-primary-400 ml-5"
                       size={30}
                       onClick={() => {
-                        setShowRut(!showRut)
+                        setCurrentDay(index)
                       }}
                     />
                   )}
                 </div>
-                {showRut && (
+                {currentDay === index && (
                   <div className="grid grid-cols-1 w-full md:grid-cols-2 lg:grid-cols-3 md:mx-auto justify-center gap-5">
                     {dia3?.exercises.map((ex: any) => {
                       return (
