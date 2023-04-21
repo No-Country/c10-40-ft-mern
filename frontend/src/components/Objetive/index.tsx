@@ -7,9 +7,9 @@ const Objetives = (): JSX.Element => {
   const isVisible = useIntersectionObserver(ref)
 
   return (
-    <div className="py-10 flex flex-col justify-center w-full h-screen px-5 lg:gap-12 bg-primary-400/60">
+    <div className="py-10 flex flex-col items-center justify-center w-full h-screen px-5 lg:gap-12 bg-primary-400/60">
       <div className="flex flex-col gap-6 lg:gap-20 lg:flex-row items-center justify-center w-full max-w-screen-xl">
-        <div className="flex flex-col gap-6 text-primary-bg text-lg font-medium py-8">
+        <div className="flex flex-col gap-6 text-primary-bg text-lg font-medium">
           <h1
             ref={ref}
             className={`${
@@ -32,16 +32,13 @@ const Objetives = (): JSX.Element => {
             personas.
           </p>
         </div>
-        <div
-          className={`${
+        <img
+          src="https://nypost.com/wp-content/uploads/sites/2/2023/02/NYPICHPDPICT000007191289.jpg?w=1024"
+          alt=""
+          className={`h-auto w-full max-w-2xl rounded-2xl ${
             isVisible ? 'fade-in-effect is-visible' : 'fade-in-effect'
-          }`}>
-          <img
-            src="https://nypost.com/wp-content/uploads/sites/2/2023/02/NYPICHPDPICT000007191289.jpg?w=1024"
-            alt=""
-            className="h-auto w-full max-w-2xl rounded-2xl"
-          />
-        </div>
+          }`}
+        />
       </div>
     </div>
   )

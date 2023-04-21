@@ -6,15 +6,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 const MainLayout = (): JSX.Element => {
   const location = useLocation()
 
-  // const handleAnimation = (str: string): string => {
-  //   switch (str) {
-  //     case '/completeprofile':
-  //       return 'login-page'
-  //     default:
-  //       return 'page'
-  //   }
-  // }
-
   return (
     <>
       <NavbarResponsive />

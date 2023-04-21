@@ -261,7 +261,7 @@ const AltSideBar = (): JSX.Element => {
       </div>
 
       {/* Side Menu en Large screen */}
-      <aside className="md:w-72 h-full bg-[#1c212c] hidden lg:flex flex-col items-center mr-3 pt-5 pb-2 gap-5 ">
+      <aside className="md:w-72 h-screen bg-[#1c212c] hidden lg:flex flex-col items-center mr-3 pt-5 pb-2 gap-5 ">
         {/* ACA EMPIEZA EL MENÚ! */}
         <div className="w-full pr-3 flex flex-col gap-y-1 text-gray-500 fill-gray-500 text-sm">
           <img

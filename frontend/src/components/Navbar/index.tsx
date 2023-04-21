@@ -212,7 +212,7 @@ const NavbarResponsive = (): JSX.Element => {
                 </span>
               </Link>
             ) : (
-              <div className="w-full flex flex-col gap-6 items-center justify-center group select-none">
+              <div className="w-full flex flex-col gap-4 items-center justify-center group select-none">
                 <Link
                   to="/login"
                   onClick={() => {
