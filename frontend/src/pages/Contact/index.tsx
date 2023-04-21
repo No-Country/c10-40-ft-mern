@@ -26,7 +26,7 @@ const INITIAL_STATE: IContact = {
 }
 
 const Contact = (): JSX.Element => {
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: sendEmail,
     onSuccess: () => {
       sendNotification('Email enviado correctamente!', 'success')
@@ -57,6 +57,7 @@ const Contact = (): JSX.Element => {
               <div className="relative">
                 <Field
                   name="name"
+                  id="name"
                   className={`input focus:border-primary-100 peer ${
                     errors.name && touched.name
                       ? 'border-2 border-secondary-400'
@@ -83,6 +84,7 @@ const Contact = (): JSX.Element => {
                 <Field
                   type="email"
                   name="email"
+                  id="email"
                   className={`input focus:border-primary-100 peer ${
                     errors.email && touched.email
                       ? 'border-2 border-secondary-400'
@@ -108,6 +110,7 @@ const Contact = (): JSX.Element => {
               <div className="relative">
                 <Field
                   name="subject"
+                  id="subject"
                   className={`input focus:border-primary-100 peer ${
                     errors.subject && touched.subject
                       ? 'border-2 border-secondary-400'
@@ -135,6 +138,7 @@ const Contact = (): JSX.Element => {
                   as={'textarea'}
                   rows={4}
                   name="message"
+                  id="message"
                   className={`input focus:border-primary-100 peer ${
                     errors.message && touched.message
                       ? 'border-2 border-secondary-400'

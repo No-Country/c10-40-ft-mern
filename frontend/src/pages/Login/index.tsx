@@ -13,7 +13,7 @@ import * as Yup from 'yup'
 import { sendNotification } from 'utils/sendNotification'
 import { useAuth } from 'hooks/useAuth'
 import { isAxiosError } from 'axios'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email('Email invalido').required('Requerido'),
@@ -80,6 +80,7 @@ const Login = (): JSX.Element => {
                   <Field
                     type="email"
                     name="email"
+                    id="email"
                     className={`input focus:border-primary-100 peer ${
                       errors.email && touched.email
                         ? 'border-2 border-secondary-400'
@@ -106,6 +107,7 @@ const Login = (): JSX.Element => {
                   <Field
                     type="password"
                     name="password"
+                    id="password"
                     className={`input focus:border-primary-100 peer ${
                       errors.password && touched.password
                         ? 'border-2 border-secondary-400'
