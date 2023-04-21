@@ -7,9 +7,9 @@ const Compromise = (): JSX.Element => {
   const isVisible = useIntersectionObserver(ref)
 
   return (
-    <div className="py-10 flex flex-col items-center justify-center px-5 lg:gap-12 bg-primary-400/60">
+    <div className="h-screen py-6 flex flex-col items-center justify-center px-5 lg:gap-12 bg-primary-400/60">
       <div className="flex flex-col gap-6 lg:gap-20 lg:flex-row items-center justify-center w-full max-w-screen-xl">
-        <div className="flex flex-col gap-6 text-primary-bg text-lg font-medium py-8">
+        <div className="flex flex-col gap-6 text-primary-bg text-lg font-medium">
           <h1
             ref={ref}
             className={`${

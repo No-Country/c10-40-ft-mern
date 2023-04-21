@@ -19,7 +19,7 @@ const Charac = (): JSX.Element => {
             className="h-auto w-full max-w-2xl rounded-2xl"
           />
         </div>
-        <div className="flex flex-col gap-6 text-primary-400 text-lg font-medium py-8">
+        <div className="flex flex-col gap-6 text-primary-400 text-lg font-medium">
           <h1
             ref={ref}
             className={`${
