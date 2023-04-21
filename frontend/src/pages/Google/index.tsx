@@ -10,7 +10,7 @@ const Google = (): JSX.Element => {
 
   useEffect(() => {
     if (token) {
-      Cookies.set(JWT_TOKEN, token)
+      Cookies.set(JWT_TOKEN, token, { sameSite: 'Lax' })
       navigate('/dashboard')
     }
   }, [])

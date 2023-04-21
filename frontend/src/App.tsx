@@ -27,16 +27,17 @@ import {
   NewPassword,
   Google
 } from 'pages'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
 const queryClient = new QueryClient()
 
 function App(): JSX.Element {
+  const location = useLocation()
   return (
     <QueryClientProvider client={queryClient}>
       {/* <MainLayout> */}
-      <Routes>
+      <Routes location={location}>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -61,7 +62,6 @@ function App(): JSX.Element {
           <Route path="/dashboard/routinedays5" element={<RoutineDays5 />} />
           {/* <Route path="/dashboard/exercisecard" element={<ExerciseCard />} /> */}
         </Route>
-
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster richColors />

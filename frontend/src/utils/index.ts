@@ -20,11 +20,13 @@ export const registerUser = async (user: INewUser): Promise<any> => {
     throw new Error(`${password} ${email} missing`)
   }
 
-  const newUser = await server.post('/registerUser', user).catch((error) => {
-    console.log(error)
-  })
+  const response = await server.post('/registerUser', user)
 
-  return newUser
+  if (response.status === 400) {
+    return response.data
+  }
+
+  return response.data
 }
 
 export const loginUser = async (user: ILoginUser): Promise<any> => {
@@ -33,11 +35,13 @@ export const loginUser = async (user: ILoginUser): Promise<any> => {
   if (password === '' || email === '') {
     throw new Error(`${password} ${email} missing`)
   }
-  const loggedUser = await server.post('/loginUser', user).catch((error) => {
-    console.log(error)
-  })
+  const response = await server.post('/loginUser', user)
 
-  return loggedUser
+  if (response.status === 401) {
+    return response.data
+  }
+
+  return response.data
 }
 
 export const googleCallback = async (): Promise<any> => {
@@ -94,6 +98,7 @@ export const completeProfile = async (user: IUserProfile): Promise<any> => {
   const token: string = await checkSession()
 
   if (!token && typeof token !== 'string') throw new Error('missing token')
+  console.log(token)
 
   const { gender, age, weight, height } = user
   if (

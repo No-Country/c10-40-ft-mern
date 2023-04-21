@@ -24,30 +24,40 @@ const handler: Handler = async (
     throw new Error('prop missing')
   }
 
-  const token = event.headers.authorization?.replace('Bearer ', '')
-  if (token) {
-    // Agrega el token a la instancia de axios
-    server.defaults.headers.common.Authorization = `Bearer ${token}`
+  if (event.headers.Authorization) {
+    throw new Error('Bearer token missing')
   }
 
   try {
-    const res = await server.patch('/users/me/completeprofile', {
-      gender,
-      age,
-      weight,
-      height
-    })
+    const res = await server.patch(
+      '/users/me/completeprofile',
+      {
+        gender,
+        age,
+        weight,
+        height
+      },
+      {
+        headers: { Authorization: event.headers.authorization }
+      }
+    )
 
     const user: IUserProfile = await res.data
 
     return {
-      statusCode: 201,
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(user)
     }
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Error in the request' })
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message: error })
     }
   }
 }
