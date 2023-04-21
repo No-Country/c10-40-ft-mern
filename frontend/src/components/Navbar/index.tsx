@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { useUser } from 'hooks/useUser'
 import { AiOutlineForm, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai'
 import { FiLogIn } from 'react-icons/fi'
 import { TfiClose } from 'react-icons/tfi'
 import { HiOutlineUserGroup } from 'react-icons/hi'
 import { BsBook, BsPerson } from 'react-icons/bs'
+import { useAuth } from 'hooks/useAuth'
 
 const NavbarResponsive = (): JSX.Element => {
-  const { data, error, isLoading } = useUser()
+  const { isAuthenticated, isLoading } = useAuth()
+
   const [menu, setMenu] = useState(false)
   return (
     <nav className="w-full flex items-center justify-between px-8 py-5 md:px-10">
@@ -39,7 +40,7 @@ const NavbarResponsive = (): JSX.Element => {
         </Link>
       </div>
       <div className="hidden lg:block font-Barlow md:text-center lg:text-end">
-        {!isLoading && data ? (
+        {!isLoading && isAuthenticated ? (
           <Link
             to={'/dashboard'}
             className="inline-block text-lg px-4 py-2 leading-none font-semibold uppercase bg-primary-400/60 hover:bg-primary-400 hover:text-primary-bg ease-in-out duration-300 text-primary-bg rounded-md lg:mt-0">
@@ -192,7 +193,7 @@ const NavbarResponsive = (): JSX.Element => {
             </Link>
           </div>
           <div className="w-full flex items-center gap-x-1.5 group select-none">
-            {!isLoading && data ? (
+            {!isLoading && isAuthenticated ? (
               <Link
                 to="/dashboard"
                 onClick={() => {

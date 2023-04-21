@@ -1,12 +1,24 @@
 import AltSideBar from 'components/AltSidebar'
+import Loader from 'components/Loader'
 import { useAuth } from 'hooks/useAuth'
+import { useUser } from 'hooks/useUser'
+import { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 const DashLayout = (): JSX.Element => {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
-  if (!isAuthenticated) {
-    navigate('/login')
+
+  const { isAuthenticated, isLoading } = useAuth()
+  const { data, isLoading: userIsLoading } = useUser()
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navigate('/login')
+    }
+  }, [isLoading, isAuthenticated])
+
+  if (isLoading || userIsLoading) {
+    return <Loader type="dash" />
   }
 
   return (
