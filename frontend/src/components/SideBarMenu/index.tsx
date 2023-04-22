@@ -255,7 +255,7 @@ const SideBarMenu = (): JSX.Element => {
 
       <div className="mt-5">
         <Link
-          to="/dashboard/createrutine"
+          to="/dashboard/create-routine"
           className="bg-[#0dff00] py-2 px-4 rounded-md font-semibold hover:scale-105 ease-in duration-200">
           Crear Rutina
         </Link>

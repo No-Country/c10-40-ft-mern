@@ -20,7 +20,7 @@ import {
   Stats,
   Schedule,
   Routine,
-  CreateRutine,
+  CreateRoutine,
   NotFound,
   Profile,
   Password,
@@ -55,11 +55,11 @@ function App(): JSX.Element {
           <Route path="/dashboard/summary" element={<Summary />} />
           <Route path="/dashboard/schedule" element={<Schedule />} />
           <Route path="/dashboard/routine" element={<Routine />} />
-          <Route path="/dashboard/createrutine" element={<CreateRutine />} />
-          <Route path="/dashboard/profile" element={<Profile />} />
+          <Route path="/dashboard/create-routine" element={<CreateRoutine />} />
           <Route path="/dashboard/routinedays2" element={<RoutineDays2 />} />
           <Route path="/dashboard/routinedays3" element={<RoutineDays3 />} />
           <Route path="/dashboard/routinedays5" element={<RoutineDays5 />} />
+          <Route path="/dashboard/profile" element={<Profile />} />
           {/* <Route path="/dashboard/exercisecard" element={<ExerciseCard />} /> */}
         </Route>
         <Route path="*" element={<NotFound />} />

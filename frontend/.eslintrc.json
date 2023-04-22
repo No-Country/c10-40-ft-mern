@@ -21,6 +21,7 @@
     "space-before-function-paren": "off",
     "@typescript-eslint/space-before-function-paren": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/indent": "off",
     "no-unused-vars": "warn",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "@typescript-eslint/no-unused-vars": "warn",

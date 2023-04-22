@@ -103,6 +103,7 @@ input[type='number'] {
 .images-enter-active {
   opacity: 1;
   transition: opacity 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+  backface-visibility: visible;
 }
 
 .images-exit {
@@ -112,6 +113,7 @@ input[type='number'] {
 .images-exit-active {
   opacity: 0;
   transition: opacity 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+  backface-visibility: visible;
 }
 
 .slide-enter {
@@ -130,29 +132,6 @@ input[type='number'] {
 .slide-exit-active {
   opacity: 0;
   transition: opacity 1500ms;
-}
-
-.contact-form {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.contact-form-enter {
-  opacity: 0;
-}
-
-.contact-form-enter-active {
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.contact-form-exit {
-  opacity: 1;
-}
-
-.contact-form-exit-active {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
 }
 
 .exercises-enter {
@@ -176,10 +155,12 @@ input[type='number'] {
   transform: translateY(-50%);
   transition: all 500ms;
 }
+
 .fade-in-effect {
   opacity: 0;
   filter: blur(5px);
-  transition: filter 800ms ease-in-out, opacity 1s ease-in-out;
+  backface-visibility: hidden;
+  transition: filter 700ms ease-in-out, opacity 0.7s ease-in-out;
 }
 
 .fade-in-effect.is-visible {

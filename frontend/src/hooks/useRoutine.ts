@@ -2,8 +2,8 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query'
 import { server } from 'utils'
 import { type IRoutine } from 'app/types'
 
-async function getRoutine(): Promise<IRoutine | boolean> {
-  if (!getRoutine) {
+async function getRoutines(): Promise<IRoutine | boolean> {
+  if (!getRoutines) {
     return false
   }
 
@@ -22,9 +22,9 @@ async function getRoutine(): Promise<IRoutine | boolean> {
   return response.data
 }
 
-export function useRoutine(): UseQueryResult<IRoutine[]> {
+export function useRoutines(): UseQueryResult<IRoutine[]> {
   return useQuery({
     queryKey: ['routines'],
-    queryFn: async () => await getRoutine()
+    queryFn: async () => await getRoutines()
   })
 }
