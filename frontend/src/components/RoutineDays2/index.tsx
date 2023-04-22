@@ -17,7 +17,7 @@ const RoutineDays2 = (): JSX.Element => {
           {data?.[2].days.map((dia3: any, index: number) => {
             return (
               <div className="flex flex-col " key={dia3.id}>
-                <div className="flex items-center md:justify-center max-w-lg">
+                <div className="flex items-center md:justify-center max-w-lg md:max-w-2xl">
                   <p className="font-semibold text-2xl mx-5 py-5">
                     Día {dia3.day}
                   </p>
@@ -40,7 +40,7 @@ const RoutineDays2 = (): JSX.Element => {
                   )}
                 </div>
                 {currentDay === index && (
-                  <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-3 md:mx-auto justify-center gap-5">
+                  <div className="grid grid-cols-1 w-full md:grid-cols-2 md:mx-auto justify-center gap-5">
                     {dia3?.exercises.map((ex: any) => {
                       return (
                         <ExerciseCard
