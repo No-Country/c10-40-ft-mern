@@ -53,6 +53,15 @@ const Carousel = (): JSX.Element => {
         'https://thumbs.gfycat.com/AccurateBonyHadrosaurus-size_restricted.gif',
       nombre: 'Vicente Viloni',
       trabajo: 'Luchador Profesional'
+    },
+    {
+      id: 6,
+      testimonio:
+        'Exercify ha sido una solución perfecta para mi entrenamiento en casa. Gracias a su gran variedad de ejercicios y programas personalizados, he logrado mejorar mi condición física sin tener que preocuparme por los precios elevados de los gimnasios o la inflación. La aplicación es muy fácil de usar y me ha permitido establecer una rutina diaria de ejercicios adaptada a mi agenda. Sin duda, recomiendo Exercify a cualquiera que busque una forma efectiva y accesible de entrenar en casa.',
+      imagen:
+        'https://www.gente.com.ar/wp-content/uploads/2021/02/cinthia-Fernandez-620x464.jpg',
+      nombre: 'Cintia Fernandez',
+      trabajo: 'Politica'
     }
   ]
   const handleNextSlide = (): void => {
@@ -107,19 +116,6 @@ const Carousel = (): JSX.Element => {
           </div>
         </CSSTransition>
       ))}
-      {/* <div className="flex justify-center mt-2">
-        <button
-          onClick={handlePrevSlide}
-          className="p-2 rounded-full hover:scale-110 hover:text-primary-400 ease-in-out duration-200">
-          <AiOutlineArrowLeft size={32} />
-        </button>
-        <button
-          onClick={handleNextSlide}
-          className="p-2 rounded-full hover:scale-110 hover:text-primary-400 ease-in-out duration-200 ml-4">
-          <AiOutlineArrowRight size={32} />
-        </button>
-      </div>
-    </div> */}
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center mt-2">
         <div className="block">
           <button

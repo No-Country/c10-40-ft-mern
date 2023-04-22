@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Carousel, Charac, Compromise, Objetive, Promo } from 'components'
 import { Link } from 'react-router-dom'
-
 import { CSSTransition } from 'react-transition-group'
 const images = [
   {
@@ -41,19 +40,17 @@ const images = [
     nombre: 'banner6'
   }
 ]
-
 const Home = (): JSX.Element => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      // Increment the current index by 1, wrapping around to 0 if at the end of the array
       setCurrentIndex((currentIndex + 1) % images.length)
-    }, 5000) // 5000ms = 5 seconds
+    }, 5000)
 
     return () => {
       clearInterval(intervalId)
-    } // Cleanup function to clear the interval when component unmounts
+    }
   }, [currentIndex])
 
   return (
