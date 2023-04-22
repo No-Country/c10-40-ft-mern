@@ -1,14 +1,11 @@
 import { JWT_TOKEN } from 'app/constants'
 import Cookies from 'js-cookie'
 import { useState } from 'react'
-import {
-  AiFillCloseCircle,
-  AiOutlineMenu,
-  AiOutlineCloseCircle
-} from 'react-icons/ai'
+import { AiOutlineMenu, AiOutlineCloseCircle } from 'react-icons/ai'
+import { MdFitnessCenter } from 'react-icons/md'
 import { ImCalendar, ImHome3, ImProfile, ImUnlocked } from 'react-icons/im'
 import { TfiClose } from 'react-icons/tfi'
-import { Link, useNavigate, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const AltSideBar = (): JSX.Element => {
   const navigate = useNavigate()
@@ -16,18 +13,16 @@ const AltSideBar = (): JSX.Element => {
   const [ad, setAd] = useState(true)
 
   return (
-    <div>
+    <div className="flex w-full lg:w-max justify-between">
       <div className="w-full h-16 flex items-center justify-between cursor-pointer lg:hidden">
-        <div>
-          <img
-            onClick={() => {
-              navigate('/')
-            }}
-            className="h-12 mx-4 my-3"
-            src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
-            alt=""
-          />
-        </div>
+        <img
+          onClick={() => {
+            navigate('/dashboard')
+          }}
+          className="h-12 mx-4 my-3"
+          src="https://res.cloudinary.com/dnqmez68n/image/upload/v1681249456/exfy_tsvjx0.png"
+          alt="logo"
+        />
         <div className="border border-primary-400 p-2 cursor-pointer rounded-lg hover:scale-95 ease-in-out duration-300 lg:hidden mr-5">
           <AiOutlineMenu
             size={26}
@@ -223,7 +218,7 @@ const AltSideBar = (): JSX.Element => {
               onClick={() => {
                 setMenu(false)
               }}
-              to="/dashboard/createrutine"
+              to="/dashboard/create-routine"
               className="bg-primary-400 py-2 px-6 rounded-md font-semibold ease-in duration-200">
               Crear Rutina
             </Link>
@@ -303,7 +298,32 @@ const AltSideBar = (): JSX.Element => {
             </Link>
             <div />
           </div>
-
+          <div className="w-full flex items-center gap-x-1.5 group select-none">
+            <div
+              className={
+                'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
+              }>
+              <div
+                className={`${
+                  location.pathname === '/dashboard/routine'
+                    ? 'bg-primary-400 translate-y-0  transition-all'
+                    : 'translate-y-full group-hover:translate-y-0'
+                } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
+            </div>
+            <Link
+              to="/dashboard/routine"
+              className={`${
+                location.pathname === '/dashboard/routine' ? 'bg-white/10' : ''
+              } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
+              <svg
+                className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
+                viewBox="0 0 24 24">
+                <MdFitnessCenter size={20} />
+              </svg>
+              <span>Mis rutinas</span>
+            </Link>
+            <div />
+          </div>
           {/* schedule */}
           <div className="w-full flex items-center gap-x-1.5 group select-none">
             <div
@@ -396,7 +416,7 @@ const AltSideBar = (): JSX.Element => {
 
         <div className="mt-5 hover:scale-110 ease-in duration-200">
           <Link
-            to="/dashboard/createrutine"
+            to="/dashboard/create-routine"
             className="bg-primary-400 py-2 px-6  rounded-md font-semibold ease-in duration-200">
             Crear Rutina
           </Link>

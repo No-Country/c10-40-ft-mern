@@ -1,10 +1,10 @@
 /* eslint-disable array-callback-return */
 import { ExerciseCard, Loader } from 'components'
-import { useRoutine } from 'hooks/useRoutine'
+import { useRoutines } from 'hooks/useRoutine'
 // import { type IBodyPart } from 'app/types'
 
 const Routine = (): JSX.Element => {
-  const { data, isLoading, error } = useRoutine()
+  const { data, isLoading, error } = useRoutines()
   return (
     <>
       {isLoading && (
