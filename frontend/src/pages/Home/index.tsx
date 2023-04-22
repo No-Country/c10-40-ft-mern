@@ -59,18 +59,24 @@ const Home = (): JSX.Element => {
   return (
     <div className="h-full w-full">
       {images.map((img, index) => (
-        <CSSTransition
-          key={index}
-          timeout={500}
-          classNames="images"
-          appear={true}
-          in={index === currentIndex}>
-          <div className="w-full h-full">
-            <div
-              className={`slide transition-all duration-500 ease-in-out bg-cover bg-center h-[60vh] flex flex-col justify-center items-center md:items-start ${
-                index === currentIndex ? 'block' : 'hidden'
-              }`}
-              style={{ backgroundImage: `url(${img.imagen})` }}>
+        <div key={index} className="w-full h-full relative">
+          <div
+            className={`slide transition-all h-screen duration-500 ease-in-out flex flex-col justify-center items-center md:items-start ${
+              index === currentIndex ? 'block' : 'hidden'
+            }`}>
+            <CSSTransition
+              key={index}
+              timeout={500}
+              classNames="images"
+              appear={true}
+              in={index === currentIndex}>
+              <img
+                className="w-full h-full object-cover aspect-auto"
+                src={img.imagen}
+                alt={img.nombre}
+              />
+            </CSSTransition>
+            <div className="w-full absolute inset-y-0 flex flex-col items-center justify-center md:items-start md:px-8 lg:px-16 bg-primary-bg/40">
               <p className="text-4xl font-Barlow p-7 md:text-6xl font-bold uppercase max-w-lg text-white">
                 Conocé nuestros planes de entrenamiento
               </p>
@@ -83,13 +89,12 @@ const Home = (): JSX.Element => {
                 <Link
                   to="/about"
                   className="border-2 md:w-48 px-10 p-3 font-semibold md:text-xl rounded-md bg-transparent text-white hover:bg-white hover:text-black hover:border-transparent ease-in-out duration-500">
-                  Conocenos
+                  Saber más
                 </Link>
               </div>
             </div>
-
           </div>
-        </CSSTransition>
+        </div>
       ))}
       <Objetive />
 
