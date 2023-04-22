@@ -114,6 +114,37 @@ const AltSideBar = (): JSX.Element => {
               </Link>
               <div />
             </div>
+            <div className="w-full flex items-center gap-x-1.5 group select-none">
+              <div
+                className={
+                  'w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden'
+                }>
+                <div
+                  className={`${
+                    location.pathname === '/dashboard/routine'
+                      ? 'bg-primary-400 translate-y-0  transition-all'
+                      : 'translate-y-full group-hover:translate-y-0'
+                  } absolute top-0 left-0 w-full h-full   bg-primary-400 transition-all duration-300`}></div>
+              </div>
+              <Link
+                to="/dashboard/routine"
+                onClick={() => {
+                  setMenu(false)
+                }}
+                className={`${
+                  location.pathname === '/dashboard/routine'
+                    ? 'bg-white/10'
+                    : ''
+                } text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}>
+                <svg
+                  className="group-hover:animate-bounce h-5 w-5 group-hover:fill-red-600 dark:fill-gray-600  transition-colors duration-200"
+                  viewBox="0 0 24 24">
+                  <MdFitnessCenter size={20} />
+                </svg>
+                <span>Mis Rutinas</span>
+              </Link>
+              <div />
+            </div>
 
             {/* schedule */}
             <div className="w-full flex items-center gap-x-1.5 group select-none">
@@ -223,7 +254,7 @@ const AltSideBar = (): JSX.Element => {
                 }}
                 to="/dashboard/create-routine"
                 className="button bg-primary-400/60 hover:bg-primary-400 text-primary-bg px-4 self-start mx-4">
-                Crear Rutina
+                Nueva Rutina
               </Link>
             ) : null}
           </div>
@@ -420,9 +451,12 @@ const AltSideBar = (): JSX.Element => {
 
         {!isLoading && !hasRoutine ? (
           <Link
+            onClick={() => {
+              setMenu(false)
+            }}
             to="/dashboard/create-routine"
             className="button bg-primary-400/60 hover:bg-primary-400 text-primary-bg px-4 self-start mx-4">
-            Crear Rutina
+            Nueva Rutina
           </Link>
         ) : null}
         {ad && (

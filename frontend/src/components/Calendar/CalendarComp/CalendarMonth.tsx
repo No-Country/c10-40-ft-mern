@@ -10,13 +10,13 @@ interface Props {
 }
 
 const CalendarMonth = ({ date, month }: Props): JSX.Element => {
-  const { user, isLoading } = useUser()
+  const { user, isLoading, hasRoutine } = useUser()
   const [routineDay, setRoutineDay] = useState<number[]>()
 
   if (isLoading) return <Loader type="spinner" />
 
   useEffect(() => {
-    if (!isLoading && user && user.routines) {
+    if (!isLoading && user && user.routines && user.routines[0]) {
       setRoutineDay(user.routines[0].days.map((d) => d.id))
     }
   }, [isLoading, user])

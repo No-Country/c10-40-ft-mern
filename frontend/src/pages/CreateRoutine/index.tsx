@@ -17,17 +17,17 @@ const bgImages: Record<string, string> = {
 const CreateRoutine = (): JSX.Element => {
   const { data, isLoading } = useRoutines()
   const navigate = useNavigate()
-  const { user, isLoading: userIsLoading, hasRoutine } = useUser()
-
-  if (isLoading || userIsLoading) {
-    return <Loader type="spinner" />
-  }
+  const { isLoading: userIsLoading, hasRoutine } = useUser()
 
   useEffect(() => {
     if (!userIsLoading && hasRoutine) {
       navigate('/dashboard/routine')
     }
-  }, [userIsLoading, hasRoutine])
+  }, [userIsLoading, hasRoutine, navigate])
+
+  if (isLoading || userIsLoading) {
+    return <Loader type="spinner" />
+  }
 
   return (
     <div className="p-7 flex flex-col justify-between w-full gap-6">

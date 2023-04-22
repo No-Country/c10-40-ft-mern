@@ -37,15 +37,17 @@ const CalendarDay = ({
           <div
             className={`w-full h-full text-sm p-2 flex flex-col gap-4 items-center ${getCurrentDayClass()}`}>
             <p className="text-start">{day.format('DD')}</p>
-            {day.format('MM-YY') === date.format('MM-YY') &&
-            routineDay.includes(day.day()) ? (
-              <Link
-                to={'/dashboard/routine'}
-                className="flex items-center justify-center text-primary-bg absolute top-2/4 -translate-y-2/4 w-4 h-4 rounded-full bg-primary-400/80 group-hover:rounded-none group-hover:w-full group-hover:h-full group-hover:bg-primary-400 transition-all">
-                <p className="text-lg opacity-0 group-hover:opacity-100">
-                  Ir a rutina
-                </p>
-              </Link>
+            {routineDay && routineDay.length > 0 ? (
+              day.format('MM-YY') === date.format('MM-YY') &&
+              routineDay.includes(day.day()) ? (
+                <Link
+                  to={'/dashboard/routine'}
+                  className="flex items-center justify-center text-primary-bg absolute top-2/4 -translate-y-2/4 w-4 h-4 rounded-full bg-primary-400/80 group-hover:rounded-none group-hover:w-full group-hover:h-full group-hover:bg-primary-400 transition-all">
+                  <p className="text-lg opacity-0 group-hover:opacity-100">
+                    Ir a rutina
+                  </p>
+                </Link>
+              ) : null
             ) : null}
           </div>
         </div>

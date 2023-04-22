@@ -2,6 +2,7 @@ import { ExerciseCard, Loader } from 'components'
 import { useUser } from 'hooks/useUser'
 import { useEffect, useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
+import { Link } from 'react-router-dom'
 
 const translate: Record<string, string> = {
   '2 days': '2 días',
@@ -32,10 +33,17 @@ const Routine = (): JSX.Element => {
   }
 
   return (
-    <div className="w-full h-max p-4">
+    <div className="w-full h-max">
       {!hasRoutine ? (
-        <div>
-          <h2>No tenés rutinas</h2>
+        <div className="w-full h-screen flex flex-col items-center justify-center gap-4">
+          <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl px-4 text-center">
+            Por el momento no tenés rutinas por hacer.
+          </h2>
+          <Link
+            to="/dashboard/create-routine"
+            className="button bg-primary-400/60 hover:bg-primary-400 text-primary-bg px-6">
+            Nueva Rutina
+          </Link>
         </div>
       ) : user?.routines ? (
         <div>

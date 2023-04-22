@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { addRoutine } from 'utils'
 import { sendNotification } from 'utils/sendNotification'
 import Loader from 'components/Loader'
+import { useNavigate } from 'react-router-dom'
 
 const translate: Record<string, string> = {
   '2 days': '2 días',
@@ -18,11 +19,14 @@ const RoutineCard = ({
   bgImage: string
   routine: IRoutine
 }): JSX.Element => {
+  const navigate = useNavigate()
   const { mutate, isLoading } = useMutation({
     mutationKey: ['userRoutine'],
     mutationFn: addRoutine,
     onSuccess: () => {
       sendNotification('Rutina agregada con éxito!', 'success')
+
+      navigate('/dashboard/routine')
     },
     onError: (error) => {
       console.log(error)
