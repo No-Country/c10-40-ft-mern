@@ -1,6 +1,7 @@
 import React from 'react'
 import dayjs, { type Dayjs } from 'dayjs'
 import { Link, useNavigate } from 'react-router-dom'
+import { useUser } from 'hooks/useUser'
 
 const CalendarDay = ({
   day,
@@ -12,93 +13,33 @@ const CalendarDay = ({
   date: Dayjs
 }): JSX.Element => {
   const navigate = useNavigate()
+  const { user, isLoading } = useUser()
 
   function getCurrentMonthClass(): string {
     return day.format('MM-YY') === date.format('MM-YY')
-      ? 'bg-gray-400'
-      : 'bg-white'
+      ? 'bg-primary-100/10'
+      : 'bg-primary-bg'
   }
   function getCurrentDayClass(): string {
     return day.format('DD-MM-YY') === dayjs().format('DD-MM-YY')
-      ? 'bg-green-500/70 text-black mx-auto'
+      ? 'bg-primary-400/60 text-primary-bg w-full h-full'
       : ''
   }
+
+  console.log(day.day())
 
   return (
     <div
       className={`border border-black flex flex-col h-full w-full ${getCurrentMonthClass()}`}>
       <header className="flex flex-col items-center h-full max-h-36">
         {rowIdx === 0 && (
-          <div className="text-sm bg-green-500 w-full text-center p-1 border-b-2 border-black font-bold">
+          <div className="text-lg bg-primary-400/60 w-full text-center py-2 font-Barlow font-bold">
             {day.format('ddd').toUpperCase()}
           </div>
         )}
         <div
-          className={`text-sm p-2 flex flex-col h-full text-center ${getCurrentDayClass()}`}>
-          <p>{day.format('DD')}</p>
-          {day.format('DD') === '04' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
-          {day.format('DD') === '07' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
-          {day.format('DD') === '10' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
-          {day.format('DD') === '13' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
-          {day.format('DD') === '18' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
-          {day.format('DD') === '21' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
-          {day.format('DD') === '24' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
-          {day.format('DD') === '28' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
-          {day.format('DD') === '30' && (
-            <Link
-              to="/dashboard/routine"
-              className="text-xs my-auto p-1 rounded-md text-white bg-blue-500 hover:bg-green-600 ease-in duration-200">
-              Rutina de Hoy
-            </Link>
-          )}
+          className={`text-sm p-2 flex flex-col items-center ${getCurrentDayClass()}`}>
+          <p className="text-start">{day.format('DD')}</p>
         </div>
       </header>
     </div>

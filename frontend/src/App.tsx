@@ -1,11 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import {
-  ExerciseCard,
-  RoutineDays2,
-  RoutineDays3,
-  RoutineDays5
-} from 'components'
 import DashLayout from 'components/DashLayout'
 import MainLayout from 'components/Layout'
 import {
@@ -56,9 +50,6 @@ function App(): JSX.Element {
           <Route path="/dashboard/schedule" element={<Schedule />} />
           <Route path="/dashboard/routine" element={<Routine />} />
           <Route path="/dashboard/create-routine" element={<CreateRoutine />} />
-          <Route path="/dashboard/routinedays2" element={<RoutineDays2 />} />
-          <Route path="/dashboard/routinedays3" element={<RoutineDays3 />} />
-          <Route path="/dashboard/routinedays5" element={<RoutineDays5 />} />
           <Route path="/dashboard/profile" element={<Profile />} />
           {/* <Route path="/dashboard/exercisecard" element={<ExerciseCard />} /> */}
         </Route>

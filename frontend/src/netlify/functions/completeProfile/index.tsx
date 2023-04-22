@@ -17,7 +17,7 @@ const handler: Handler = async (
   if (event.body === null) {
     return { statusCode: 400 }
   }
-  console.log(event.body)
+
   const { gender, age, weight, height }: IUserProfile = JSON.parse(event.body)
 
   if (!gender || !age || !weight || !height) {

@@ -1,6 +1,9 @@
 import { type IRoutine } from 'app/types'
 import { Loader, RoutineCard } from 'components'
 import { useRoutines } from 'hooks/useRoutine'
+import { useUser } from 'hooks/useUser'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const bgImages: Record<string, string> = {
   '2 days':
@@ -13,16 +16,29 @@ const bgImages: Record<string, string> = {
 
 const CreateRoutine = (): JSX.Element => {
   const { data, isLoading } = useRoutines()
+  const navigate = useNavigate()
+  const { user, isLoading: userIsLoading, hasRoutine } = useUser()
 
-  if (isLoading) {
+  if (isLoading || userIsLoading) {
     return <Loader type="spinner" />
   }
 
+  useEffect(() => {
+    if (!userIsLoading && hasRoutine) {
+      navigate('/dashboard/routine')
+    }
+  }, [userIsLoading, hasRoutine])
+
   return (
-    <div className="p-7 flex flex-col items-center w-full">
-      <h2 className="font-bold text-2xl my-6">
-        Elegi la cantidad de dias que vas a entrenar en la semana!
-      </h2>
+    <div className="p-7 flex flex-col justify-between w-full gap-6">
+      <div>
+        <h2 className="font-semibold text-2xl">
+          Elegí la cantidad de dias que vas a entrenar en la semana!
+        </h2>
+        <p className="text-sm text-primary-100/60">
+          Te damos estas rutinas para que puedas a empezar a entrenar ahora
+        </p>
+      </div>
       <div className="w-full flex flex-col-reverse md:flex-row-reverse gap-4">
         {data
           ? data.map((routine: IRoutine) => {

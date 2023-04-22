@@ -6,11 +6,13 @@ import { MdFitnessCenter } from 'react-icons/md'
 import { ImCalendar, ImHome3, ImProfile, ImUnlocked } from 'react-icons/im'
 import { TfiClose } from 'react-icons/tfi'
 import { Link, useNavigate } from 'react-router-dom'
+import { useUser } from 'hooks/useUser'
 
 const AltSideBar = (): JSX.Element => {
   const navigate = useNavigate()
   const [menu, setMenu] = useState(false)
   const [ad, setAd] = useState(true)
+  const { isLoading, hasRoutine } = useUser()
 
   return (
     <div className="flex w-full lg:w-max justify-between">
@@ -214,14 +216,16 @@ const AltSideBar = (): JSX.Element => {
           </div>
 
           <div className="mt-5 hover:scale-110 ease-in duration-200">
-            <Link
-              onClick={() => {
-                setMenu(false)
-              }}
-              to="/dashboard/create-routine"
-              className="bg-primary-400 py-2 px-6 rounded-md font-semibold ease-in duration-200">
-              Crear Rutina
-            </Link>
+            {!isLoading && !hasRoutine ? (
+              <Link
+                onClick={() => {
+                  setMenu(false)
+                }}
+                to="/dashboard/create-routine"
+                className="button bg-primary-400/60 hover:bg-primary-400 text-primary-bg px-4 self-start mx-4">
+                Crear Rutina
+              </Link>
+            ) : null}
           </div>
           {ad && (
             <div className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]">
@@ -320,7 +324,7 @@ const AltSideBar = (): JSX.Element => {
                 viewBox="0 0 24 24">
                 <MdFitnessCenter size={20} />
               </svg>
-              <span>Mis rutinas</span>
+              <span>Mis Rutinas</span>
             </Link>
             <div />
           </div>
@@ -414,13 +418,13 @@ const AltSideBar = (): JSX.Element => {
           </div>
         </div>
 
-        <div className="mt-5 hover:scale-110 ease-in duration-200">
+        {!isLoading && !hasRoutine ? (
           <Link
             to="/dashboard/create-routine"
-            className="bg-primary-400 py-2 px-6  rounded-md font-semibold ease-in duration-200">
+            className="button bg-primary-400/60 hover:bg-primary-400 text-primary-bg px-4 self-start mx-4">
             Crear Rutina
           </Link>
-        </div>
+        ) : null}
         {ad && (
           <div className="p-4 mx-4 mt-6 rounded-lg bg-[#3b455a]">
             <div className="flex items-center mb-3 justify-between">

@@ -1,13 +1,14 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { type IUser } from 'app/types'
+import { useEffect, useState } from 'react'
 import { server } from 'utils'
 import { checkSession } from 'utils/checkSession'
 
-async function getUser(): Promise<IUser | boolean> {
+async function getUser(): Promise<IUser> {
   const jwtToken = await checkSession()
 
   if (!jwtToken) {
-    return false
+    throw new Error('token missing')
   }
 
   const response = await server
@@ -19,15 +20,32 @@ async function getUser(): Promise<IUser | boolean> {
     })
 
   if (response.status === 401) {
-    return false
+    throw new Error('not Authorization')
   }
 
   return response.data
 }
 
-export function useUser(): UseQueryResult<IUser> {
-  return useQuery({
+export function useUser(): {
+  user: IUser | undefined
+  isLoading: boolean
+  hasRoutine: boolean
+} {
+  const [hasRoutine, setHasRoutine] = useState(false)
+  const { data, isLoading } = useQuery<IUser>({
     queryKey: ['user'],
     queryFn: async () => await getUser()
   })
+
+  useEffect(() => {
+    if (!isLoading && data?.routines && data?.routines.length) {
+      setHasRoutine(true)
+    }
+  }, [data, isLoading])
+
+  return {
+    user: data,
+    isLoading,
+    hasRoutine
+  }
 }
