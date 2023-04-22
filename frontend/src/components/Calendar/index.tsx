@@ -11,18 +11,14 @@ const Calendar = (): JSX.Element => {
   const [date, setDate] = useState(dayjs())
 
   return (
-    <>
-      <div className="flex flex-col">
-        <CalendarHeader
-          setCurrentMonth={setCurrentMonth}
-          date={date}
-          setDate={setDate}
-        />
-        <div className="flex flex-1">
-          <CalendarMonth date={date} month={currentMonth} />
-        </div>
-      </div>
-    </>
+    <div className="w-full h-full flex flex-col gap-10">
+      <CalendarHeader
+        setCurrentMonth={setCurrentMonth}
+        date={date}
+        setDate={setDate}
+      />
+      <CalendarMonth date={date} month={currentMonth} />
+    </div>
   )
 }
 

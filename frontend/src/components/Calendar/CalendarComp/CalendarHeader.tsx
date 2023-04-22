@@ -28,27 +28,23 @@ const CalendarHeader = ({
   }
 
   return (
-    <header className="px-16 py-2 flex flex-col items-center bg-[#1c212c]">
-      <div className="flex-1 flex justify-center">
-        <p className="text-2xl text-white font-bold">
-          {formatDate.toUpperCase()}
-        </p>
-      </div>
-
-      <div className="flex justify-center items-center gap-4 mt-5">
+    <header className="w-full py-6 px-10 flex justify-between items-center">
+      <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-Barlow text-primary-100 font-bold">
+        {formatDate.toUpperCase()}
+      </p>
+      <div className="flex justify-center items-center gap-2">
         <button
-          className=" bg-green-600/70 text-white py-2 px-10 hover:scale-90 rounded ease-in duration-200 w-auto text-center"
+          className="button text-primary-100 w-max p-4 hover:text-primary-bg hover:bg-primary-400"
           onClick={handlePrevMonth}>
           <BsChevronLeft />
         </button>
         <button
-          className=" bg-green-600/70 text-white py-2 px-10 hover:scale-90 rounded ease-in duration-200 w-auto text-center"
+          className="button text-primary-100 w-max p-4 hover:text-primary-bg hover:bg-primary-400"
           onClick={handleCurrentMonth}>
-          {' '}
           Hoy{' '}
         </button>
         <button
-          className=" bg-green-600/70 text-white py-2 px-10 hover:scale-90 rounded ease-in duration-200 w-auto text-center"
+          className="button text-primary-100 w-max p-4 hover:text-primary-bg hover:bg-primary-400"
           onClick={handleNextMonth}>
           <BsChevronRight />
         </button>

@@ -98,7 +98,6 @@ export const completeProfile = async (user: IUserProfile): Promise<any> => {
   const token: string = await checkSession()
 
   if (!token && typeof token !== 'string') throw new Error('missing token')
-  console.log(token)
 
   const { gender, age, weight, height } = user
   if (
@@ -115,4 +114,22 @@ export const completeProfile = async (user: IUserProfile): Promise<any> => {
   })
 
   return completed
+}
+
+export const addRoutine = async (routineId: number): Promise<any> => {
+  const token: string = await checkSession()
+
+  if (!token && typeof token !== 'string') throw new Error('missing token')
+
+  if (!routineId) throw new Error('missing routineId')
+
+  const response = await server.post(
+    '/addRoutine',
+    { routineId },
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  )
+
+  return response
 }

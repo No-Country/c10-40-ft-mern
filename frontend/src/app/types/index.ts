@@ -10,6 +10,7 @@ export interface IUser {
   imagen: string
   profileCompleted?: boolean
   googleId?: string
+  routines?: IRoutine[]
 }
 
 export interface IUserProfile {

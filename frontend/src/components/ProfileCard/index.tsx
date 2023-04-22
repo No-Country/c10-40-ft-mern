@@ -16,25 +16,25 @@ const frases = [
 ]
 
 const ProfileCard = (): JSX.Element => {
-  const { data, isLoading } = useUser()
-  console.log(data?.profileCompleted)
+  const { user, isLoading } = useUser()
+
   const [motivacion, setMotivacion] = useState(
     frases[Math.floor(Math.random() * frases.length)]
   )
   const [imc, setImc] = useState(0)
   const [mensaje, setMensaje] = useState('')
   let imgSrc
-  if (data?.gender === 'Masculino') {
+  if (user?.gender === 'Masculino') {
     imgSrc =
       'https://cdn3.iconfinder.com/data/icons/my-business-icons/200/BusinessIcon-03-512.png'
-  } else if (data?.gender === 'Femenino') {
+  } else if (user?.gender === 'Femenino') {
     imgSrc = 'https://www.mediawind.be/images/tete_4.png'
   }
 
   useEffect(() => {
-    if (data) {
-      if (data.height && data.weight) {
-        const { weight, height } = data
+    if (user) {
+      if (user.height && user.weight) {
+        const { weight, height } = user
         const mtrHeight = height / 100
         const result = weight / (mtrHeight * mtrHeight)
         setImc(Number(result.toFixed(2)))
@@ -50,7 +50,7 @@ const ProfileCard = (): JSX.Element => {
         }
       }
     }
-  }, [data])
+  }, [user])
 
   // TODO: profile picture
   return (
@@ -65,7 +65,7 @@ const ProfileCard = (): JSX.Element => {
         ) : (
           <div className="w-full md:w-1/2 border-2 border-primary-100 mt-12 md:mt-0 py-10 rounded-lg h-full md:min-h-1/2 md:h-auto flex flex-col justify-center items-center gap-5">
             <img
-              src={data?.imagen ?? imgSrc}
+              src={user?.imagen ?? imgSrc}
               alt="profile"
               className="w-auto max-h-56 p-4"
             />
@@ -73,13 +73,13 @@ const ProfileCard = (): JSX.Element => {
               <p>
                 Nombre:{' '}
                 <span className="font-bold text-primary-400 text-xl">
-                  {data?.firstName}
+                  {user?.firstName}
                 </span>{' '}
               </p>
               <p>
                 Email:{' '}
                 <span className="font-bold text-primary-400 text-xl">
-                  {data?.email}
+                  {user?.email}
                 </span>{' '}
               </p>
             </div>
@@ -96,19 +96,19 @@ const ProfileCard = (): JSX.Element => {
                 <div className="flex justify-between items-center border-b-2 py-3 ">
                   <p className="text-lg font-thin">Altura:</p>
                   <p className="font-bold bg-primary-400 w-28 text-center rounded-md p-2 m-2 text-lg text-primary-bg font-WS">
-                    {data?.height ?? 'n/a'} cm
+                    {user?.height ?? 'n/a'} cm
                   </p>
                 </div>
                 <div className="flex justify-between items-center border-b-2 py-3 ">
                   <p className="text-lg font-thin">Peso:</p>
                   <p className="font-bold bg-primary-400 w-28 text-center rounded-md p-2 m-2 text-lg text-primary-bg font-WS">
-                    {data?.weight ?? 'n/a'} Kg
+                    {user?.weight ?? 'n/a'} Kg
                   </p>
                 </div>
                 <div className="flex justify-between items-center border-b-2 py-3 ">
                   <p className="text-lg font-thin">Genero:</p>
                   <p className="font-bold bg-primary-400 w-28 text-center rounded-md p-2 m-2 text-lg text-primary-bg font-WS">
-                    {data?.gender ?? 'n/a'}
+                    {user?.gender ?? 'n/a'}
                   </p>
                 </div>
                 {imc !== 0 ? (
@@ -130,7 +130,7 @@ const ProfileCard = (): JSX.Element => {
                 <div className="flex justify-between items-center pt-3 ">
                   <p className="text-lg font-thin">Edad:</p>
                   <p className="font-bold bg-primary-400 w-28 text-center rounded-md p-2 m-2 text-lg text-primary-bg font-WS">
-                    {data?.age ?? 'n/a'} years
+                    {user?.age ?? 'n/a'} years
                   </p>
                 </div>
               </div>

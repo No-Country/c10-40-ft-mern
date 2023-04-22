@@ -9,7 +9,7 @@ const DashLayout = (): JSX.Element => {
   const navigate = useNavigate()
 
   const { isAuthenticated, isLoading } = useAuth()
-  const { data, isLoading: userIsLoading } = useUser()
+  const { user, isLoading: userIsLoading } = useUser()
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -24,7 +24,7 @@ const DashLayout = (): JSX.Element => {
   return (
     <div className="w-full flex flex-col lg:flex-row items-center justify-center h-screen overflow-hidden">
       <AltSideBar />
-      <main className="w-full h-full overflow-y-auto">
+      <main className="w-full h-full overflow-x-hidden overflow-y-auto">
         <Outlet />
       </main>
     </div>
