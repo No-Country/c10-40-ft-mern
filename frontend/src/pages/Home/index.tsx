@@ -80,14 +80,14 @@ const Home = (): JSX.Element => {
               <div className="flex flex-col sm:flex-row gap-4 md:gap-8 md:mt-10 text-center p-7">
                 <Link
                   to="/register"
-                  className="border-2 md:w-48 px-10 p-3 font-semibold md:text-xl rounded-md bg-primary-400 border-primary-400  text-black hover:bg-transparent hover:text-primary-400  ease-in-out duration-500">
+                  className="border-2 md:w-48 px-10 p-3 uppercase font-Barlow font-bold md:text-xl rounded-md bg-primary-400/80 border-transparent text-primary-bg hover:bg-primary-400 hover:text-primary-bg  ease-in-out duration-500">
                   Comenzá
                 </Link>
-                <Link
-                  to="/about"
-                  className="border-2 md:w-48 px-10 p-3 font-semibold md:text-xl rounded-md bg-transparent text-white hover:bg-white hover:text-black hover:border-transparent ease-in-out duration-500">
+                <a
+                  href="#objective"
+                  className="border-2 md:w-48 px-10 p-3 font-Barlow uppercase font-bold md:text-xl rounded-md bg-transparent text-primary-100 hover:bg-primary-400 hover:text-primary-bg hover:border-transparent ease-in-out duration-500">
                   Saber más
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -99,7 +99,9 @@ const Home = (): JSX.Element => {
 
       <Compromise />
 
-      <div className="w-full flex flex-col items-center justify-center my-10">
+      <div
+        id="testimonios"
+        className="w-full flex flex-col items-center justify-center my-10">
         <h1 className="heading text-primary-400/60 border-b-primary-400/60">
           Nuestros clientes nos recomiendan
         </h1>

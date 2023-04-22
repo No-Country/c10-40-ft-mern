@@ -51,7 +51,7 @@ const NavbarResponsive = (): JSX.Element => {
         <Link
           to="/"
           className="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:text-primary-400 hover:border-primary-400 ease-in duration-300">
-          ¿Cómo funciona?
+          Testimonios
         </Link>
         <Link
           to="/about"
