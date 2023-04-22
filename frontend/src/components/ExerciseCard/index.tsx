@@ -1,7 +1,6 @@
 import Loader from 'components/Loader'
 import { useState } from 'react'
 import { type IExercise } from 'app/types'
-import { AiFillCloseCircle } from 'react-icons/ai'
 import { TfiClose } from 'react-icons/tfi'
 
 interface ExerciseProps {
@@ -30,7 +29,7 @@ const ExerciseCard: React.FC<ExerciseProps> = ({
                   setShow(!show)
                 }}
                 size={30}
-                className="absolute text-center text-black top-4 right-4 z-20"
+                className="absolute text-center text-black top-4 right-4 z-20 cursor-pointer hover:rotate-90 hover:text-primary-400 ease-in duration-200"
               />
               <div className="absolute bg-white w-full h-full">
                 <img src={imageUrl} alt={name} />
@@ -50,13 +49,13 @@ const ExerciseCard: React.FC<ExerciseProps> = ({
               </p>
             </div>
             {!show && (
-              <button
-                className=" bg-primary-600 px-4 py-1 rounded-lg hover:scale-105 duration-100 ease-in text-black"
+              <div
+                className=" bg-primary-600 px-4 py-2 rounded-lg hover:scale-105 duration-100 ease-in text-black cursor-pointer my-auto"
                 onClick={() => {
                   setShow(!show)
                 }}>
                 Mostrar
-              </button>
+              </div>
             )}
           </div>
           <div className="mt-4 p-4 sm:px-6 lg:px-8">
