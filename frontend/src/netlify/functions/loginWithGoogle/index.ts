@@ -13,11 +13,17 @@ const handler: Handler = async (
   if (referer && regex.test(referer)) {
     return {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(apiUrl)
     }
   } else {
     return {
       statusCode: 401,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ message: 'Not authorized' })
     }
   }
