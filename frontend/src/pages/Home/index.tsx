@@ -68,7 +68,7 @@ const Home = (): JSX.Element => {
                 index === currentIndex ? 'block' : 'hidden'
               }`}
               style={{ backgroundImage: `url(${img.imagen})` }}>
-              <p className="text-4xl p-7 md:text-6xl font-bold uppercase max-w-lg text-white">
+              <p className="text-4xl font-Barlow p-7 md:text-6xl font-bold uppercase max-w-lg text-white">
                 Conocé nuestros planes de entrenamiento
               </p>
               <div className="flex flex-col sm:flex-row gap-4 md:gap-8 md:mt-10 text-center p-7">
