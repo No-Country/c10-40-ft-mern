@@ -19,60 +19,6 @@ const ExerciseCard: React.FC<ExerciseProps> = ({
       {isLoading ? (
         <Loader type={'routine'} />
       ) : (
-        // <div className="flex flex-col justify-around p-6 border m-5 bg-[#1c212c] rounded-lg min-w-[288px] max-w-[320px] max-h-[700px] ">
-        //   <div className="flex justify-center ">
-        //     <img className="rounded-sm w-auto max-h-48 " />
-        //   </div>
-        //   <div className="flex flex-col gap-5 pt-6">
-        //     <p className="text-white h-10">
-        //       Nombre del Ejercicio:{' '}
-        //       <span className="font-semibold">{name}</span>{' '}
-        //     </p>
-        //     <img className="h-44" src={imageUrl} />
-        //     <p className="text-white h-10">
-        //       Musculo trabajado:{' '}
-        //       <span className="font-semibold">{bodyPart}</span>{' '}
-        //     </p>
-        //     <p className="text-white">
-        //       Series: <span className="font-semibold">{series}</span>
-        //     </p>
-        //     <p className="text-white">
-        //       Repeticiones: <span className="font-semibold">{repetitions}</span>
-        //     </p>
-        //     <p className="text-green-500 mx-auto font-bold">
-        //       ¿Cómo realizarlo?
-        //     </p>
-        //     <p className="font-semibold text-white">{description}</p>
-        //     <div
-        //       className={`${
-        //         isChecked
-        //           ? 'bg-green-700 '
-        //           : 'bg-[#fb8500] hover:scale-105  cursor-pointer'
-        //       } rounded-md font-semibold ease-in duration-200 `}>
-        //       <label
-        //         className={`${
-        //           isChecked ? 'cursor-not-allowed w-full ' : 'text-sm'
-        //         } flex items-center justify-center py-2 px-4 rounded-md `}>
-        //         <input
-        //           onChange={() => {
-        //             setIsChecked(!isChecked)
-        //           }}
-        //           type="checkbox"
-        //           disabled={isChecked}
-        //           className={
-        //             isChecked
-        //               ? "appearance-none form-checkbox h-5 w-5  text-gray-600 transition  hover:skew-x-1-100 ease-in duration-200 rounded-md cursor-not-allowed bg-[linear-gradient(to_right_top,rgba(0,0,0,0.4),rgba(0,0,0,0.3)),url('https://th.bing.com/th/id/OIP.yrs3ANXk_pfFmkRnu6Xv2AHaGo?pid=ImgDet&w=860&h=771&rs=1')] bg-center bg-cover "
-        //               : 'appearance-none form-checkbox h-5 w-5  text-gray-600 transition bg-[#fb5500] focus:ring-red-800 ring-2 hover:scale-105 ease-in duration-200 font-semibold rounded-md cursor-pointer '
-        //           }
-        //           checked={isChecked}
-        //         />
-        //         <span className={`${isChecked ? 'line-through' : ''} ml-2 `}>
-        //           {isChecked ? 'Ejercicio Completado' : 'Completar Ejercicio'}
-        //         </span>
-        //       </label>
-        //     </div>
-        //   </div>
-        // </div>
         <div className="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8 min-h-full max-h-96 min-w-full md:max-w-sm">
           <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-primary-300 via-blue-500 to-purple-600"></span>
 
@@ -91,7 +37,7 @@ const ExerciseCard: React.FC<ExerciseProps> = ({
               <img
                 alt={name}
                 src={imageUrl}
-                className="h-16 w-16 rounded-lg object-cover shadow-sm"
+                className="h-16 w-16 rounded-lg object-cover shadow-sm hover:scale-[4] hover:-translate-x-[180%] hover:translate-y-[140%] duration-200 ease-in"
               />
             </div>
           </div>
