@@ -51,6 +51,13 @@ router.delete(
   userServices.deleteRoutine
 );
 
+// Rutas de Ejercicio
+router.patch(
+  "/me/routines/:routineId/days/:dayId/exercises/:exerciseId",
+  passport.authenticate("jwt", { session: false }),
+  userServices.updateExerciseCompletion
+);
+
 //? /api/v1/users/me
 
 router.get("/:id", userServices.getUserById);

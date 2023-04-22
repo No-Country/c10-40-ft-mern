@@ -22,9 +22,11 @@ const DashLayout = (): JSX.Element => {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row justify-start h-screen">
+    <div className="w-full flex items-center justify-center h-screen overflow-hidden">
       <AltSideBar />
-      <Outlet />
+      <main className="w-full h-full overflow-y-auto">
+        <Outlet />
+      </main>
     </div>
   )
 }

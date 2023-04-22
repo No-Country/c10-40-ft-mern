@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Carousel, Charac, Compromise, Objetive, Promo } from 'components'
 import { Link } from 'react-router-dom'
+
 import { CSSTransition } from 'react-transition-group'
 const images = [
   {
@@ -40,6 +41,7 @@ const images = [
     nombre: 'banner6'
   }
 ]
+
 const Home = (): JSX.Element => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -69,7 +71,7 @@ const Home = (): JSX.Element => {
                 index === currentIndex ? 'block' : 'hidden'
               }`}
               style={{ backgroundImage: `url(${img.imagen})` }}>
-              <p className="text-4xl p-7 md:text-6xl font-bold uppercase max-w-lg text-white">
+              <p className="text-4xl font-Barlow p-7 md:text-6xl font-bold uppercase max-w-lg text-white">
                 Conocé nuestros planes de entrenamiento
               </p>
               <div className="flex flex-col sm:flex-row gap-4 md:gap-8 md:mt-10 text-center p-7">
@@ -85,6 +87,7 @@ const Home = (): JSX.Element => {
                 </Link>
               </div>
             </div>
+
           </div>
         </CSSTransition>
       ))}
@@ -95,9 +98,9 @@ const Home = (): JSX.Element => {
       <Compromise />
 
       <div className="w-full flex flex-col items-center justify-center my-10">
-        <p className="text-primary-400 text-2xl font-bold border-b border-primary-400 pb-2 hover:scale-110 duration-200 ease-in cursor-default text-center">
+        <h1 className="heading text-primary-400/60 border-b-primary-400/60">
           Nuestros clientes nos recomiendan
-        </p>
+        </h1>
         <Carousel />
       </div>
 

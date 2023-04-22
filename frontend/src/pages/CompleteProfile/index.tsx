@@ -82,6 +82,7 @@ const CompleteProfile = (): JSX.Element => {
                       <Field
                         as="select"
                         name="gender"
+                        id="gender"
                         className={`input focus:border-white peer ${
                           errors.gender && touched.gender
                             ? 'border-2 border-secondary-400'
@@ -118,6 +119,7 @@ const CompleteProfile = (): JSX.Element => {
                       <Field
                         type="number"
                         name="age"
+                        id="age"
                         min={10}
                         max={100}
                         placeholder="Edad"
@@ -146,6 +148,7 @@ const CompleteProfile = (): JSX.Element => {
                       <Field
                         type="number"
                         name="weight"
+                        id="weight"
                         min={30}
                         max={200}
                         placeholder=" "
@@ -174,6 +177,7 @@ const CompleteProfile = (): JSX.Element => {
                       <Field
                         type="number"
                         name="height"
+                        id="height"
                         placeholder=" "
                         min={70}
                         max={250}
