@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { useRoutine } from 'hooks/useRoutine'
+import { useRoutines } from 'hooks/useRoutine'
 import ExerciseCard from 'components/ExerciseCard'
 import Loader from 'components/Loader'
 import { IoIosArrowDown } from 'react-icons/io'
 import { AiOutlineClose } from 'react-icons/ai'
 
 const RoutineDays3 = (): JSX.Element => {
-  const { data, isLoading } = useRoutine()
+  const { data, isLoading } = useRoutines()
   const [currentDay, setCurrentDay] = useState(-1)
 
   return (
