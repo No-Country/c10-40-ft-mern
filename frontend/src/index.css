@@ -93,8 +93,26 @@ input[type='number'] {
 .form-exit-active {
   opacity: 0;
   transform: translateX(-100%);
-  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  transition: opacity 1000ms ease-in-out, transform 1000ms ease-in-out;
 }
+
+.images-enter {
+    opacity: 0;
+  }
+  
+  .images-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms ease-in-out;
+  }
+  
+  .images-exit {
+    opacity: 1;
+  }
+  
+  .images-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out;
+  }
 
 .slide-enter {
     opacity: 0;

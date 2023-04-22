@@ -1,34 +1,96 @@
+import { useState, useEffect } from 'react'
 import { Carousel, Charac, Compromise, Objetive, Promo } from 'components'
 import { Link } from 'react-router-dom'
 
-/*
- *
- * TODO: CAMBIAR TEXTO EN H1.
- *
- */
+import { CSSTransition } from 'react-transition-group'
+const images = [
+  {
+    id: 0,
+    imagen:
+      'https://res.cloudinary.com/dnqmez68n/image/upload/v1682113473/fondos%20ex/banner2_ezocgl.jpg',
+    nombre: 'banner1'
+  },
+  {
+    id: 1,
+    imagen:
+      'https://res.cloudinary.com/dnqmez68n/image/upload/v1682122083/banner7_h0v0tx.jpg',
+    nombre: 'banner2'
+  },
+  {
+    id: 2,
+    imagen:
+      'https://res.cloudinary.com/dnqmez68n/image/upload/v1682113469/fondos%20ex/banner3_ypffn5.jpg',
+    nombre: 'banner3'
+  },
+  {
+    id: 3,
+    imagen:
+      'https://res.cloudinary.com/dnqmez68n/image/upload/v1682113469/fondos%20ex/banner4_lq07wb.jpg',
+    nombre: 'banner4'
+  },
+  {
+    id: 5,
+    imagen:
+      'https://res.cloudinary.com/dnqmez68n/image/upload/v1682121912/banner5_hqwio3.jpg',
+    nombre: 'banner5'
+  },
+  {
+    id: 6,
+    imagen:
+      'https://res.cloudinary.com/dnqmez68n/image/upload/v1682121912/banner6_v9tqat.webp',
+    nombre: 'banner6'
+  }
+]
 
 const Home = (): JSX.Element => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // Increment the current index by 1, wrapping around to 0 if at the end of the array
+      setCurrentIndex((currentIndex + 1) % images.length)
+    }, 5000) // 5000ms = 5 seconds
+
+    return () => {
+      clearInterval(intervalId)
+    } // Cleanup function to clear the interval when component unmounts
+  }, [currentIndex])
+
   return (
     <div className="h-full w-full">
-      <div className="h-screen w-full flex flex-col items-start justify-center sm:pl-20 md:pl-40 bg-[linear-gradient(to_right_top,rgba(0,0,0,1),rgba(255,255,255,0.3)),url('https://hips.hearstapps.com/hmg-prod/images/young-strong-sweaty-focused-fit-muscular-man-with-royalty-free-image-1594652842.jpg?resize=1200:*')] bg-cover bg-fixed">
-        <div className="flex flex-col h-72 max-w-[500px] justify-around  ">
-          <h1 className="text-2xl font-Barlow p-7 md:text-6xl font-bold uppercase text-white">
-            Conocé nuestros planes de entrenamiento
-          </h1>
-          <div className="flex items-center flex-col sm:flex-row gap-4 md:gap-8 md:mt-10 text-center p-7">
-            <Link
-              to="/register"
-              className="button w-2/4 border-2 border-transparent lg:text-2xl bg-primary-400/80 text-primary-bg hover:bg-primary-400 hover:text-primary-bg">
-              Comenzá
-            </Link>
-            <Link
-              to="/about"
-              className="button w-2/4 lg:text-2xl border-2 border-primary-100 text-primary-100 hover:border-primary-400 hover:bg-primary-400 hover:text-primary-bg">
-              Conocenos
-            </Link>
+      {images.map((img, index) => (
+        <CSSTransition
+          key={index}
+          timeout={500}
+          classNames="images"
+          appear={true}
+          in={index === currentIndex}>
+          <div className="w-full h-full">
+            <div
+              className={`slide transition-all duration-500 ease-in-out bg-cover bg-center h-[60vh] flex flex-col justify-center items-center md:items-start ${
+                index === currentIndex ? 'block' : 'hidden'
+              }`}
+              style={{ backgroundImage: `url(${img.imagen})` }}>
+              <p className="text-4xl font-Barlow p-7 md:text-6xl font-bold uppercase max-w-lg text-white">
+                Conocé nuestros planes de entrenamiento
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-8 md:mt-10 text-center p-7">
+                <Link
+                  to="/register"
+                  className="border-2 md:w-48 px-10 p-3 font-semibold md:text-xl rounded-md bg-primary-400 border-primary-400  text-black hover:bg-transparent hover:text-primary-400  ease-in-out duration-500">
+                  Comenzá
+                </Link>
+                <Link
+                  to="/about"
+                  className="border-2 md:w-48 px-10 p-3 font-semibold md:text-xl rounded-md bg-transparent text-white hover:bg-white hover:text-black hover:border-transparent ease-in-out duration-500">
+                  Conocenos
+                </Link>
+              </div>
+            </div>
+
           </div>
-        </div>
-      </div>
+        </CSSTransition>
+      ))}
       <Objetive />
 
       <Charac />
