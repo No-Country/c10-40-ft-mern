@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlineForm, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai'
 import { FiLogIn } from 'react-icons/fi'
 import { TfiClose } from 'react-icons/tfi'
@@ -9,10 +9,35 @@ import { useAuth } from 'hooks/useAuth'
 
 const NavbarResponsive = (): JSX.Element => {
   const { isAuthenticated, isLoading } = useAuth()
-
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const [show, setShow] = useState(true)
   const [menu, setMenu] = useState(false)
+
+  const controlNavbar = (): void => {
+    if (window) {
+      if (window.scrollY > lastScrollY) {
+        setShow(false)
+      } else {
+        setShow(true)
+      }
+      setLastScrollY(window.scrollY)
+    }
+  }
+
+  useEffect(() => {
+    if (window) {
+      window.addEventListener('scroll', controlNavbar)
+
+      return () => {
+        window.removeEventListener('scroll', controlNavbar)
+      }
+    }
+  }, [lastScrollY])
   return (
-    <nav className="w-full flex items-center justify-between px-8 py-5 md:px-10">
+    <nav
+      className={`w-full top-0 bg-primary-bg/90 backdrop-blur sticky flex z-20 items-center justify-between py-5 px-8 md:px-10 transition-all ${
+        lastScrollY !== 0 ? 'shadow-lg' : 'shadow-none'
+      } ${show ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="flex items-center flex-shrink-0 text-white">
         <Link to="/" className="font-semibold text-xl">
           <img
@@ -170,28 +195,6 @@ const NavbarResponsive = (): JSX.Element => {
               </span>
             </Link>
           </div>
-          <div className="w-full flex items-center justify-center group select-none">
-            <Link
-              to="/register"
-              onClick={() => {
-                setMenu(!menu)
-              }}
-              className={`${
-                location.pathname === '/register'
-                  ? 'text-primary-400'
-                  : 'text-primary-100'
-              } flex items-center gap-3 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
-              <AiOutlineForm size={24} />
-              <span
-                className={`${
-                  location.pathname === '/register'
-                    ? 'border-b-2 border-primary-400'
-                    : 'border-b-2 border-transparent '
-                } flex items-center gap-2 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
-                Registrate
-              </span>
-            </Link>
-          </div>
           <div className="w-full flex items-center gap-x-1.5 group select-none">
             {!isLoading && isAuthenticated ? (
               <Link
@@ -209,26 +212,48 @@ const NavbarResponsive = (): JSX.Element => {
                 </span>
               </Link>
             ) : (
-              <Link
-                to="/login"
-                onClick={() => {
-                  setMenu(!menu)
-                }}
-                className={`${
-                  location.pathname === '/login'
-                    ? 'text-primary-400'
-                    : 'text-primary-100'
-                } flex items-center gap-3 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
-                <FiLogIn size={24} />
-                <span
+              <div className="w-full flex flex-col gap-4 items-center justify-center group select-none">
+                <Link
+                  to="/login"
+                  onClick={() => {
+                    setMenu(!menu)
+                  }}
                   className={`${
                     location.pathname === '/login'
-                      ? 'border-b-2 border-primary-400'
-                      : 'border-b-2 border-transparent '
-                  } flex items-center gap-2 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
-                  Iniciar sesión
-                </span>
-              </Link>
+                      ? 'text-primary-400'
+                      : 'text-primary-100'
+                  } flex items-center gap-3 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
+                  <FiLogIn size={24} />
+                  <span
+                    className={`${
+                      location.pathname === '/login'
+                        ? 'border-b-2 border-primary-400'
+                        : 'border-b-2 border-transparent '
+                    } flex items-center gap-2 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
+                    Iniciar sesión
+                  </span>
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => {
+                    setMenu(!menu)
+                  }}
+                  className={`${
+                    location.pathname === '/register'
+                      ? 'text-primary-400'
+                      : 'text-primary-100'
+                  } flex items-center gap-3 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
+                  <AiOutlineForm size={24} />
+                  <span
+                    className={`${
+                      location.pathname === '/register'
+                        ? 'border-b-2 border-primary-400'
+                        : 'border-b-2 border-transparent '
+                    } flex items-center gap-2 hover:text-primary-400 hover:border-primary-400 ease-in duration-300`}>
+                    Registrate
+                  </span>
+                </Link>
+              </div>
             )}
           </div>
         </div>

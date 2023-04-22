@@ -45,13 +45,12 @@ const Home = (): JSX.Element => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      // Increment the current index by 1, wrapping around to 0 if at the end of the array
       setCurrentIndex((currentIndex + 1) % images.length)
-    }, 5000) // 5000ms = 5 seconds
+    }, 5000)
 
     return () => {
       clearInterval(intervalId)
-    } // Cleanup function to clear the interval when component unmounts
+    }
   }, [currentIndex])
 
   return (
@@ -95,9 +94,9 @@ const Home = (): JSX.Element => {
       <Compromise />
 
       <div className="w-full flex flex-col items-center justify-center my-10">
-        <p className="text-primary-400 text-2xl font-bold border-b border-primary-400 pb-2 hover:scale-110 duration-200 ease-in cursor-default text-center">
+        <h1 className="heading text-primary-400/60 border-b-primary-400/60">
           Nuestros clientes nos recomiendan
-        </p>
+        </h1>
         <Carousel />
       </div>
 
