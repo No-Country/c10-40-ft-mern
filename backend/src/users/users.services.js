@@ -1,6 +1,8 @@
 const usersControllers = require("./users.controllers");
 const responses = require("../utils/handleResponses");
 const { hashPassword } = require("../utils/crypto");
+const transporter = require("../utils/nodemailer");
+const authConfig = require("../../config").nodemailer;
 
 const getAllUsers = (req, res) => {
   usersControllers
@@ -57,38 +59,46 @@ const postNewUser = async (req, res) => {
   const userObj = req.body;
   const existingUser = await usersControllers.findUserByEmail(userObj.email);
 
-  if (existingUser) {
-    return responses.error({
-      status: 400,
-      message: `User with email: ${userObj.email} already exists`,
-      res,
-    });
-  }
-
-  try {
-    const { data, token } = await usersControllers.createNewUser(userObj);
-    return responses.success({
-      status: 201,
-      data: {
-        id: data.id,
-        firstName: data.firstName,
-        email: data.email,
-        token: token,
-      },
-      message: `User created successfully with id: ${data.id}`,
-      res,
-    });
-  } catch (err) {
-    return responses.error({
-      status: 400,
-      message: "Error occurred trying to create a new user",
-      res,
-      fields: {
-        firstName: "String",
-        email: "example@example.com",
-      },
-    });
-  }
+    try {
+        const { data, token } = await usersControllers.createNewUser(userObj);
+        transporter.sendMail({
+            from: `ExerciFY Staff <${authConfig.auth.user}>`,
+            to: data.email,
+            subject: "ExerciFY - Bienvenido(a) a ExerciFY!",
+            html: `
+            <div style="background-color: #f2f2f2; padding: 20px;">
+                <h2>¡Bienvenido a ExerciFY!</h2>
+                <p>¡Hola ${data.firstName}!</p>
+                <p>Te damos la bienvenida a Exercify. ¡Estamos emocionados de tenerte como parte de nuestra comunidad!</p>
+                <p>Ahora puedes acceder a tu cuenta con el correo electrónico y contraseña que elegiste</p>
+                <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nuestro equipo de soporte.</p>
+                <p>Gracias por unirte a ExerciFY. ¡Que tengas un excelente día y éxito en tus rutinas!</p>
+                <p>Saludos cordiales,</p>
+                <p>El equipo de ExerciFY</p>
+            </div>`,
+          });
+        return responses.success({
+            status: 201,
+            data: {
+                id: data.id,
+                firstName: data.firstName,
+                email: data.email,
+                token: token,
+            },
+            message: `User created successfully with id: ${data.id}`,
+            res,
+        });
+    } catch (err) {
+        return responses.error({
+            status: 400,
+            message: "Error occurred trying to create a new user",
+            res,
+            fields: {
+                firstName: "String",
+                email: "example@example.com",
+            },
+        });
+    }
 };
 
 const patchUser = (req, res) => {
