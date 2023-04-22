@@ -23,8 +23,4 @@ router.put("/forgot-password", authServices.forgotPassword);
 //Cambia la contraseña
 router.put("/new-password", authServices.createNewPassword);
 
-router.put("/forgot-password", authServices.forgotPassword);
-
-router.put("/new-password", authServices.createNewPassword);
-
 module.exports = router;
