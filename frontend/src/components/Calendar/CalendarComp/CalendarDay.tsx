@@ -1,20 +1,18 @@
 import React from 'react'
 import dayjs, { type Dayjs } from 'dayjs'
-import { Link, useNavigate } from 'react-router-dom'
-import { useUser } from 'hooks/useUser'
+import { Link } from 'react-router-dom'
 
 const CalendarDay = ({
   day,
   rowIdx,
-  date
+  date,
+  routineDay
 }: {
   day: Dayjs
   rowIdx: React.Key
   date: Dayjs
+  routineDay: number[]
 }): JSX.Element => {
-  const navigate = useNavigate()
-  const { user, isLoading } = useUser()
-
   function getCurrentMonthClass(): string {
     return day.format('MM-YY') === date.format('MM-YY')
       ? 'bg-primary-100/10'
@@ -26,22 +24,32 @@ const CalendarDay = ({
       : ''
   }
 
-  console.log(day.day())
-
   return (
     <div
-      className={`border border-black flex flex-col h-full w-full ${getCurrentMonthClass()}`}>
-      <header className="flex flex-col items-center h-full max-h-36">
+      className={`border border-primary-bg flex flex-col  w-full ${getCurrentMonthClass()}`}>
+      <div className="flex flex-col items-center h-full">
         {rowIdx === 0 && (
           <div className="text-lg bg-primary-400/60 w-full text-center py-2 font-Barlow font-bold">
             {day.format('ddd').toUpperCase()}
           </div>
         )}
-        <div
-          className={`text-sm p-2 flex flex-col items-center ${getCurrentDayClass()}`}>
-          <p className="text-start">{day.format('DD')}</p>
+        <div className="w-full h-full min-h-[6rem] group relative">
+          <div
+            className={`w-full h-full text-sm p-2 flex flex-col gap-4 items-center ${getCurrentDayClass()}`}>
+            <p className="text-start">{day.format('DD')}</p>
+            {day.format('MM-YY') === date.format('MM-YY') &&
+            routineDay.includes(day.day()) ? (
+              <Link
+                to={'/dashboard/routine'}
+                className="flex items-center justify-center text-primary-bg absolute top-2/4 -translate-y-2/4 w-4 h-4 rounded-full bg-primary-400/80 group-hover:rounded-none group-hover:w-full group-hover:h-full group-hover:bg-primary-400 transition-all">
+                <p className="text-lg opacity-0 group-hover:opacity-100">
+                  Ir a rutina
+                </p>
+              </Link>
+            ) : null}
+          </div>
         </div>
-      </header>
+      </div>
     </div>
   )
 }
