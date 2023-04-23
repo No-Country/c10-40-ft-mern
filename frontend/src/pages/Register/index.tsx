@@ -28,7 +28,9 @@ const SignUpSchema = Yup.object().shape({
     .matches(/[a-zA-Z\s:]/, 'Numbers and special characters forbbiden'),
   email: Yup.string().email('Invalid Email').required('Required'),
   password: Yup.string().required('Required'),
-  repassword: Yup.string().oneOf([Yup.ref('password')], 'Passwords must match'),
+  repassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords must match')
+    .required('Required'),
   terms: Yup.boolean().oneOf([true], 'Debe aceptar los terminos y condiciones')
 })
 
