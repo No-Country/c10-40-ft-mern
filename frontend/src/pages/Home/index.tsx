@@ -74,9 +74,9 @@ const Home = (): JSX.Element => {
               />
             </CSSTransition>
             <div className="w-full absolute inset-y-0 flex flex-col items-center justify-center md:items-start md:px-8 lg:px-16 bg-primary-bg/40">
-              <p className="text-4xl font-Barlow p-7 md:text-6xl font-bold uppercase max-w-lg text-white">
+              <h1 className="text-shadow shadow-black/60 text-4xl font-Barlow p-7 md:text-6xl font-bold uppercase max-w-lg text-white">
                 Conocé nuestros planes de entrenamiento
-              </p>
+              </h1>
               <div className="flex flex-col sm:flex-row gap-4 md:gap-8 md:mt-10 text-center p-7">
                 <Link
                   to="/register"
