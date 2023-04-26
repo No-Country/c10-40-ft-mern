@@ -4,7 +4,7 @@ import { type ILoginUser } from 'app/types'
 import { Tooltip } from 'components'
 import { Field, Formik, Form } from 'formik'
 import Cookies from 'js-cookie'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
 import { ImSpinner8 } from 'react-icons/im'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -23,6 +23,7 @@ const SignInSchema = Yup.object().shape({
 const INITIAL_STATE: ILoginUser = { email: '', password: '' }
 
 const Login = (): JSX.Element => {
+  const [rememberMe, setRememberMe] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -37,7 +38,8 @@ const Login = (): JSX.Element => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      Cookies.set(JWT_TOKEN, data, { sameSite: 'Lax' })
+      const session = rememberMe ? 1 : undefined
+      Cookies.set(JWT_TOKEN, data, { sameSite: 'Lax', expires: session })
       navigate('/dashboard')
     },
     onError: (error) => {
@@ -48,6 +50,7 @@ const Login = (): JSX.Element => {
       }
     }
   })
+
   const handleUrl = (): void => {
     googleCallback()
       .then(({ data }: { data: string }) => {
@@ -129,6 +132,19 @@ const Login = (): JSX.Element => {
                       <Tooltip message={errors.password} />
                     </span>
                   ) : null}
+                </div>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="rememberMe"
+                    checked={rememberMe}
+                    onClick={() => {
+                      setRememberMe(!rememberMe)
+                    }}
+                    name="rememberMe"
+                    className="w-4 h-4 text-primary-600 bg-primary-100 border-primary-300 rounded"
+                  />
+                  <label htmlFor="rememberMe">Recordarme</label>
                 </div>
                 <button
                   type="submit"
