@@ -37,7 +37,7 @@ const images = [
     id: 6,
     imagen:
       'https://res.cloudinary.com/dnqmez68n/image/upload/v1682121912/banner6_v9tqat.webp',
-    nombre: 'banner6'
+    nombre: 'banner7'
   }
 ]
 const Home = (): JSX.Element => {
