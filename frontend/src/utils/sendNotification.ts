@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 export const sendNotification = (
   message: string,
   type?: 'success' | 'error'
-): number => {
+): string | number => {
   switch (type) {
     case 'success':
       return toast.success(message, {
